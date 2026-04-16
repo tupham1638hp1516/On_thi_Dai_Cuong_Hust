@@ -107,3 +107,177 @@ C. Router
 D. Switch
 E. Bridge
 F. Máy tính cá nhân
+
+1. Các thiết bị thuộc Tầng Liên kết dữ liệu (Data Link Layer - Layer 2)
+Ở tầng này, các thiết bị làm việc với địa chỉ vật lý (MAC Address) và đóng gói dữ liệu thành các Frame.
+
+D. Switch (Bộ chuyển mạch): Là thiết bị trung tâm trong mạng LAN hiện đại, có khả năng học địa chỉ MAC và chỉ chuyển tiếp dữ liệu đến cổng chứa thiết bị đích.
+
+E. Bridge (Cầu nối): Một thiết bị kết nối hai phân đoạn mạng LAN khác nhau và kiểm soát việc lưu thông dữ liệu giữa chúng dựa trên địa chỉ MAC. Switch có thể được coi là một "Multi-port Bridge" (Cầu nối nhiều cổng).
+
+2. Tại sao các lựa chọn khác không đúng?
+A. Repeater & B. Hub: Hoạt động ở Tầng Vật lý (Physical Layer - Layer 1). Chúng chỉ đơn thuần là khuếch đại hoặc chuyển tiếp tín hiệu điện/quang mà không hề đọc hay hiểu nội dung của gói dữ liệu.
+
+C. Router: Hoạt động ở Tầng Mạng (Network Layer - Layer 3). Router làm việc với địa chỉ IP và thực hiện việc định tuyến (tìm đường đi) giữa các mạng khác nhau.
+
+F. Máy tính cá nhân (PC): Mặc dù PC có card mạng (NIC) hoạt động ở tầng 2, nhưng bản thân máy tính là một thiết bị đầu cuối (End-host) chạy các ứng dụng ở tất cả 7 tầng của mô hình OSI (từ Physical đến Application). Trong các câu hỏi phân loại thiết bị mạng đặc trưng, PC thường không được xếp riêng vào Layer 2.
+
+Tóm tắt nhanh:
+
+Layer 1: Hub, Repeater, Cable.
+
+Layer 2: Switch, Bridge, NIC.
+
+Layer 3: Router, Layer 3 Switch.
+Đáp án đúng: D & E
+Câu 15: Đâu là ưu điểm của thuật toán định tuyến link-state so với distance-vector?
+A. Độ tin cậy cao hơn
+B. Số lượng thông điệp trao đổi ít hơn
+C. Tốc độ hội tụ như nhau
+D. Không đáp án nào đúng
+Trong các giao thức định tuyến:
+
+Distance-vector (DV): Hoạt động theo nguyên tắc "đồn thổi" (routing by rumor). Mỗi router nhận bảng định tuyến từ hàng xóm và tin tưởng hoàn toàn vào đó. Nếu một router quảng bá thông tin sai, lỗi này sẽ lan truyền ra toàn mạng (ví dụ: lỗi "count-to-infinity"). Kiến thức mà router biết chỉ là cục bộ(dựa trên những router xung quanh)
+
+Link-state (LS): Mỗi router tự xây dựng một bản đồ toàn cảnh (topology database) của toàn mạng. Các router chỉ quảng bá trạng thái các liên kết trực tiếp của mình. Nếu một router bị lỗi và gửi thông tin sai về các liên kết của nó, nó chỉ ảnh hưởng đến các node đi qua nó chứ không làm hỏng logic tính toán của các node khác như DV. Kiến thức mà router biết là toàn cục.
+
+Dễ thấy số lượng thông điệp trao đổi của link-state sẽ phải nhiều hơn DV
+
+Hội tụ là toàn bộ router đồng ý với nhau về đường đi đúng => Do đó tốc độ hội tụ của LS sẽ nhanh hơn DV
+=> Đáp án đúng: A
+Câu 16: Đâu là nhận xét sai về hệ tự trị trong định tuyến (Autonomous System)
+A. Trong một AS, các router sẽ triển khai chính sách định tuyến giống nhau
+B. Giao thức định tuyến nội miền(Intra-domain) được sử dụng bên trong AS
+C. Giao thức định tuyến liên miền(Inter-domain) được sử dụng để kết nối các AS với nhau
+D. Số lượng các AS là cố định
+Ta hình dung nếu Internet là một thành phố khổng lồ thì AS sẽ là một tòa nhà được quản lý riêng ở trong đó(đó có thể là 1 ISP, 1 trường đại học, vv)
+Vì vậy nên số lượng AS không thể cố định được, nó có thể được tạo mới, xóa đi, hay gộp lại.
+Các đáp án còn lại đúng vì:
+A. AS giống như một tổ chức quản lý, nên rõ ràng các router sẽ phải có chính sách giống nhau
+B + C: Bên trong 1 tòa nhà thì phải có "nội miền" còn giữa các tòa nhà thì phải có "liên miền"
+Câu 17: Tác dụng của Dynamic Host Configuration Protocol là gì?
+A. Cung cấp địa chỉ IP tự động từ một máy chủ khi có một máy tính tham gia vào mạng
+B. Truyền địa chỉ IP giữa các máy tính
+C. Cấu hình bảng định tuyến máy tính
+D. Thiết lập cấu hình máy tính thông qua kết nối từ xa
+DHCP là giao thức giúp máy tính tự động nhận cấu hình mạng
+Khi một máy mới vào mạng, DHCP server sẽ tự động cấp:
+1. Địa chỉ IP
+2. Subnet mask
+3. Default gateway
+4. DNS
+Dễ thấy thì A là đáp án đúng
+Câu 18: Chức năng chính của các giao thức đa truy cập( multiple access) trong tầng liên kết dữ liệu là gì (2 lựa chọn)
+A. Cho máy tính tham gia vào mạng mới
+B. Xác định cách các nút chia sẻ kênh
+C. Truyền thông về chia sẻ kênh phải sử dụng chính kênh đó
+D. Giúp máy tính truy cập vào video, âm thanh, hình ảnh trên Internet
+Khi có nhiều máy tính cùng nối vào 1 đường truyền chung mà ai cũng gửi cùng lúc thì sẽ bị đụng nhau. => Giao thức đa truy cập sẽ quyết định ai được nói và nói khi nào.
+Phân tích các đáp án đúng:
+B. Đây là chức năng chính của giao thức đa truy cập, sẽ có một bộ luật để quyết định và giao thức MAC chính là bộ luật đó
+C. Do không có kênh điều khiển riêng, các node phải sử dụng chính kênh truyền dữ liệu để quan sát trạng thái và tự quyết định thời điểm truyền, nhằm giảm thiểu xung đột trong môi trường phân tán.
+Các đáp án sau sai:
+A. Đây là việc của DHCP
+D. Đây là việc của tầng ứng dụng
+Câu 19: Hạn chế của giao thức định tuyến động là gì?
+A. Không thể sử dụng liên kết dự phòng
+B. Khó quản lý
+C. Khó thích ứng với sự thay đổi của cấu trúc mạng
+D. Không an toàn
+Ta chọn đáp án D dựa trên slide:
+Định tuyến tĩnh: Các mục trong bảng định tuyến được sửa đổi thủ công bởi người quản trị
+Định tuyến động: Tự động cập nhật bảng định tuyến các giao thức định tuyến
+Câu 20: Mạng sử dụng bit parity chẵn để phát hiện lỗi do truyền mạng gây ra. Tìm bit parity chẵn của dữ liệu 1001  1100?
+Nếu số bit 1 chẵn → parity = 0
+Nếu số bit 1 lẻ → parity = 1
+Vậy bit parity chẵn cuart dữ liệu là 0
+Câu 21: Datagram (1011 1000 0011 1100) được gửi sử dụng mã vòng CRC để phát hiện lỗi. Biết rằng G = 10011, hãy tính mã CRC của datagram bên trên
+Mã CRC chính là số dư của phép chia nhị phân giữa dữ liệu (đã được thêm các bit 0) cho đa thức phát sinh G
+Ta thấy G có 5 bit => Ta phải thêm 5-1 = 4 bit 0 vào sau dữ liệu
+Ta được 1011 1000 0011 1100 0000
+Để chia thì ta làm như sau:
+Lấy 10111 XOR 10011 = 00100
+Sau đó ta hạ bit tiếp theo xuống, ở đây là 0, vậy ta được: 01000
+Vì bit đầu bên trái là 0 nên ta lại hạ tiếp: 10000
+Sau đó ta XOR: 10 000 XOR 10 011 = 00011
+Làm liên tục đến cuối cùng ta thu được CRC = 1100
+Câu 22: Trong số các kiến trúc phân phối quang(optical - distribution) cái mà được chuyển mạch Ethernet là?
+A. PON
+B. MON
+C. AON
+D. NON
+Ta có thể chia công nghệ mạng thành 2 loại
+Shared(Hub, Wifi, PON)                        Switch(Ethernet, AON)
+Rẻ                                             Đắt
+Đơn giản                                       Phức tạp
+Dễ nghẽn                                       Hiệu năng cao
+Khó tối ưu                                     Có điều khiển
+=> Đáp án đúng: C
+Câu 23: Thiết bị chuyển mạch(Switch) được liên kết với mạng nào?
+A. Bus
+B. Ring
+C. Star
+D. Mesh
+Thấy switch / hub (trung tâm) → chọn Star
+Thấy chia sẻ 1 đường → Bus
+Thấy vòng tròn → Ring
+=> Đáp án đúng: C
+Câu 24: Thiết bị nào không phải là thiết bị đầu cuối?
+A. Switch
+B. Server
+C. Máy tính
+D. Điện thoại thông minh
+Thiết bị đầu cuối là thiết bị tạo ra dữ liệu hoặc tiêu thụ dữ liệu
+=> Đáp án đúng: A
+Câu 25: Kỹ thuật đa truy cập(multiple access) nào được sử dụng bởi chuẩn IEEE 802.11 cho wireless LAN?
+A. CDMA
+B. CSMA/ CA
+C. CSMA/ CD
+D. ALOHA
+Kỹ thuật CSMA/ CD sẽ thường được sử dụng trong mạng Ethernet nhờ ưu thế về đường truyền (nếu bị va chạm thì sửa lại vì đường truyền có thể nghe được sau khi gửi- nhận biết được)
+Kỹ thuật CSMA/ CA thì khác, nó sinh ra để khắc phục điểm yếu của đường truyền wireless (không nghe được khi đã truyền đi dẫn đến khả năng bị va chạm cao). Kỹ thuật này là các luật giúp tránh bị va chạm
+ALOHA gửi hoàn toàn ngẫu nhiên
+CDMA thì dùng trong 3G
+=> Đáp án đúng: B
+Câu 26: Trường nào giúp kiểm tra sự sắp xếp của các fragments?
+A. Flag
+B. TTL (Time to Live)
+C. Identifier
+D. Offset
+Khi một gói IP bị chia nhỏ (fragment):
+ Mỗi mảnh cần trả lời 2 câu hỏi:
+Tôi thuộc gói nào?
+Tôi nằm ở vị trí nào trong gói đó?
+Flag dùng để báo còn fragment nữa hay không
+TTL dùng để giới hạn số hop (không liên quan gì fragment)
+Identifier dùng để nhận biết các fragment thuộc cùng 1 gói
+Offset cho biết vị trí của fragment trong gói gốc
+=> Đáp án đúng: D
+Câu 27: Đâu là tốc độ truyền dữ liệu nhanh nhất dưới đây:
+A. bps
+B. Kbps
+C. Mbps
+D. Gbps
+Câu này khó quá
+Câu 28: Địa chỉ IPv4 nào là hợp lệ cho địa chỉ IP public nếu sử dụng phương pháp CIDR để cấp phát địa chỉ IP?
+A. 192.168.1.16
+B. 10.0.0.1
+C. 23.3.4.256
+D. 11.0.0.1
+E. 172.15.4.9
+F. 172.16.9.4
+IPv4 là địa chỉ dạng:
+ a.b.c.d (4 số)
+Mỗi số:
+ từ 0 → 255
+IP public không nằm trong dải private
+Dải IP Private là:
+10.0.0.0 → 10.255.255.255
+172.16.0.0 → 172.31.255.255
+192.168.0.0 → 192.168.255.255
+=> Đáp án đúng: D và E
+Câu 29: Trong classful addressing, phần lớn các địa chỉ có đặc điểm nào sau đây:
+A. Được tổ chức
+B. Bị lãng phí
+C. Bị chặn
+D. Giao tiếp với nhau
