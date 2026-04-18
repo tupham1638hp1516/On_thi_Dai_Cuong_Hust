@@ -281,3 +281,10 @@ A. Được tổ chức
 B. Bị lãng phí
 C. Bị chặn
 D. Giao tiếp với nhau
+Classful addressing là một cách chia địa chỉ IP thành 3 loại lớp khác nhau là A,B,C. Nhưng vì mỗi một lớp luôn cố định với một số máy riêng biệt nên nếu một công ty có số lượng máy vượt quá mức C nhưng lại không quá nhiều dẫn đến phải chọn lớp B => Lãng phí rất nhiều địa chỉ.
+=> Đáp án đúng: B
+Câu 30: Điều gì sẽ xảy ra nếu MTU của kết nối mạng quá nhỏ?
+A. Nó làm tăng xác suất xảy ra lỗi
+B. Nó làm giảm hiệu suất truyền dữ liệu vì tiêu đề có kích thước cố định
+C. Nó làm tăng tắc nghẽn mạng do số lượng gói tin
+D. Nó làm giảm băng thông kết nối mạng
