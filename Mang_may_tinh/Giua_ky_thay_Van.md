@@ -1,4 +1,6 @@
-Getting Statarted
+Getting Statarted:
+Gửi câu hỏi lên cho NotebookLM để hỏi nó câu hỏi này nằm ở đâu + Hỏi Gemini
+Nếu giải thích khó quá thì chụp lại slide xong bảo gemini giải thích thật dễ hiểu dựa trên sơ đồ của slide
 Câu 1: Trong các nhận xét sau, nhận xét nào về NAT là đúng?
 A. Tốn kém địa chỉ IP
 B. Không hiệu quả đối với mạng kích thước lớn
@@ -288,3 +290,192 @@ A. Nó làm tăng xác suất xảy ra lỗi
 B. Nó làm giảm hiệu suất truyền dữ liệu vì tiêu đề có kích thước cố định
 C. Nó làm tăng tắc nghẽn mạng do số lượng gói tin
 D. Nó làm giảm băng thông kết nối mạng
+Tiêu đề luôn có một kích thước cố định, và % dung lượng đường truyền luôn <100% vì còn phải trừ đi gói tin=> Nếu MTU càng lớn thì hiệu suất sẽ càng lớn.
+Lấy ví dụ gói tin 1460 byte, tiêu đề 40 byte
++) Nếu MTU =1500 thì ta có hiệu suất sử dụng đường truyền là 1460/1500 ~ 97%
++) Nếu MTU =100 thì ta có hiệu suất sử dụng đường truyền là 60/100 ~ 60%
+Như vậy đáp án B là đáp án đúng
+A. Sai vì: Xác suất lỗi bit phụ thuộc vào chất lượng dây cáp, nhiễu điện từ hoặc sóng WiFi, và gói tin nhỏ thực ra còn khó bị lỗi hơn gói tin lớn (vì nó đi qua dây nhanh hơn, ít cơ hội gặp nhiễu hơn).
+
+C. Sai vì: Tắc nghẽn mạng (Congestion) xảy ra khi tổng lưu lượng (tổng số bits) vượt quá khả năng của đường truyền hoặc hàng đợi của Router bị đầy. Ta có thể hiểu MTU là tải trọng tối đa cho 1 cái xe chở hàng, còn tổng lưu lượng là cả cái kho hàng, việc cái xe được chất tối đa bao nhiêu hàng phụ thuộc vào khả năng của chính nó chứ không phải số lượng hàng trong kho.
+
+D. Sai vì: Băng thông (Bandwidth) là độ rộng của đường ống (ví dụ gói cước 100Mbps). MTU nhỏ không làm cái ống hẹp lại.Sự thật: Nó chỉ làm giảm Tốc độ thực tế (Goodput). Tức là ống vẫn to, nước vẫn chảy đầy ống, nhưng trong nước toàn là "rác" (Header) chứ không phải "nước sạch" (Dữ liệu).
+Câu 31: Mạng máy tính đầu tiên trên thế giới có tên là?
+A. CNNET
+B. NSFNET
+C. ASAPNET
+D. ARPANET
+=> Đáp án đúng: D. Không nhớ thì phải chịu
+Câu 32: Trong mô hình TCP/IP, khi gói tin được chuyển từ tầng trên xuống tầng dưới thì header sẽ được?
+A. Thêm vào
+B. Thay đổi
+C. Loại bỏ
+D. Sắp xếp lại
+Khi dữ liệu đi từ tầng trên (Application) xuống tầng dưới cùng (Physical), mỗi tầng sẽ coi toàn bộ khối dữ liệu từ tầng trên chuyển xuống là "phần thân" (Payload) và dán thêm một cái nhãn (Header) của riêng nó vào.
+=> Đáp án đúng: A
+Câu 33: Địa chỉ Ethernet gồm bao nhiêu bit?
+=> 48 bit
+Câu 34: Đâu là nhận xét đúng về cơ chế tự học swtich? (Có thể có nhiều lựa chọn đúng)
+A. Khi một frame đến switch, switch sẽ cập nhật bảng địa chỉ MAC của nó dựa trên địa chỉ nguồn của frame
+B. Khi một frame đến switch, switch sẽ cập nhật bảng địa chỉ MAC của nó dựa trên trường địa chỉ đích của frame
+C. Khi một mục trong mảng địa chỉ MAC được thêm vào, nó sẽ tồn tại cho đến khi được cập nhật thông tin mới
+D. Một mục trong bảng địa chỉ MAC sẽ hết hạn nếu không được sử dụng và sau khi đã hết thời gian chờ
+Slide trang 72 chương 3:
+Câu chuyện về "Bác Switch" và Cuốn sổ tay
+Hãy tưởng tượng cái Switch ở giữa là một Bác bảo vệ đứng ở sảnh của một tòa nhà có 6 căn phòng (được đánh số từ 1 đến 6). Trong mỗi phòng có một bạn nhỏ (A, B, C, A', B', C').
+
+Bác bảo vệ có một Cuốn sổ tay (MAC Table). Ban đầu, cuốn sổ này trống trơn, bác chẳng biết ai ở phòng nào cả.
+
+📝 Bước 1: "Cháu không nói thì bác không biết"
+Khi bạn A (ở phòng số 1) muốn gửi một lá thư cho bạn A'.
+
+Bạn A thò tay ra khỏi cửa phòng 1, đưa thư cho bác bảo vệ.
+
+Bác bảo vệ nhìn vào lá thư thấy ghi: "Người gửi: A".
+
+Bác nhìn lại cửa phòng: "À, hóa ra bạn A đang ở phòng số 1!".
+
+Ngay lập tức, bác mở sổ tay ra và ghi: "Bạn A - Phòng 1". (Giống hệt cái bảng trong slide của ông đấy).
+
+Đây chính là cơ chế tự học: Bác không đi từng phòng để hỏi, bác cứ đợi ai gửi thư thì bác mới ghi tên vào sổ.
+
+🔄 Bước 2: "Ủa, cháu mới chuyển nhà à?"
+Slide có ghi một ý là: "Nhận được gói tin trên cổng khác". Nghĩa là:
+
+Hôm sau, bạn A lén lút chuyển sang phòng số 5 ngồi.
+
+Bạn A lại gửi một lá thư từ phòng số 5.
+
+Bác bảo vệ xem thư: "Người gửi: A". Bác nhìn sang sổ cũ thấy ghi phòng 1, nhưng thực tế thư lại bay ra từ cửa số 5.
+
+Bác gạch ngay số 1 đi và ghi mới: "Bạn A - Phòng 5".
+
+⏳ Bước 3: Cái số "60" (TTL) là gì?
+Ông nhìn vào cột TTL có số 60 trong slide không?
+
+Đó là "Đồng hồ đếm ngược".
+
+Nếu trong vòng 60 giây mà bạn A không gửi thêm lá thư nào, bác bảo vệ sẽ nghĩ: "Chắc bạn này đi chơi rồi".
+
+Bác sẽ lấy tẩy xóa luôn dòng tên bạn A trong sổ để tiết kiệm chỗ cho người khác.
+
+Như vậy, đáp án đúng sẽ là A và D, B sai thì quá rõ rồi, còn C sai vì không phải địa chỉ sẽ tồn tại cho đến tận khi được cập nhật thông tin mới mà còn vì nếu quá lâu nó không gửi một tin gì, địa chỉ của nó cũng sẽ bị xóa
+Câu 35: Một mạng sử dụng 4-bit CHECKSUM để phát hiện lỗi trong quá trình truyền dữ liệu. Mã checksum của dữ liệu 1001 1000 1101 là gì?
+Các bước để tính mã checksum:
+1. Cộng lần lượt từng khối bit lại với nhau (vdu 1001 + 1000, rồi lại cộng với 1101)
+2. Nếu kết quả gồm 5 bit, ta sẽ chỉ lấy 4 bit bên phải rồi cộng thêm với 1
+3. Sau khi đã cộng xong hết, ta đảo bit => kết quả cuối cùng là mã checksum
+4. Cách để kiểm tra đúng không: Tổng của tất cả các khối bit (tính cả checksum) phải bằng 1111
+
+Bảng định tuyến của 1 router như sau:
+Network Address                Next-hop                Interface
+192.168.4.0/22                 A                        1
+192.168.7.0/24                 B                        2
+192.168.0.0/16                 C                        3
+10.0.0.128/25                  D                        4
+10.0.0.0/26                    E                        5
+
+Bộ định tuyến sẽ thực hiện thao tác nào nếu nhận được gói IP có địa chỉ IP đích như sau:
+Câu 36. 192.168.6.31?
+A. Chuyển tiếp gói tin tới interface 1
+B. Chuyển tiếp gói tin tới interface 2
+C. Chuyển tiếp gói tin tới interface 3
+D. Chuyển tiếp gói tin tới interface 4
+E. Chuyển tiếp gói tin tới interface 5
+F. Loại bỏ gói tin
+
+Hãy tưởng tượng ông là Bác Bưu Tá đang đứng trước một ngã tư đường. Trên tay ông là một lá thư cần gửi đến địa chỉ: Số nhà 192.168.6.31.
+
+Ở ngã tư đó, có các biển chỉ đường (chính là cái Bảng định tuyến) như sau:
+
+🚦 Bước 1: Xem các biển chỉ đường
+Biển số 3 (Khu vực chung - /16): Biển này ghi "Tất cả những ai có địa chỉ bắt đầu bằng 192.168 thì đi vào Cửa số 3".
+
+Lá thư của mình có bắt đầu bằng 192.168 không? Có! Vậy là có thể đi cửa 3.
+
+Biển số 1 (Khu vực hẻm - /22): Biển này ghi chi tiết hơn: "Những ai có địa chỉ bắt đầu bằng 192.168 và thuộc các xóm 4, 5, 6, 7 thì đi vào Cửa số 1".
+
+Lá thư của mình là xóm số 6, có nằm trong nhóm này không? Có luôn! Vậy là cũng có thể đi cửa 1.
+
+Biển số 2 (Khu vực nhà hàng xóm - /24): Biển này ghi cực kỳ chi tiết: "Chỉ những ai ở đúng xóm 192.168.7 mới được đi Cửa số 2".
+
+Thư của mình là xóm số 6. Sai rồi! Biển này không dành cho mình.
+
+⚖️ Bước 2: Chọn lối đi nào đây? (Quy tắc "Chỉ dẫn chi tiết nhất")
+Bây giờ ông đang phân vân giữa Cửa số 3 và Cửa số 1. Cả hai đều đúng, nhưng bác bưu tá phải chọn cái nào?
+
+Trong ngành mạng có một quy tắc cực kỳ dễ thương: "Cái nào ghi càng chi tiết, càng cụ thể thì nghe theo cái đó".
+
+Biển số 3 (/16): Giống như một cái biển to đùng chỉ đường về "Thành phố Hà Nội". (Rất chung chung).
+
+Biển số 1 (/22): Giống như một cái biển nhỏ hơn chỉ đường về "Quận Hai Bà Trưng, Hà Nội". (Chi tiết hơn nhiều).
+
+Vì cái biển số 1 chỉ đường chi tiết hơn (nó biết rõ ông thuộc nhóm xóm 4-5-6-7), nên ông phải đi theo nó. Trong kỹ thuật, cái con số /22 lớn hơn /16 chính là để nói rằng: "Tôi là chỉ dẫn chi tiết hơn đây!".
+***
+Cái dấu /22 thực chất là gì?
+Ông cứ tưởng tượng một địa chỉ IP đầy đủ là một chuỗi gồm 32 con số nhị phân (chỉ có 0 và 1). Cái con số sau dấu gạch chéo (ví dụ /22) chính là "Chiếc khóa".
+•	Số 22 nghĩa là: 22 con số đầu tiên đã bị khóa cứng. Đó là "tên của khu phố", ông không được phép chạm vào hay thay đổi.
+•	Phần còn lại (32 - 22 = 10): 10 con số cuối cùng là phần ông được tự do thay đổi để đặt số nhà cho từng hộ dân.
+Mẹo nhớ: Số đằng sau dấu gạch càng to => Cái khóa càng dài => Tên khu phố càng dài và chi tiết => Khu phố đó càng bé (vì còn ít số để đặt cho số nhà).
+•	/8: Cấp cho cả một Quốc gia (Cực kỳ nhiều nhà).
+•	/24: Cấp cho một công ty nhỏ (Tầm 254 nhà).
+•	/32: Chỉ có đúng 1 căn nhà duy nhất.
+________________________________________
+2. Tại sao /22 lại là "xóm 4, 5, 6, 7"?
+Đây là phần "phép thuật" của toán học, nhưng tôi sẽ chỉ ông cách tính nhẩm của dân Bách Khoa không cần nhị phân:
+Một địa chỉ IP có 4 nhóm số (ví dụ: 192 . 168 . 6 . 31).
+•	Mỗi nhóm số tối đa là 255 (tổng cộng 256 giá trị tính cả số 0).
+•	Mỗi nhóm số này được đại diện bởi 8 cái khóa.
+Tính toán nhanh:
+1.	Nhóm 1: /8 đầu tiên khóa số 192. (Xong)
+2.	Nhóm 2: /8 tiếp theo (tổng là /16) khóa số 168. (Xong)
+3.	Nhóm 3: Đây là chỗ "biến hình". Ta đã dùng 16 cái khóa, mà đề bài cho /22, vậy ta còn dư 22-16=6 cái khóa cho nhóm số thứ 3 này.
+Trong 1 nhóm số có 8 vị trí, mà ông đã khóa mất 6, vậy còn 2 vị trí để nhảy số.
+👉 Bước nhảy (độ rộng của xóm) là: 2^2=4 nhà.
+Kết luận: Vì đề bài cho mạng bắt đầu từ số 4 (192.168.4.0), mà xóm này rộng đúng 4 số, nên ông cứ đếm từ 4 đi: 4, 5, 6, 7. Thế là hết xóm!
+
+Câu 37: 192.168.8.31
+A. Chuyển tiếp gói tin tới interface 1
+B. Chuyển tiếp gói tin tới interface 2
+C. Chuyển tiếp gói tin tới interface 3
+D. Chuyển tiếp gói tin tới interface 4
+E. Chuyển tiếp gói tin tới interface 5
+F. Loại bỏ gói tin
+Dễ thấy đáp án đúng là C
+
+Nếu gói IP có kích thước dữ liệu (tải trọng) 4926 byte được gửi vào phân đoạn mạng có MTU là 880 byte và giả sử kích thước tiêu đề IP là 20 byte
+
+Trong gói tin IP, có một con số gọi là Fragment Offset (Vị trí của đoạn). Để tiết kiệm bộ nhớ, người ta không đếm từng byte một mà đếm theo cụm 8 byte.
+
+👉 Luật chơi: Kích thước dữ liệu trong mỗi đoạn (trừ đoạn cuối cùng) BẮT BUỘC phải là một số chia hết cho 8.
+
+Câu 38: Chúng ta cần chia gói IP thành bao nhiêu đoạn để đáp ứng yêu cầu của phân đoạn mạng?
+880-20=860. Lấy con số chia hết cho 8 gần nhất 860 thì là 856. Lấy 4926/856~5.75 => cần 6 đoạn
+Câu 39: Kích thước của dữ liệu trong fragment cuối là bao nhiêu?
+4926 - 856 x 5 = 646
+
+Cung cấp mạng có địa chỉ IP sau: 200.23.0.0/22?
+Câu 40. Địa chỉ nào không thuộc mạng gốc bên trên?
+A. 200.23.2.1
+B. 200.23.1.1
+C. 200.23.3.1
+D. 200.23.4.1
+=> 200.23.4.1
+Số lượng thiết bị tối đa thuộc về mạng này là bao nhiêu
+Ta lấy 32-22=10. Vậy số lượng máy tối đa là 2^10=1024
+Câu 42: Chúng ta muốn chia mạng ban đầu thành các mạng con. Mỗi mạng con có 32 PC. Số lượng mạng con tối đa có thể được tạo từ mạng ban đầu là bao nhiêu?
+Mỗi mạng con có 32 PC, nhưng vì luôn có 2 địa chỉ là cố định nên ta cần 34 địa chỉ cho mỗi mạng con => 6 bit
+Vậy chỉ còn lại 4 bit, tương ứng với 2^4=16 mạng con
+Câu 43: Có thể tách bao nhiêu mạng con có độ dài địa chỉ 24 bit từ mạng gốc bên trên
+4 mạng con
+
+Bảng chuyển tiếp gói tin(MAC Table) của 1 switch như sau:
+Host                                             Interface
+12-12-12-ab-ab-ab                                 e1
+11-11-11-dd-dd-dd                                 e2
+33-33-33-ee-ee-ee                                 e3
+55-55-55-cc-cc-cc                                 e4
+Câu 44: Switch sẽ làm gì khi nhận được frame có địa chỉ đích 12-12-12-ab-aa-aa và địa chỉ nguồn 33-33-33-ee-ee-ee từ cổng e3
+Đáp án là Broadcast, vì switch nằm trong tầng datalink/ mạng LAN, nếu có một địa chỉ đích bị lỗi, nó sẽ broadcase cho tất cả các cổng trừ cổng địa chỉ nguồn(bởi vì cũng chỉ có ít máy tính, nên nó sẽ thông báo hết => Khác với Router nằm ở tầng 3)
+Câu 45: Switch sẽ làm gì khi nhận được frame có địa chỉ đích 12-12-12-ab-ab-ab và địa chỉ nguồn 11-11-11-dd-dd-dd từ cổng e3
+Đáp án : Thêm/cập nhật địa chỉ 11-11... và chuyển tiếp frame tới cổng e1
