@@ -65,3 +65,24 @@ Khi sử dụng phương pháp điều chế Bipolar NRZ, xung tín hiệu trên
 
 01110000
 
+Câu 7:
+Những yếu tố nào sau đây ảnh hưởng đến giá trị Round Trip Time 
+trong quá trình truyền?(Chọn tất cả đáp án đúng)
+(1 Điểm)
+Tốc độ xử lý của nút đích
+Khoảng cách giữa nút nguồn và đích
+Băng thông
+Số nút chuyển tiếp phải qua trên đường truyền
+Tải của mạng
+
+=> Tất cả các đáp án đều đúng
+
+Câu 8:
+Địa chỉ IP nào sau đây không nằm cùng mạng với các địa chỉ còn lại?
+(1 Điểm)
+172.16.40.113 /19
+172.16.50.114 /19
+172.16.60.115 /19
+172.16.30.112 /19
+
+=> Đáp án là 172.16.30.112/ 19 vì 19 bit Họ của nó là 172.16.000 ... trong khi các mạng khác là 172.16.001 ....

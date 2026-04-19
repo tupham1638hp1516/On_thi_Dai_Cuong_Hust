@@ -136,3 +136,28 @@ Tưởng tượng thực tế:
 Nếu ông gửi chuỗi 11111, người bên kia sẽ thấy cờ Xanh - Đỏ - Xanh - Đỏ liên tục. Sự thay đổi màu sắc này giúp họ tỉnh ngủ và đếm nhịp cực chuẩn mà ông lại không bị mệt như thằng Manchester.
 👉 Tóm lại: Cứ thấy đồ thị nằm im ru ở vạch số 0 thì đó là bit 0. Cứ thấy nó nhảy chồm chồm lúc trên lúc dưới, thì mỗi cú nhảy đó là một bit 1.
 
+****************************************************************************************
+1. Bản chất cốt lõi của RTT (Cái bạn đã rút ra)
+RTT không chỉ là "khoảng cách tín hiệu chạy trên dây". RTT là tổng thời gian đo từ lúc máy nguồn bắt đầu đẩy bit ĐẦU TIÊN của gói tin đi, cho đến khi máy nguồn nhận lại trọn vẹn bit CUỐI CÙNG của gói tin phản hồi (ACK). Trong suốt quãng đường đi và về đó, gói tin phải dừng lại, xử lý, chờ đợi, và bất cứ một hành động nhỏ nào tốn thời gian cũng đều bị cộng dồn hết vào RTT.
+
+2. Bốn loại "kiếp nạn" tốn thời gian trên đường đi (Cái tôi giải thích)
+Tại nguồn, tại đích, và tại mỗi trạm trung chuyển (Router) mà gói tin đi qua, nó đều phải chịu 4 loại độ trễ (Delay) sau:
+
+Trễ lan truyền (Propagation Delay): Do Khoảng cách vật lý. Tín hiệu (quang/điện/vô tuyến) cần thời gian để bay từ điểm A đến điểm B. (Giống như thời gian xe chạy trên đường).
+
+Trễ truyền tải (Transmission Delay): Do Băng thông và Kích thước gói tin. Là thời gian cần thiết để thiết bị đẩy "TOÀN BỘ" các bit của gói tin đó vào đường truyền cáp. (Giống như thời gian xả nước qua một đường ống to hay nhỏ).
+
+Trễ hàng đợi (Queuing Delay): Do Tải của mạng. Nếu mạng đang tắc nghẽn, router bận rộn, gói tin phải nằm chờ trong bộ nhớ đệm (buffer) tới lượt mình. Đây là yếu tố gây giật lag và làm RTT biến động mạnh nhất. (Giống như thời gian xếp hàng ở trạm thu phí).
+
+Trễ xử lý (Processing Delay): Do Tốc độ phần cứng (CPU) của router hoặc nút đích. Là thời gian thiết bị tháo gói tin ra, đọc địa chỉ, kiểm tra lỗi bit, và quyết định đường đi tiếp theo. (Giống như thời gian nhân viên cầm vé lên xem và quét mã vạch).
+
+3. Hiệu ứng nhân lên (Số Hop)
+Mạng Internet dùng cơ chế "Lưu và chuyển tiếp" (Store-and-Forward). Nghĩa là không có con đường thẳng tắp nào từ máy bạn đến máy chủ. Gói tin phải đi qua nhiều Router (các nút chuyển tiếp).
+
+Tại MỖI MỘT Router, toàn bộ 4 quá trình trên (nhận xong toàn bộ -> kiểm tra -> xếp hàng -> đẩy toàn bộ ra dây -> chạy trên dây) lại lặp lại từ đầu. Càng qua nhiều trạm, RTT càng lớn.
+
+Tóm tắt bằng công thức:
+
+RTT = [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt ĐI ]
+
+CỘNG VỚI > [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt VỀ ]
