@@ -193,3 +193,72 @@ Modem quay số (Dial-up): 56 Kbps (Cực kỳ chậm, đơn vị chỉ là Kilo
 Kênh thuê riêng T1 (Chuẩn Mỹ/Nhật): 1.544 Mbps
 
 Kênh thuê riêng E1 (Chuẩn Châu Âu/Việt Nam hay dùng): 2.048 Mbps
+
+***********************************************************************************************
+
+Mô tả quy trình Đóng gói (Encapsulation) và Mở gói (Decapsulation) dữ liệu giữa hai máy tính thông qua mô hình OSI 7 tầng.
+
+Bạn có thể hình dung nó giống như quy trình đóng một món quà vào nhiều lớp hộp chồng lên nhau trước khi gửi đi:
+
+1. Phía gửi (Bên trái - Encapsulation): Mũi tên đi xuống
+Dữ liệu đi từ tầng cao nhất xuống tầng thấp nhất, mỗi tầng sẽ "dán" thêm một lớp nhãn điều khiển:
+
+Tầng Application, Presentation, Session: Xuất phát điểm là khối dữ liệu gốc, được gọi chung là Data.
+
+Tầng Transport: Dán thêm một lớp TCP Header vào đầu khối Data. Đơn vị dữ liệu lúc này gọi là Segment (Đoạn dữ liệu).
+
+Tầng Network: Tiếp tục bọc lớp Segment đó vào một lớp vỏ lớn hơn và dán thêm IP Header (chứa địa chỉ IP). Đơn vị dữ liệu lúc này gọi là Packet (Gói tin).
+
+Tầng Data Link: Bao bọc Packet bằng hai đầu: phía trước là Frame Header (chứa địa chỉ MAC) và phía sau là Frame Trailer (chứa mã kiểm lỗi CRC/FCS). Đơn vị dữ liệu lúc này gọi là Frame (Khung tin).
+
+Tầng Physical: Chuyển toàn bộ Frame thành một chuỗi các ký hiệu Bits (010100...) để chạy trên dây cáp hoặc sóng Wi-Fi.
+
+2. Phía nhận (Bên phải - Decapsulation): Mũi tên đi lên
+Dữ liệu đi từ tầng thấp lên tầng cao, máy nhận thực hiện quy trình "bóc vỏ" ngược lại:
+
+Tầng Physical: Nhận các luồng điện/quang và tập hợp lại thành các Bits.
+
+Tầng Data Link: Bóc lớp vỏ Header/Trailer để lấy ra Packet bên trong (sau khi đã kiểm tra CRC ở Trailer).
+
+Tầng Network: Bóc tiếp lớp IP Header để lấy ra Segment.
+
+Tầng Transport: Bóc lớp TCP Header để lấy lại khối Data ban đầu.
+
+Các tầng trên: Tiếp nhận dữ liệu sạch để hiển thị lên ứng dụng cho người dùng.
+
+******************************************************************************
+
+Trong mạng máy tính, Hop Count (Số bước nhảy) là đơn vị đo khoảng cách giữa các thiết bị dựa trên số lượng Router mà gói tin phải đi qua để đến được đích.
+
+Để dễ hình dung, bạn hãy coi mỗi Router giống như một "trạm trung chuyển" trên đường đi.
+
+1. Cách tính Hop Count
+Hop: Mỗi khi một gói tin đi qua một Router, số bước nhảy sẽ tăng lên 1.
+
+Ví dụ: Nếu gói tin đi từ Máy A qua Router 1, đến Router 2 rồi mới tới Máy B:
+
+Khoảng cách từ Máy A đến Máy B được tính là 2 hops.
+
+2. Vai trò của Hop Count trong định tuyến (RIP)
+Giao thức RIP sử dụng Hop Count làm Metric (thước đo) để chọn đường đi tốt nhất:
+
+Nguyên tắc: Đường nào có ít Hop Count hơn, RIP sẽ coi đó là đường ngắn hơn và ưu tiên gửi dữ liệu qua đó.
+
+Hạn chế của RIP: Nó chỉ quan tâm đến "số trạm", không quan tâm đến "tốc độ".
+
+Ví dụ: Một đường đi qua 2 Router nhưng băng thông cực thấp (vài Kbps) vẫn được RIP ưu tiên hơn một đường đi qua 3 Router nhưng có băng thông cực cao (vài Gbps).
+
+3. Những con số "tử thần" cần nhớ
+Trong giao thức RIP, có hai quy tắc về con số mà bạn bắt buộc phải nhớ để làm bài trắc nghiệm:
+
+Tối đa 15 hops: Một gói tin chỉ được phép đi qua tối đa 15 Router trung gian.
+
+Số 16 (Infinite): Nếu Hop Count đạt đến mức 16, RIP sẽ coi như đích đến đó là không thể tới được (Unreachable) và sẽ hủy gói tin. Đây là cơ chế để ngăn chặn việc gói tin chạy vòng quanh mạng vô tận khi có lỗi định tuyến (Routing Loop).
+
+Tóm lại:
+
+1 Router = 1 Hop.
+
+Càng ít Hop = Đường càng ngắn (theo logic của RIP).
+
+Max 15 Hops, đến số 16 là vứt gói tin.
