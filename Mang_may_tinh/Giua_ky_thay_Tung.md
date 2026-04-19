@@ -45,4 +45,23 @@ Câu 5:
 10.24.0.0 /13
 127.0.0.1
 192.168.1.113 /28
+Bây giờ ta bắt đầu đi vào phân tích
+Đáp án số 1: 230.12.3.1 => Địa chỉ đầu là 230 nên nó sẽ thuộc lớp D(Multicase) theo Classful Addressing => Loại (Chỉ A,B,C được chọn làm nút mạng)
+Đáp án số 2: 172.20.64.0/15 Dễ thấy ở đoạn số 3 có 64 nên chắc chắn đây là một địa chỉ bình thường
+Đáp án số 3: 10.24.0.0/13: 10 là địa chỉ Họ, 13-8=5; ta xét 24 viết dưới dạng: 0001 1000, ta lấy 5 bit cố định, 3 bit còn lại là 000=> Vậy suy ra đây là địa chỉ mạng(network address) => Không chọn
+Đáp án số 4: 127.0.0.1: Cứ bắt đầu bằng 127 thì là địa chỉ loopback => Loại
+Đáp án số 5: 192.168.1.113/28 => Đây chắc chắn là địa chỉ bình thường
+
+Câu 6:
+**Câu hỏi (1 Điểm):**
+Khi sử dụng phương pháp điều chế Bipolar NRZ, xung tín hiệu trên đường truyền như hình vẽ sau. Chuỗi bit đang được truyền đi là gì?
+
+**Đồ thị tín hiệu:**
+```text
++V |        +------+        +------+
+ 0 |--------+      |        |      +--------------------------------
+-V |               +--------+
+   |   T1   |   T2   |   T3   |   T4   |   T5   |   T6   |   T7   |   T8   |
+
+01110000
 

@@ -68,10 +68,71 @@ Cái /28 này chính là cái hàng rào. Nó bảo bưu tá rằng: "Hãy đế
 Nhờ cái rào này, ông có thể chia lô đất to nhỏ tùy ý, cực kỳ tiết kiệm và vừa vặn.
 
 Bước 5: Những ngôi nhà "Cấm vào" (Địa chỉ không gán được)
-Bây giờ ông đã có Khu phố và phân được lô đất rồi. Nhưng ông không được phép xây nhà cho người dân (gán cho PC) ở 2 lô đất đặc biệt sau:
+1. "Cổng làng" (Địa chỉ mạng - Network Address)
+Đây là địa chỉ dùng để đặt tên cho cả khu phố.
 
-Lô đất đầu tiên (Địa chỉ mạng): Nơi phần Số nhà (Host ID) toàn là số 0. Đây là chỗ để đặt "Cái cổng chào" ghi tên Khu phố.
+Dấu hiệu: Khi ông đổi phần Tên (Số nhà/Host ID) sang nhị phân, tất cả các số đều là số 0.
 
-Lô đất cuối cùng (Địa chỉ Broadcast): Nơi phần Số nhà (Host Ì) toàn là số 1. Đây là chỗ để đặt cái "Loa phường", nơi phát thông báo cho cả khu.
+Tại sao cấm: Vì nó là cái tên chung. Nếu ông gán cho một máy, bưu tá sẽ không biết là ông đang gọi cái máy đó hay đang gọi cả khu phố.
 
-Ngoài ra, có một khu phố ma tên là 127.x.x.x. Khu này máy tính dùng để "tự kỷ" (tự kiểm tra chính mình), nên ông cũng không thể lấy số ở đó để liên lạc với bên ngoài được.
+Ví dụ: 192.168.1.0/24 (8 bit cuối toàn là 0).
+
+2. "Loa phường" (Địa chỉ quảng bá - Broadcast Address)
+Đây là địa chỉ dùng để gửi tin nhắn cho tất cả mọi người trong khu.
+
+Dấu hiệu: Khi ông đổi phần Tên (Host ID) sang nhị phân, tất cả các số đều là số 1.
+
+Tại sao cấm: Gửi thư vào đây là tất cả máy trong mạng đều nhận được. Nếu gán cho 1 máy, hệ thống sẽ bị loạn "thông tin cá nhân" và "thông tin công cộng".
+
+Ví dụ: 192.168.1.255/24 (8 bit cuối toàn là 1).
+
+3. "Gương soi" (Địa chỉ Loopback)
+Đây là địa chỉ để máy tính tự nói chuyện với chính nó (tự kiểm tra phần cứng/phần mềm của mình).
+
+Dấu hiệu: Bất kỳ địa chỉ nào bắt đầu bằng số 127. (Phổ biến nhất là 127.0.0.1).
+
+Tại sao cấm: Vì đây là địa chỉ "nội tâm". Ông không thể dùng địa chỉ này để đi ra ngoài làm quen với các máy tính khác được.
+
+4. "Họp nhóm" (Địa chỉ Multicast)
+Đây là địa chỉ dành riêng cho một nhóm máy tính cùng nhận một luồng dữ liệu (như xem truyền hình trực tuyến).
+
+Dấu hiệu: Các địa chỉ thuộc Lớp D (Số đầu tiên nằm trong khoảng 224 đến 239).
+
+Tại sao cấm: Nó không dành cho cá nhân (Unicast). Nó dành cho hội nhóm.
+
+5. "Phòng thí nghiệm" (Địa chỉ dự phòng/Lớp E)
+Đây là các địa chỉ mà các nhà khoa học giữ lại để nghiên cứu, chưa cho phép dùng rộng rãi.
+
+Dấu hiệu: Các địa chỉ bắt đầu từ 240 đến 255.
+
+********************************************************************************
+
+1. Kẻ lười biếng: NRZ (Cách ngây thơ nhất)
+Đây là cách ông sẽ nghĩ ra đầu tiên khi chơi trò này:
+•	Nhịp 1 (Tùng): Muốn gửi số 1 => Giơ cờ lên cao.
+•	Nhịp 2 (Tùng): Muốn gửi số 0 => Hạ cờ xuống thấp.
+Tưởng tượng thực tế:
+Ông muốn gửi chuỗi 00000000. Ông hạ cờ xuống. Người bên kia đếm: Nhịp 1 thấy cờ hạ (số 0), Nhịp 2 thấy cờ hạ (số 0)... Đến nhịp thứ 5 thì người kia lóa mắt, chớp mắt một cái, rơi mất một nhịp trống. Thế là họ đếm thiếu mất một số 0.
+👉 Tóm lại: NRZ quá êm đềm, không có sự thay đổi liên tục nên người nhận rất dễ bị "lệch nhịp" (mất đồng bộ) nếu có quá nhiều số 0 hoặc số 1 đứng cạnh nhau.
+________________________________________
+2. Kẻ tăng động: Manchester (Cách chống ngủ gật)
+Vì NRZ hay làm người ta ngủ gật, Manchester đặt ra một luật thép: Bất chấp gửi số gì, CỨ ĐÚNG GIỮA NHỊP TRỐNG LÀ PHẢI VẪY CỜ MỘT CÁI!
+Sự "thay đổi" chính là thông điệp:
+•	Muốn gửi số 1: Đầu nhịp cờ ở dưới, đến đúng giữa nhịp giật mạnh cờ đưa LÊN TRÊN. (Luôn luôn đi LÊN).
+•	Muốn gửi số 0: Đầu nhịp cờ ở trên, đến đúng giữa nhịp giật mạnh cờ kéo XUỐNG DƯỚI. (Luôn luôn đi XUỐNG).
+Tưởng tượng thực tế:
+Dù ông gửi 0000 hay 1111, thì cứ mỗi một giây người bên kia đều thấy ông vẫy cờ giật lên hoặc giật xuống. Mắt họ cứ nhìn theo lá cờ là họ tự đếm được nhịp thời gian mà không cần nghe tiếng trống nữa.
+👉 Tóm lại: Rất an toàn, cực kỳ đồng bộ. Nhưng... thằng vẫy cờ vã mồ hôi hột (trong mạng gọi là Tốn gấp đôi băng thông) vì gửi 1 bit mà phải làm tới 2 động tác.
+________________________________________
+3. Kẻ khôn ngoan: Bipolar AMI (Cách đi hai chân)
+Thấy Manchester mệt quá, AMI nghĩ ra một cách thông minh hơn, sử dụng hai lá cờ Xanh và Đỏ.
+Nó chia làm 2 trường hợp rất nhàn:
+•	Muốn gửi số 0: Đứng im, giấu cờ đi (Mức 0). Rất tiết kiệm sức!
+•	Muốn gửi số 1: Giơ cờ lên. Nhưng luật là phải luân phiên màu cờ giống như người đi hai chân:
+o	Thấy số 1 đầu tiên: Giơ cờ Xanh (+).
+o	Thấy số 1 tiếp theo: Bắt buộc phải giơ cờ Đỏ (-).
+o	Thấy số 1 tiếp nữa: Lại quay về cờ Xanh (+).
+Tưởng tượng thực tế:
+Nếu ông gửi chuỗi 11111, người bên kia sẽ thấy cờ Xanh - Đỏ - Xanh - Đỏ liên tục. Sự thay đổi màu sắc này giúp họ tỉnh ngủ và đếm nhịp cực chuẩn mà ông lại không bị mệt như thằng Manchester.
+👉 Tóm lại: Cứ thấy đồ thị nằm im ru ở vạch số 0 thì đó là bit 0. Cứ thấy nó nhảy chồm chồm lúc trên lúc dưới, thì mỗi cú nhảy đó là một bit 1.
+
