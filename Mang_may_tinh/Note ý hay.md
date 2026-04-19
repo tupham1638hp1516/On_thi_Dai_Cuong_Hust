@@ -161,3 +161,35 @@ Tóm tắt bằng công thức:
 RTT = [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt ĐI ]
 
 CỘNG VỚI > [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt VỀ ]
+
+1. Nhóm Mạng có dây (Ethernet - Chuẩn IEEE 802.3)
+
+Ethernet (Tiêu chuẩn/Cổ điển): 10 Mbps
+
+Fast Ethernet (Ethernet Tốc độ cao): 100 Mbps
+
+Gigabit Ethernet: 1 Gbps (hoặc 1000 Mbps)
+
+10-Gigabit Ethernet: 10 Gbps
+
+100-Gigabit Ethernet: 100 Gbps
+
+2. Nhóm Mạng không dây (Wi-Fi - Chuẩn IEEE 802.11)
+
+Chuẩn 802.11b: 11 Mbps (Thế hệ Wi-Fi đời đầu)
+
+Chuẩn 802.11a và 802.11g: 54 Mbps (Con số 54 Mbps bạn thấy ở câu trước chính là chuẩn này!)
+
+Chuẩn 802.11n (Wi-Fi 4): Tối đa khoảng 600 Mbps
+
+Chuẩn 802.11ac (Wi-Fi 5): Xấp xỉ 6.9 Gbps (lý thuyết)
+
+Chuẩn 802.11ax (Wi-Fi 6): Xấp xỉ 9.6 Gbps (lý thuyết)
+
+3. Nhóm Viễn thông & Mạng diện rộng (WAN)
+
+Modem quay số (Dial-up): 56 Kbps (Cực kỳ chậm, đơn vị chỉ là Kilo-bit)
+
+Kênh thuê riêng T1 (Chuẩn Mỹ/Nhật): 1.544 Mbps
+
+Kênh thuê riêng E1 (Chuẩn Châu Âu/Việt Nam hay dùng): 2.048 Mbps
