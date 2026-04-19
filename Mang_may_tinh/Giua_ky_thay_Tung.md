@@ -25,7 +25,24 @@ Gửi gói tin ra tất cả các cổng trừ cổng nhận
 Câu 3:
 Những phát biểu nào là SAI về hoạt động của kỹ thuật chuyển mạch gói?(Chọn tất cả đáp án đúng)
 
-Gói tin của các liên kết khác nhau được truyền trên cùng một đường truyền vật lý
-Độ trễ trong mạng không phụ thuộc vào tải
-Trên cùng một liên kết vật lý, tất cả các gói tin đều được truyền với tốc độ như nhau.
-Các gói tin từ một nguồn cùng một đích thì đi qua tất cả các chặng giống nhau
+A. Gói tin của các liên kết khác nhau được truyền trên cùng một đường truyền vật lý
+B. Độ trễ trong mạng không phụ thuộc vào tải
+C. Trên cùng một liên kết vật lý, tất cả các gói tin đều được truyền với tốc độ như nhau.
+D. Các gói tin từ một nguồn cùng một đích thì đi qua tất cả các chặng giống nhau
+
+Đáp án A sai vì đây là đặc điểm của truyền mạch gói, truyền mạch kênh thì sẽ trên đường truyền riêng biệt
+Đáp án B đúng vì độ trễ trong mạng của chuyển mạch gói phụ thuộc vào tải trọng, nếu có quá nhiều gói tin cùng được gửi thì có thể gây trễ (các gói tin bị kẹt nếu cùng chọn 1 đường)
+Đáp án C sai vì dĩ nhiên là các gói sẽ được truyền với tốc độ như nhau rồi, nếu phải so sánh chuyển mạch gói và chuyển mạch kênh thì phải là tốc độ truyền "tin"
+Đáp án D đúng vì các gói tin có thể chọn chặng đường bất kỳ mà nó cho là phù hợp
+=> Đáp án đúngL B & D
+câu 4: Sử dụng mã CRC với đa thức sinh G(x) = x^3 + x + 1. Chuỗi bit biểu diễn cho đa thức này là gì?
+Đáp án là: 1011
+Câu 5:
+Địa chỉ nào sau đây có thể gán được cho một nút mạng?
+(1 Điểm)
+230.12.3.1
+172.20.64.0 /15
+10.24.0.0 /13
+127.0.0.1
+192.168.1.113 /28
+
