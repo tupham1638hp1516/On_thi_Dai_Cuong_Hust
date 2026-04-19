@@ -285,4 +285,4 @@ Router sẽ cộng dồn Cost của tất cả các đoạn mạng trên một l
 Tóm lại:
 •	OSPF là dùng bản đồ và thuật toán để tìm đường.
 •	Công thức Cost dùng để biến "tốc độ vật lý" thành một "con số logic" để Router so sánh và ưu tiên những đường truyền tốc độ cao.
-
+ 
