@@ -262,3 +262,27 @@ Tóm lại:
 Càng ít Hop = Đường càng ngắn (theo logic của RIP).
 
 Max 15 Hops, đến số 16 là vứt gói tin.
+
+********************************************************************************************
+OSPF là gì?
+OSPF (Open Shortest Path First) là một giao thức định tuyến thuộc nhóm Link-State (Trạng thái liên kết). Nếu giao thức RIP chúng ta vừa học giống như việc bạn đi đường và hỏi thăm người dân xung quanh (Distance-Vector), thì OSPF giống như việc mỗi Router đều sở hữu một bản đồ GPS toàn diện của cả mạng lưới.
+Đặc điểm cốt lõi của OSPF:
+•	Xây dựng bản đồ (Link-State Database): Thay vì chỉ biết hướng đi và số bước nhảy như RIP, mỗi Router OSPF sẽ gửi các bản tin LSA (Link State Advertisement) để thông báo cho toàn mạng biết: "Tôi đang kết nối với ai và tốc độ đường truyền đó là bao nhiêu".
+•	Thuật toán Dijkstra: Khi đã có bản đồ trong tay, Router sử dụng thuật toán Dijkstra (Shortest Path First - SPF) để tự tính toán đường đi "rẻ" nhất (ngắn nhất về mặt chi phí) từ nó đến mọi điểm trong mạng.
+•	Hội tụ nhanh: Khi có một đường link bị đứt, OSPF cập nhật thông tin gần như ngay lập tức cho toàn mạng, nhanh hơn nhiều so với việc chờ đợi cập nhật định kỳ của RIP.
+________________________________________
+Tại sao lại có công thức Cost = Reference Bandwith / Interface bandwith
+Trong kỹ thuật mạng, chúng ta luôn muốn dữ liệu đi qua những con đường nhanh hơn (băng thông lớn hơn). Để máy tính hiểu được điều này, OSPF chuyển đổi "tốc độ" thành một con số gọi là Cost (Chi phí).
+1. Nguyên lý tỉ lệ nghịch
+Công thức này được thiết kế dựa trên logic: Tốc độ càng cao thì cái giá phải trả (Cost) càng rẻ.
+•	Nếu đường truyền rất nhanh (ví dụ 100 Mbps), chi phí chỉ là 1.
+•	Nếu đường truyền chậm (ví dụ 10 Mbps), chi phí tăng lên thành 10.
+Router sẽ cộng dồn Cost của tất cả các đoạn mạng trên một lộ trình. Lộ trình nào có Tổng Cost thấp nhất sẽ được chọn làm đường chính thức.
+2. Ý nghĩa của Reference Bandwidth (Băng thông tham chiếu)
+Đây là một "thước đo" chung để tất cả các Router trong mạng có cùng một hệ quy chiếu khi tính toán.
+•	Tại sao là 100 Mbps? Khi OSPF ra đời, 100 Mbps (Fast Ethernet) là đỉnh cao của công nghệ lúc bấy giờ, nên người ta chọn nó làm mốc chuẩn (10^8 bps).
+•	Hạn chế: Vì mốc chuẩn chỉ là 100 Mbps, nên hiện nay các đường truyền 1 Gbps, 10 Gbps hay 100 Gbps đều bị tính ra Cost = 1 (do 100/1000 = 0.1, mà chi phí tối thiểu phải là 1). Để giải quyết, các kỹ sư thường phải chỉnh lại reference-bandwidth lên mức 10^5 hoặc 10^6 trong thực tế.
+Tóm lại:
+•	OSPF là dùng bản đồ và thuật toán để tìm đường.
+•	Công thức Cost dùng để biến "tốc độ vật lý" thành một "con số logic" để Router so sánh và ưu tiên những đường truyền tốc độ cao.
+
