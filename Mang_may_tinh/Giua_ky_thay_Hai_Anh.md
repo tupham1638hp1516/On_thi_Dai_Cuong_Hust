@@ -17,3 +17,18 @@
 - **D.** Là các thiết bị di động có thể lên mạng Internet mọi lúc mọi nơi.
 
 > Dễ thấy đáp án A là đáp án đúng
+
+*** Câu 2: Đáp án nào không phải là một giao thức mạng?
+- **A.** TCP
+- **B.** SDN
+- **C.** IP
+- **D.** HTTP
+
+TCP (Transmission Control Protocol) là một giao thức cốt lõi của bộ giao thức Internet (TCP/IP), đảm bảo truyền dữ liệu một cách tin cậy.
+
+IP (Internet Protocol) là giao thức liên mạng, chịu trách nhiệm định tuyến các gói tin đi qua các mạng để đến đúng đích.
+
+HTTP (Hypertext Transfer Protocol) là giao thức truyền tải siêu văn bản, được sử dụng phổ biến nhất để truyền dữ liệu trên World Wide Web (ví dụ: tải các trang web).
+
+> Đáp án đúng là B
+
