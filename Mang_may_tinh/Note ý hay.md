@@ -286,3 +286,25 @@ Tóm lại:
 •	OSPF là dùng bản đồ và thuật toán để tìm đường.
 •	Công thức Cost dùng để biến "tốc độ vật lý" thành một "con số logic" để Router so sánh và ưu tiên những đường truyền tốc độ cao.
  
+ ********
+ 1. Parity (Kiểm tra Chẵn lẻ): "Người đếm số"
+Đây là cách đơn giản nhất, giống như bạn gửi một thùng táo và kèm theo một mảnh giấy ghi: "Số quả táo trong thùng là số CHẴN".
+•	Cách làm: Bạn đếm số bit 1 trong dữ liệu. Nếu bạn chọn hệ "Chẵn" (Even Parity), mà dữ liệu có 3 bit 1, bạn thêm 1 bit 1 nữa vào cuối để tổng là 4 (số chẵn).
+•	Khi hàng đến: Bên nhận mở thùng, đếm số táo.
+o	Nếu thấy 3 quả (số lẻ) => "Biết ngay là có đứa ăn vụng hoặc rơi mất một quả rồi!" (Phát hiện lỗi).
+•	Điểm yếu: Nếu dọc đường rơi mất 2 quả táo. Bên nhận đếm lại vẫn thấy là số chẵn => "À, vẫn chẵn, chắc là đủ!" => Bị lừa! (Không phát hiện được lỗi kép).
+________________________________________
+2. Checksum (Tổng kiểm tra): "Người cân khối lượng"
+Thay vì đếm từng quả, giờ bạn chia táo vào các túi nhỏ và cân tổng khối lượng.
+•	Cách làm: Bạn chia chuỗi bit dài thành các khúc bằng nhau (ví dụ mỗi khúc 8 bit hoặc 16 bit). Bạn cộng tất cả các khúc này lại thành một con số tổng (Checksum).
+•	Khi hàng đến: Bên nhận cũng đem các khúc đó ra cộng lại y hệt.
+o	Nếu kết quả cộng khác với con số bạn gửi kèm => Hàng lỗi.
+•	Điểm yếu: Nếu một túi táo bị mất 1kg, nhưng túi khác lại bị nhét thêm 1kg đá vào. Tổng khối lượng không đổi => Bị lừa tiếp! (Lỗi triệt tiêu nhau).
+________________________________________
+3. CRC (Kiểm tra dư thừa vòng): "Máy quét mã vạch thần thánh"
+Đây là "trùm cuối" và cũng là thứ bạn thấy khó nhằn nhất vì nó dùng toán học (phép chia đa thức). Hãy tưởng tượng nó như một cái Mã vạch (Barcode) cực kỳ thông minh.
+•	Cách làm (Từ gốc): Thay vì cộng (phép cộng dễ bị đánh lừa), người ta dùng phép chia. Bạn lấy toàn bộ dữ liệu (một con số khổng lồ) chia cho một "con số bí mật" (Đa thức sinh). Cái số dư còn lại chính là mã CRC.
+•	Tại sao nó mạnh? Phép chia nhị phân (XOR) rất nhạy cảm. Chỉ cần bạn đổi đúng 1 bit ở bất cứ đâu, số dư sẽ nhảy sang một con số hoàn toàn khác ngay lập tức. Nó gần như không thể bị "lừa" bởi các lỗi triệt tiêu như Checksum.
+•	Khi hàng đến: Bên nhận lấy toàn bộ đống dữ liệu đó chia lại cho "con số bí mật" kia. Nếu số dư bằng đúng mã CRC bạn gửi => Hàng chuẩn 99.9999%.
+
+

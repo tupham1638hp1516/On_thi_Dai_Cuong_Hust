@@ -117,3 +117,55 @@ Ta lấy 50/200 000 * 60 * 60 = 0,9(s) = 900ms
 - **B.** Điều chế khóa dịch pha
 - **C.** Điều chế khóa dịch tần số
 - **D.** Điều chế khóa ON-OFF
+
+Đối với đáp án A thì sóng sẽ có lúc cao lúc thấp, đáp án B thì sóng sẽ có lúc đảo ngược hướng (từ thấp lên cao -> từ cao xuống thấp), đối với đáp án C thì sóng lúc thưa lúc thay đổi liên tục (như trong hình), on-off thì theo nghĩa đen
+
+> Đáp án đúng là: C
+
+*** Câu 13: Hình sau là sự kết hợp của phương pháp điều chế nào?
+- **A.** Dịch biên độ và dịch pha
+- **B.** Dịch pha và dịch tần số
+- **C.** Dịch biên độ và dịch tần số
+- **D.** Kết hợp cả 3 phương pháp, dịch biên độ, dịch pha và dịch tần số
+
+> Đáp án đúng là: A (Thường cái biểu đồ vòng tròn sẽ không vẽ dịch tần số)
+
+*** Câu 14: Ở giai đoạn mã hóa của cơ chế điều chế mã xung, biết mức lượng tử hóa là 128, hỏi phải dùng bao nhiêu bit?
+- **A.** 5
+- **B.** 7
+- **C.** 10
+- **D.** 12
+
+Cứ nhớ L = 2^n => n = 7
+
+> Đáp án đúng là: B
+
+*** Câu 15: Địa chỉ vật lý MAC có chiều dài bao nhiêu bit?
+
+> Đáp án đúng là: 48 bit
+
+*** Câu 16: Xét phương pháp dùng mã chẵn lẻ một chiều trong các phương pháp dùng mã phát hiện lỗi, đâu là phát biểu đúng?
+- **A.** Chỉ phát hiện được lỗi bit đơn
+- **B.** Phát hiện được 2 bit lỗi
+- **C.** Phát hiện được dữ liệu bị chèn thêm bit
+- **D.** Phát hiện và sửa được lỗi bit đơn
+
+> Đáp án đúng là: A
+
+*** câu 17: Xét phương pháp dùng mã chẵn lẻ một chiều, tìm bit parity chẵn của chuỗi sau: 0101 1100
+
+> Đáp án đúng là: 0
+
+*** Câu 18: Tìm mã checksum của chuỗi dữ liệu: 1011 0010 1000
+
+> Đáp án đúng là: 1001
+
+*** câu 19: Tìm mã CRC của chuỗi dữ liệu cần gửi là: 1011 1000 0011 1100, biết đa thức sinh bậc 4 là: x^4 + x + 1
+
+> Đáp án đúng là: 1100
+
+*** Câu 20: Trong gửi và nhận dữ liệu sử dụng TCP, thông tin gì giúp phát hiện ra trùng lặp gói?
+- **A.** Địa chỉ IP đích
+- **B.** Địa chỉ IP nguồn
+- **C.** Số hiệu cổng
+- **D.** Số sequence number
