@@ -307,4 +307,16 @@ ________________________________________
 •	Tại sao nó mạnh? Phép chia nhị phân (XOR) rất nhạy cảm. Chỉ cần bạn đổi đúng 1 bit ở bất cứ đâu, số dư sẽ nhảy sang một con số hoàn toàn khác ngay lập tức. Nó gần như không thể bị "lừa" bởi các lỗi triệt tiêu như Checksum.
 •	Khi hàng đến: Bên nhận lấy toàn bộ đống dữ liệu đó chia lại cho "con số bí mật" kia. Nếu số dư bằng đúng mã CRC bạn gửi => Hàng chuẩn 99.9999%.
 
+*********************************
 
+2. Cơ chế Đóng gói và Giải đóng gói (Encapsulation & Decapsulation)
+Mối liên kết logic này được hiện thực hóa thông qua quá trình xử lý dữ liệu tại các đầu cuối:
+
+Tại bên gửi: Tầng giao vận chèn thêm các thông tin quản lý (Control Information) vào dữ liệu gốc dưới dạng Header (Tiêu đề). Các tầng bên dưới tiếp tục bao bọc gói tin này như một khối dữ liệu thuần túy (Payload) mà không can thiệp vào nội dung bên trong Header của tầng trên.
+
+Tại bên nhận: Khi dữ liệu được truyền ngược từ dưới lên, mỗi tầng sẽ thực hiện việc bóc tách và xử lý duy nhất phần Header thuộc phạm vi trách nhiệm của nó.
+
+3. Sự phân tách giữa Luồng dữ liệu và Luồng điều khiển
+Luồng vật lý (Physical Flow): Là đường đi thực tế của các bit dữ liệu, đi chuyển dọc theo kiến trúc phân tầng từ trên xuống dưới ở nguồn, qua môi trường truyền dẫn, và từ dưới lên trên ở đích.
+
+Luồng logic (Logical Flow): Là sự tương tác giữa hai thực thể cùng cấp. Tầng giao vận máy A coi như đang "đối thoại" trực tiếp với tầng giao vận máy B vì chỉ có thực thể tại tầng này mới có khả năng giải mã và phản hồi lại các tham số (như Sequence Number, ACK, Window Size) nằm trong Header tương ứng.

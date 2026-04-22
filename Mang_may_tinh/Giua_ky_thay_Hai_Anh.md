@@ -169,3 +169,152 @@ Cứ nhớ L = 2^n => n = 7
 - **B.** Địa chỉ IP nguồn
 - **C.** Số hiệu cổng
 - **D.** Số sequence number
+
+TCP nằm ở tầng giao vận, nên ta loại được 3 đáp án A, B, D
+> Đáp án đúng là: D
+
+*** Câu 21: Phương pháp ARQ nào không hiệu quả về mặt thời gian?
+- **A.** Dừng và chờ (Stop and Wait)
+- **B.** Quay lại N (Go back N)
+- **C.** Loại bỏ chọn lọc (Selective Reject)
+- **D.** Cả 3 phương pháp trên
+
+Cơ chế Stop and Wait: Bên gửi chỉ gửi duy nhất một gói tin và phải dừng lại để đợi gói tin xác nhận (ACK) từ bên nhận trước khi gửi gói tin tiếp theo. Trong khi cơ chế Stop and Wait chỉ gửi đi được 1 gói đi và phải đợi xác nhận thì cơ chế Go back N và Selective Reject có thể gửi nhiều gói nhờ cơ chế cửa sổ trươt. Do đó dễ thấy Stop and Wait sẽ không hiệu quả về mặt thời gian nhất.
+
+> Đáp án đúng: A
+
+*** Câu 22: Khoảng thời gian timeout trong TCP phải được đặt tối thiểu là bao nhiêu?
+- **A.** 2*RTT
+- **B.** RTT
+- **C.** Thời gian truyền 1 bit từ nguồn đến đích
+- **D.** Thời gian truyền 1 bit từ đích đến nguồn
+
+Dễ thấy nếu thời gian nhỏ hơn RTT thì sẽ bị timeout liên tục trong khi gói tin ACK có thể vẫn đang trên đường truyền, 2*RTT thì ổn nhưng mà không phải là tối thiểu. DO đó, đáp án đúng nhất là RTT
+
+TCP (Transmission Control Protocol) là giao thức đảm bảo dữ liệu được gửi đi một cách tin cậy. Nó không chỉ đẩy dữ liệu đi mà còn quan tâm xem dữ liệu có đến nơi an toàn hay không, có đúng thứ tự không.
+
+> Đáp án đúng là: B
+
+*** Câu 23: Mục đích của cơ chế kiểm soát luồng dữ liệu là gì?
+- **A.** Đảm bảo trạm gửi không làm quá tải trạm nhận
+- **B.** Không làm dữ liệu bị tắc nghẽn ở các nút trung gian
+- **C.** Đảm bảo các luồng dữ liệu đi đúng đường
+- **D.** Đảm bảo các luồng dữ liệu không đi qua các nút trung gian bị hỏng
+
+Kiểm soát luồng có thể hiểu đơn giản là việc máy B liên tục cập nhật cho máy A biết khả năng tiếp nhận hiện tại của mình. Qua đó, nó đảm bảo trạm gửi không làm quá tải trạm nhận (máy A gửi quá nhiều gói tin đến trong khi bộ nhớ đệm/ máy B chỉ có thể tiếp nhận một ít)
+
+Đáp án B được hiểu là kiểm soát tắc nghẽn, đáp án C thì liên quan đến Router của tầng liên mạng (đi qua cổng nào ấy)
+
+> Đáp án đúng là: A
+
+*** Câu 24: Kỹ thuật da truy cập nào được sử dụng bởi chuẩn IEEE 802.11 cho mạng LAN không dây?
+- **A.** CDMA
+- **B.** CSMA/ CD
+- **C.** CSMA/ CA
+- **D.** ALOHA
+
+Nhớ là CDMA là dùng trong mạng di động (3G, 4G)
+
+Đáp án đúng sẽ là C, vì đây là môi trường vô tuyến
+
+> Đáp án đúng là: C
+
+*** Câu 25: Trường nào trong header giúp sắp xếp lại các fragments?
+- **A.** Flag
+- **B.** TTL
+- **C.** Identifier
+- **D.** Offset
+
+> Đáp án đúng là: D
+
+*** Câu 26: Với phương pháp định địa chỉ theo lớp (Classful Addressing) phần lớn các địa chỉ bị ...
+
+> Chắc chắn là lãng phí
+
+*** Câu 27: Cho kết nối mạng giữa 2 máy chủ có thời gian khứ hồi RTT là 100ms, tốc độ băng thông là 30Mbps và kích thước payload tối đa là 1500byte, nếu chúng ta cần truyền 15 000 byte bằng cơ chế stop-and-wait, mất bao lâu để hoàn thành việc truyền dữ liệu
+
+SỐ khung tin ta cần truyền là 15 000/ 1500 = 10 (fragments)
+
+Thời gian để bit cuối cùng của gói tin đi vào đường truyền là: 1500*8/(30*10^6)=0,4 (ms)
+
+Thời gian cần để hoàn thành việc truyền dữ liệu là: 10 * (100+0,4) = 1004 (ms)
+
+*** Băng thông là khối lượng gói tin tối đa có thể nhét vào đường truyền trong 1 giây
+
+*** Câu 28: Tại sao lại cần thêm thông tin về các cổng (ports) trong tầng Giao vận (Transport) khi mà chúng ta đã có thông tin về địa chỉ IP để gửi dữ liệu đến cho máy trạm đích?
+- **A.** Các bộ định tuyến (Router) cần thông tin về cổng để thực hiện định tuyến
+- **B.** Máy tính đích cần thông tin cổng để xử lý dữ liệu
+- **C.** Vì máy trạm đích có nhiều chương trình cùng chạy, cần sử dụng thông tin cổng để truyền dữ liệu đến đúng chương trình đích
+- **D.** Máy trạm gửi sử dụng thông tin cổng để ẩn mình khỏi những kẻ xâm nhập
+
+Địa chỉ IP (Tầng Mạng): Làm nhiệm vụ định tuyến để gói tin tìm được đường đến đúng thiết bị (Host/Máy tính) đích trên mạng Internet rộng lớn.
+
+Số hiệu cổng - Port (Tầng Giao vận): Làm nhiệm vụ phân giải (Demultiplexing) để giao gói tin cho đúng tiến trình (Process/Ứng dụng) đang chạy trên thiết bị đó.
+
+Dựa trên định nghĩa thì dễ thấy C là đáp án đúng
+
+Đáp án A sai vì Router chỉ cần IP header để định tuyến, B thì nói quá chung chung, còn D sai vì cổng chỉ được sử dụng để định danh và phân luồng ứng dụng, không có tác dụng bảo mật.
+
+> Đáp án đúng là: C
+
+*** Câu 29: Ưu điểm của UDP so với TDP là gì?
+- **A.** Có tính tin cậy cao hơn
+- **B.** Nhanh hơn
+- **C.** Có cơ chế kiểm soát luồng
+- **D.** Có cơ chế bắt tay ba bước
+
+Dễ thấy đáp án đúng là B, 3 đáp án kia đều là đặc điểm của TCP
+
+> Đáp án đúng là: B
+
+Bảng định tuyến của 1 router như sau:
+Network Address                Next-hop                Interface
+192.168.4.0/22                 A                        1
+192.168.7.0/24                 B                        2
+192.168.0.0/16                 C                        3
+10.0.0.128/25                  D                        4
+10.0.0.0/26                    E                        5
+
+Mấy câu này đều đã có trong đề thầy Vạn
+
+Từ câu 30 đến câu 38 đều xuất hiện trong đề thầy Vạn
+
+*** Cho một mạng có địa chỉ mạng là: 200.23.0.0/22. Hãy trả lời 4 câu hỏi sau
+
+*** Câu 39: Có bao nhiêu bit sử dụng cho phần địa chỉ mạng?
+
+> Dễ thấy là 22
+
+*** Câu 40: Mạng đó có thể cấp IP cho nhiều nhất bao nhiêu Host
+
+> Cấp cho 2^10 - 2 = 1022 (Trừ địa chỉ mạng và địa chỉ broadcast)
+
+*** Câu 41: Bây giờ người ta muốn chia mạng này ra làm các mạng con để sao cho mỗi mạng con có thể đánh địa chỉ co 30 máy. Vậy có thể chia thành nhiều nhất mấy mạng con
+
+Đầu tiên ta tính số bit cần có cho phần host, mỗi mạng con có 30 máy, mà cần thêm 2 địa chỉ cho broadcast và địa chỉ mạng nên cần tất cả là 32 => 2^n>=32 => Ta chọn n bằng 5 bit
+
+Như vậy ta có 5 bit cho phần Host => Ta có 27 bit cho phần network
+
+Mà địa chỉ mạng ban đầu có 22 bit cho phần network, vậy số mạng con ta có thể chia nhiều nhất là: 2 ^ (27-22) = 32 (mạng con)
+
+> Đáp án sẽ là: 32 mạng con
+
+*** Câu 42: Địa chỉ host nào không thuộc vào mạng gốc 200.23.0.0/22
+
+> Câu này nhìn nhanh cũng đoán được là 200.23.4.1 (Cái số 4 nó làm địa chỉ network tòi ra số 1 ở đằng cuối, khác với số 0 nếu thay bằng 0,1,2,3)
+
+*** Câu 43: Cơ chế định tuyến được thực hiện ở tầng nào trong mô hình OSI?
+
+> Dễ thấy là tầng giao vận
+
+*** Câu 44: Đáp án nào thể hiện truyền dữ liệu nhanh hơn?
+
+> Quá dễ
+
+*** Câu 45: Mục đích của giao thức DHCP là gì?
+- **A.** Tự động cấp địa chỉ IP cho các máy tham gia vào mạng
+- **B.** Truyền dòng video giữa các máy trạm
+- **C.** Tự động cấu hình các bảng định tuyến
+- **D.** Tự động cấu hình các máy trạm từ xa
+
+> Dễ thấy đáp án là A
