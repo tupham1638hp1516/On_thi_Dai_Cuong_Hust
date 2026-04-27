@@ -249,7 +249,7 @@
 
 - c. d. 
 
-![img](Images/pic_1.png)
+![img](../Images/pic_1.png)
 
 ## **Giao thức nào sau đây không nằm cùng nhóm với các giao thức còn lại?** 
 
@@ -725,7 +725,7 @@ a. DNS
 
 ## **Giả sử trong một khoảng thời gian nào đó quan sát quá trình truyền dữ liệu giữa hai ứng dụng được điều khiển bởi giao thức TCP, ta thu được đồ thị điều khiển tắc nghẽn như sau:** 
 
-![img](Images/pic_2.png)
+![img](../Images/pic_2.png)
 
 ## **Giai đoạn Slow Start bắt đầu tại những lượt gửi nào?** 
 
@@ -1267,7 +1267,7 @@ e. BGP
 
 ## **Cho đồ thị mô hình hóa một hệ thống mạng, trong đó mỗi đỉnh là một router và mỗi liên kết có chi phí như hình vẽ dưới đây. Hãy trả lời các câu hỏi sau:** 
 
-![img](Images/pic_3.png)
+![img](../Images/pic_3.png)
 
 ## **Nếu các router cài đặt giao thức định tuyến OSPF thì tuyến đường ngắn nhất từ A tới E là gì?** 
 

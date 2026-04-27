@@ -238,7 +238,7 @@ P3: độ ưu tiên = 2, thời gian hoạt động = 2
 
 ### Câu 28: Cho hệ thống với 4 tiến trình và 2 tài nguyên:
 
-![img](Images/pic_4.png)
+![img](../Images/pic_4.png)
 
 Sau khi P2 hoàn thành và giải phóng tài nguyên, Available sẽ là:
 - **A.** (1,0)
