@@ -1,9 +1,3 @@
-# Ngân Hàng Câu Hỏi – Mạng Máy Tính
-
-> **Nguồn:** Bank.pdf  
-> **Trích xuất bởi:** pymupdf4llm  
-
----
 
 ## **NGÂN HÀNG CÂU HỎI MẠNG MÁY TÍNH** 
 
@@ -69,9 +63,7 @@
 
 - d. Tránh tắc nghẽn 
 
-## **Thông số nào sau đây được sử dụng để đánh giá độ tin cậy của đường truyền? (Chọn 2 đáp** 
-
-## **án)** 
+## **Thông số nào sau đây được sử dụng để đánh giá độ tin cậy của đường truyền? (Chọn 2 đáp án)** 
 
 - a. Băng thông 
 
@@ -105,9 +97,7 @@
 
 - e. Giao thức của mỗi tầng độc lập với nhau 
 
-## **Trong kiến trúc phân tầng của hệ thống truyền thông, phát biểu nào sau đây là đúng?** 
-
-## **(Chọn 2 đáp án)** 
+## **Trong kiến trúc phân tầng của hệ thống truyền thông, phát biểu nào sau đây là đúng? (Chọn 2 đáp án)** 
 
 - a. Tại mỗi tầng, hai bên tham gia quá trình truyền tin phải sử dụng giao thức giống nhau 
 
@@ -159,9 +149,7 @@
 
 - e. Hai tầng trên liên kết phải sử dụng giao thức giống nhau 
 
-## **Trong mô hình TCP/IP, tầng nào thực hiện chức năng điều khiển truyền dữ liệu trên liên** 
-
-## **kết vật lý?** 
+## **Trong mô hình TCP/IP, tầng nào thực hiện chức năng điều khiển truyền dữ liệu trên liên kết vật lý?** 
 
 - a. Tầng vật lý 
 
@@ -261,9 +249,7 @@
 
 - c. d. 
 
-**==> picture [108 x 108] intentionally omitted <==**
-
-**==> picture [108 x 108] intentionally omitted <==**
+![img](Images/pic_1.png)
 
 ## **Giao thức nào sau đây không nằm cùng nhóm với các giao thức còn lại?** 
 
@@ -417,7 +403,7 @@ a. DNS
 
 - e. Không xác định 
 
-**Có bao nhiêu thông điệp được trao đổi giữa trình duyệt và máy chủ Web nếu người dùng truy cập vào một trang Web có vài đoạn văn bản và 4 bức ảnh?** 
+## **Có bao nhiêu thông điệp được trao đổi giữa trình duyệt và máy chủ Web nếu người dùng truy cập vào một trang Web có vài đoạn văn bản và 4 bức ảnh?** 
 
 - a. 1 HTTP Request, 1 HTTP Response 
 
@@ -461,9 +447,7 @@ a. DNS
 
 - d. Giao thức tại tầng giao vận 
 
-## **Giả sử từ trên nút mạng A có hai tiến trình trao đổi dữ liệu với một tiến trình trên nút mạng** 
-
-## **B, điều khiển bởi giao thức UDP. Phát biểu nào sau đây là đúng?(Chọn 2 đáp án)** 
+## **Giả sử từ trên nút mạng A có hai tiến trình trao đổi dữ liệu với một tiến trình trên nút mạng B, điều khiển bởi giao thức UDP. Phát biểu nào sau đây là đúng?(Chọn 2 đáp án)** 
 
 - a. Hai tiến trình trên nút mạng A sử dụng chung một socket để trao đổi dữ liệu với tiến trinh trên nút B 
 
@@ -575,9 +559,7 @@ a. DNS
 
 - d. Có cơ chế kiểm soát tắc nghẽn 
 
-## **Những hoạt động nào sau đây cho thấy TCP là một giao thức truyền thông tin cậy? (Chọn 3** 
-
-## **đáp án)** 
+## **Những hoạt động nào sau đây cho thấy TCP là một giao thức truyền thông tin cậy? (Chọn 3 đáp án)** 
 
 - a. Sử dụng ACK báo nhận dữ liệu thành công 
 
@@ -697,7 +679,7 @@ a. DNS
 
 - e. Gửi gói tin ACK bất kỳ với giá trị Receive Window bằng kích thước dữ liệu trong bộ đệm 
 
-**Giả sử giao thức TCP sử dụng thuật toán Go-back-N để phát lại các gói tin bị lỗi. Phía gửi cần truyền các gói tin được đánh số thứ tự là 0, 1, 2, 3, 4; kích thước cửa sổ gửi là 3. Nếu gói tin số 2 bị mất thì tổng số gói tin phía gửi đã gửi đi là bao nhiêu sau khi kết thúc quá trình truyền tin?** 
+## **Giả sử giao thức TCP sử dụng thuật toán Go-back-N để phát lại các gói tin bị lỗi. Phía gửi cần truyền các gói tin được đánh số thứ tự là 0, 1, 2, 3, 4; kích thước cửa sổ gửi là 3. Nếu gói tin số 2 bị mất thì tổng số gói tin phía gửi đã gửi đi là bao nhiêu sau khi kết thúc quá trình truyền tin?** 
 
 - a. 4 
 
@@ -743,11 +725,7 @@ a. DNS
 
 ## **Giả sử trong một khoảng thời gian nào đó quan sát quá trình truyền dữ liệu giữa hai ứng dụng được điều khiển bởi giao thức TCP, ta thu được đồ thị điều khiển tắc nghẽn như sau:** 
 
-**==> picture [451 x 253] intentionally omitted <==**
-
-**----- Start of picture text -----**<br>
-40<br>35<br>30<br>25<br>20<br>15<br>10<br>5<br>0<br>6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25<br>Lượt gửi<br>Cửa sổ kiểm soát tắc nghẽn<br>**----- End of picture text -----**<br>
-
+![img](Images/pic_2.png)
 
 ## **Giai đoạn Slow Start bắt đầu tại những lượt gửi nào?** 
 
@@ -779,7 +757,7 @@ a. DNS
 
 - d. 22 
 
-**Trong quá trình truyền tin được điều khiển bởi giao thức TCP, tiến trình đích nhận được gói tin có trường Sequence Number = 5600 trong phần tiêu đề, dữ liệu có kích thước 1400 byte. Nếu phát hiện có lỗi trên phần tiêu đề qua việc kiểm tra trường checksum, tiến trình đích sẽ thực hiện các bước xử lý như thế nào? (Chọn 2 đáp án)** 
+## **Trong quá trình truyền tin được điều khiển bởi giao thức TCP, tiến trình đích nhận được gói tin có trường Sequence Number = 5600 trong phần tiêu đề, dữ liệu có kích thước 1400 byte. Nếu phát hiện có lỗi trên phần tiêu đề qua việc kiểm tra trường checksum, tiến trình đích sẽ thực hiện các bước xử lý như thế nào? (Chọn 2 đáp án)** 
 
 - a. Sửa lỗi bit tìm thấy trên phần tiêu đề 
 
@@ -791,7 +769,7 @@ a. DNS
 
 - e. Tách phần dữ liệu và chuyển cho tầng ứng dụng 
 
-**Trong quá trình truyền tin được điều khiển bởi giao thức TCP, tiến trình nguồn không nhận được báo nhận khi đã hết thời gian time-out. Giả sử giá trị cửa số kiểm soát tắc nghẽn là 5600 byte, và 1 MSS = 1400 byte, tiến trình này gửi đi liên tiếp tối đa bao nhiêu byte?** 
+## **Trong quá trình truyền tin được điều khiển bởi giao thức TCP, tiến trình nguồn không nhận được báo nhận khi đã hết thời gian time-out. Giả sử giá trị cửa số kiểm soát tắc nghẽn là 5600 byte, và 1 MSS = 1400 byte, tiến trình này gửi đi liên tiếp tối đa bao nhiêu byte?** 
 
 - a. 0 
 
@@ -803,7 +781,7 @@ a. DNS
 
 - e. 7000 
 
-**Trong hoạt động của giao thức TCP, tiến trình nguồn đang sử dụng cửa sổ kiểm soát tắc nghẽn là 8400 byte thì nhận được 3 gói tin báo nhận có ACK giống nhau (có trường Receive windows trong tiêu đề là 65000). Giả sử giá trị MSS = 1400 byte. Hãy cho biết tiến trình nguồn có thể gửi liên tiếp tối đa bao nhiêu byte?** 
+## **Trong hoạt động của giao thức TCP, tiến trình nguồn đang sử dụng cửa sổ kiểm soát tắc nghẽn là 8400 byte thì nhận được 3 gói tin báo nhận có ACK giống nhau (có trường Receive windows trong tiêu đề là 65000). Giả sử giá trị MSS = 1400 byte. Hãy cho biết tiến trình nguồn có thể gửi liên tiếp tối đa bao nhiêu byte?** 
 
 - a. 1400 byte 
 
@@ -815,7 +793,7 @@ a. DNS
 
 - e. 7000 byte 
 
-**Trong hoạt động của giao thức TCP, khi xảy ra time-out, phía gửi thực hiện những thao tác xử lý nào?(Chọn 2 đáp án)** 
+## **Trong hoạt động của giao thức TCP, khi xảy ra time-out, phía gửi thực hiện những thao tác xử lý nào?(Chọn 2 đáp án)** 
 
 - a. Tính toán lại giá trị cửa sổ kiểm soát tắc nghẽn 
 
@@ -849,7 +827,7 @@ a. DNS
 
 - e. Nằm trong mạng có địa chỉ 116.12.34.128 /28 
 
-Sử dụng mặt nạ 255.255.252.0 để chia mạng 160.12.64.0 /19 thành các mạng con. Hãy trả lời các câu hỏi sau: 
+### Sử dụng mặt nạ 255.255.252.0 để chia mạng 160.12.64.0 /19 thành các mạng con. Hãy trả lời các câu hỏi sau: 
 
 ## **Số mạng con thành lập được là bao nhiêu?** 
 
@@ -1055,9 +1033,7 @@ b. 255.224.0.0 c. 255.240.0.0 d. 255.248.0.0 e. 255.252.0.0
 
 - f. Giảm giá trị TTL của gói tin 
 
-## **Bộ định tuyến không thực hiện thao tác nào khi chuyển tiếp (forwarding) gói tin IP? (Chọn** 
-
-## **3 đáp án)** 
+## **Bộ định tuyến không thực hiện thao tác nào khi chuyển tiếp (forwarding) gói tin IP? (Chọn 3 đáp án)** 
 
 - a. Thiết lập liên kết với nút kế tiếp 
 
@@ -1291,9 +1267,9 @@ e. BGP
 
 ## **Cho đồ thị mô hình hóa một hệ thống mạng, trong đó mỗi đỉnh là một router và mỗi liên kết có chi phí như hình vẽ dưới đây. Hãy trả lời các câu hỏi sau:** 
 
-**==> picture [185 x 95] intentionally omitted <==**
+![img](Images/pic_3.png)
 
-**Nếu các router cài đặt giao thức định tuyến OSPF thì tuyến đường ngắn nhất từ A tới E là gì?** 
+## **Nếu các router cài đặt giao thức định tuyến OSPF thì tuyến đường ngắn nhất từ A tới E là gì?** 
 
 - a. (A, B, D, E) 
 
@@ -1303,9 +1279,7 @@ e. BGP
 
 - d. (A, B, C, D, E) 
 
-## **Nếu các router cài đặt giao thức định tuyến RIP thì tuyến đường ngắn nhất từ A tới E là** 
-
-## **gì?** 
+## **Nếu các router cài đặt giao thức định tuyến RIP thì tuyến đường ngắn nhất từ A tới E là gì?** 
 
 - a. (A, B, D, E) 
 
@@ -1429,9 +1403,9 @@ e. BGP
 
 - b. Slotted Aloha 
 
-## c. CSMA/CA 
+- c. CSMA/CA 
 
-## d. CSMA/CD 
+- d. CSMA/CD 
 
 - e. Token passing 
 
@@ -1469,7 +1443,9 @@ e. BGP
 
 - a. Đồng bộ thời gian giữa các nút mạng 
 
-- b. Mỗi nút mạng được phép truyền trong khe thời gian dành riêng cho nút mạng đó c. Truyền dữ liệu ngay khi cần 
+- b. Mỗi nút mạng được phép truyền trong khe thời gian dành riêng cho nút mạng đó 
+
+- c. Truyền dữ liệu ngay khi cần 
 
 - d. Phát hiện đụng độ và thông báo cho các nút trong mạng 
 
@@ -1495,9 +1471,7 @@ e. BGP
 
 - e. Không thiết lập thứ tự truy cập đường truyền giữa các nút 
 
-## **Phương pháp điều khiển truy nhập đường truyền CSMA/CD thực hiện như thế nào?(Chọn** 
-
-## **3 đáp án)** 
+## **Phương pháp điều khiển truy nhập đường truyền CSMA/CD thực hiện như thế nào?(Chọn 3 đáp án)** 
 
 - a. Cảm nhận năng lượng sóng mang trên đường truyền trước khi truyền 
 
@@ -1535,7 +1509,9 @@ e. BGP
 
 - a. Chỉ tồn tại duy nhất một thẻ bài trong mạng để xác định quyền đưa dữ liệu lên đường truyền. 
 
-- b. Một nút mạng muốn truyền dữ liệu nó phải đợi cho tới khi nhận được thẻ bài có trạng thái rỗi. c. Khi kết thúc truyền dữ liệu, nút nguồn sẽ gửi thông báo để nút đích xác lập trạng thái cho thẻ bài là rỗi. 
+- b. Một nút mạng muốn truyền dữ liệu nó phải đợi cho tới khi nhận được thẻ bài có trạng thái rỗi. 
+
+- c. Khi kết thúc truyền dữ liệu, nút nguồn sẽ gửi thông báo để nút đích xác lập trạng thái cho thẻ bài là rỗi. 
 
 - d. Sau khi truyền xong dữ liệu, nút mạng sẽ trả thẻ bài về cho trung tâm phân phối thẻ bài 
 
@@ -1601,13 +1577,13 @@ e. BGP
 
 - e. Hủy khung tin và báo lỗi vì địa chỉ này không hợp lệ. 
 
-## **Switch hoạt động ở chế độ chuyển tiếp ”store and forward” thực hiện những thao tác xử lý** 
-
-## **nào khi nhận được khung tin có địa chỉ MAC đích là FF-FF-FF-FF-FF?(Chọn 2 đáp án)** 
+## **Switch hoạt động ở chế độ chuyển tiếp ”store and forward” thực hiện những thao tác xử lý nào khi nhận được khung tin có địa chỉ MAC đích là FF-FF-FF-FF-FF?(Chọn 2 đáp án)** 
 
 - a. Tìm cổng tương ứng trong bảng Switching Table và chuyển khung tin ra cổng đó nếu tìm thấy. 
 
-- b. Bổ sung địa chỉ này vào bảng Switching Table nếu trong bảng chưa có c. Kiểm tra lỗi trên khung tin 
+- b. Bổ sung địa chỉ này vào bảng Switching Table nếu trong bảng chưa có 
+
+- c. Kiểm tra lỗi trên khung tin 
 
 - d. Chuyển khung tin ra tất cả các cổng trừ cổng nhận khung tin 
 
@@ -1735,9 +1711,7 @@ e. BGP
 
 - e. IEEE 802.11n 
 
-## **Phương pháp mã hóa nào sau đây sử dụng đề điều chế dữ liệu số-tín hiệu số?(Chọn 2 đáp** 
-
-## **án)** 
+## **Phương pháp mã hóa nào sau đây sử dụng đề điều chế dữ liệu số-tín hiệu số?(Chọn 2 đáp án)** 
 
 - a. Mã parity 
 
