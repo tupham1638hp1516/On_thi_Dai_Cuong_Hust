@@ -192,3 +192,182 @@ Vấn đề có thể xảy ra với mã này là:
 - **D.** CreateProcess() tạo tiến trình mới hoàn toàn
 
 >
+
+### Câu 24: Tiến trình khác với chương trình ở đặc điểm nào sau đây?
+- **A.** Có PC và trạng thái tiến trình
+- **B.** Được lưu trên đĩa cứng
+- **C.** Có mã nguồn
+- **D.** Có thể sao chép
+
+>
+### Câu 25: Trong quá trình chuyển đổi ngữ cảnh, thông tin nào được lưu trữ
+- **A.** Chỉ có địa chỉ bộ nhớ
+- **B.** Chỉ có PC 
+- **C.** Chỉ có giá trị các thanh ghi
+- **D.** PC, giá trị các thanh ghi và thông tin về trạng thái tiến trình
+
+>
+
+### Câu 26: Giải thuật Banker yêu cầu biết trước thông tin nào?
+- **A.** Thời gian chạy của tiến trình
+- **B.** Chỉ số tiến trình đang chạy
+- **C.** Thứ tự thực hiện các chương trình
+- **D.** Số lượng tối đa tài nguyên mỗi tiến trình yêu cầu
+
+>
+
+### Câu 27: Trong tiến trình đa luồng, các luồng chia sẻ những gì?
+- **A.** Chia sẻ mã nguồn, dữ liệu và tài nguyên tiến trình
+- **B.** Không chia sẻ gì cả
+- **C.** Chỉ chia sẻ dữ liệu
+- **D.** Chỉ chia sẻ mã nguồn
+
+>
+
+### Câu 28: Device queues được tổ chức như thế nào?
+- **A.** Một hàng đợi chung cho tất cả thiết bị
+- **B.** Chỉ một hàng đợi cho thiết bị vào
+- **C.** Chỉ một hàng đợi cho thiết bị ra
+- **D.** Một hàng đợi riêng cho thiết bị I/O
+
+>
+
+### Câu 29: Khi một tiến trình yêu cầu I/O, nó sẽ được chuyển từ đâu đến đâu?
+- **A.** Từ device queue đến job queue
+- **B.** Từ ready queue đến job queue
+- **C.** Từ ready queue đến device queue tương ứng
+- **D.** Từ job queue đến ready queue
+
+>
+
+### Câu 30: Phát hiện deadlock thường được thực hiện:
+- **A.** Không bao giờ
+- **B.** Định kỳ
+- **C.** Chỉ khi khởi động hệ thống
+- **D.** Liên tục
+
+>
+
+### Câu 31: Stack của luồng dùng để làm gì?
+- **A.** Chứa tất cả dữ liệu của tiến trình
+- **B.** Chứa biến toàn cục
+- **C.** Chứa mã nguồn
+- **D.** Chứa biến cục bộ và thông tin truyền tham số
+
+>
+
+### Câu 32: Chuyển đổi ngữ cảnh xảy ra khi nào?
+- **A.** Chỉ khi khởi động máy
+- **B.** Chỉ khi tạo tiến trình mới
+- **C.** Chỉ khi tiến trình kết thúc
+- **D.** Khi hết time lượng tử (quantum) hoặc xuất hiện interrupt
+
+>
+
+### Câu 33: Kernel-level threads có ưu điểm gì so với user-level threads
+- **A.** Tốc độ chuyển đổi nhanh hơn
+- **B.** Có thể tận dụng được hệ thống đa xử lý
+- **C.** Dễ lập trình hơn
+- **D.** Không tốn tài nguyên hệ thống
+
+>
+
+### Câu 34: Khi một tiến trình đang thực thi và cần chờ I/O, nó sẽ chuyển sang trạng thái nào?
+- **A.** New
+- **B.** Terminated
+- **C.** Wait/Blocked
+- **D.** Ready
+
+>
+
+### Câu 35: Khi một luồng bị block trong tiến trình đa luồng
+- **A.** Toàn bộ tiến trình bị block
+- **B.** Tất cả các luồng đều phải dừng lại
+- **C.** Chỉ luồng đó bị block, các luồng khác vẫn chạy
+- **D.** Tiến trình sẽ tự động kết thúc
+
+>
+
+### Câu 36: Theo lý thuyết, tiến trình tồn tại ở mấy trạng thái
+- **A.** 6
+- **B.** 4
+- **C.** 5
+- **D.** 7
+
+>
+
+### Câu 37: Lập lịch cho luồng được thực hiện ở đâu
+- **A.** Chỉ ở mức kernel
+- **B.** Có thể ở cả mức user và kernel
+- **C.** Không cần lập lịch
+- **D.** Chỉ ở mức user
+
+>
+
+### Câu 38: Ưu điểm của mô hình đa xử lý đối xứng là
+- **A.** Tăng khả năng chịu lỗi và cân bằng tốt
+- **B.** Dễ lập trình hơn
+- **C.** Tốn ít tài nguyên
+- **D.** Không cần đồng bộ hóa
+
+>
+
+### Câu 39: Trong UNIX, quan hệ giữa tiến trình cha và con như thế nào?
+- **A.** Chia sẻ tất cả tài nguyên
+- **B.** Hoàn toàn độc lập
+- **C.** Chia sẻ code segment nhưng có data segment riêng
+- **D.** Không có mối quan hệ
+
+>
+
+### Câu 40: Hai tiến trình có quan hệ cạnh tranh khi nào?
+- **A.** Khi không dùng tài nguyên
+- **B.** Khi hợp tác với nhau
+- **C.** Khi tranh chấp tài nguyên chung
+- **D.** Khi hoàn toàn độc lập
+
+>
+
+### Câu 41: Cho hệ thống với 5 tiến trình P0 đến P4 và 3 loại tài nguyên ABC
+
+![img](../Images/pic_4.png)
+
+Nếu P1 yêu cầu thêm (1,0,2), yêu cầu có được chấp nhận không?
+- **A.** Chấp nhận
+- **B.** Cần thêm thông tin
+- **C.** Không thể xác định
+- **D.** Từ chối
+
+>
+
+### Hệ thống có ở trạng thái an toàn không?
+- **A.** Không thể xác định
+- **B.** An toàn
+- **C.** Không an toàn
+- **D.** Cần thêm thông tin
+
+>
+
+### Câu 42: Cho hệ thống với 3 tiến trình: P1, P2, P3 và 2 loại tài nguyên R1 (2 instances), R2(3 instances). Trạng thái hiện tại: P1 đang giữ 1 R1, yêu cầu 1 R2; P2 đang giữ 1 R2, yêu cầu 1 R1; P3 đang giữ 1 R1, 1 R2. Vẽ đồ thị cấp phát tài nguyên có deadlock không?
+- **A.** Không
+- **B.** Cần thêm thông tin
+- **C.** Có
+- **D.** Không thể xác định
+
+>
+
+### Câu 43: Thuật toán Round Robin với quantum = 4: Cho 3 tiến trình với thời gian hoạt động: P1: 24ms, P2: 3ms, P3: 3ms. Tính thời gian hoàn thành của P1?
+- **A.** 28
+- **B.** 30
+- **C.** 24
+- **D.** 32
+
+>
+
+### Câu 44: Điều độ SRT (Shortest remaining time): Cho các tiến trình với thời điểm xuất hiện và thời gian hoạt động như sau: P1: xuất hiện bằng 0, hoạt động bằng 8; P1: xuất hiện bằng 1, hoạt động bằng 4; P1: xuất hiện bằng 2, hoạt động bằng 2. Thời điểm P1 hoàn thành là:
+- **A.** 8
+- **B.** 14
+- **C.** 12
+- **D.** 16
+
+>
