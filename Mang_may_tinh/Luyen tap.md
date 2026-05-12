@@ -28,14 +28,18 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Vì nó được thiết kế để tối ưu hóa bảo mật tại lõi mạng
 - **D.** Vì giao thức IP là giao thức duy nhất và bắt buộc ở tầng mạng
 
-> Đáp án đúng là:
+> Đáp án đúng là: A, B và D.
+
+**Giải thích**: A đúng là vì tầng ứng dụng và tầng vật lý có thể dùng nhiều loại giao thức khác nhau. Trong khi D đúng là vì giao thức IP là giao thức duy nhất và bắt buộc ở tầng mạng. B đúng là vì dù cho tầng ứng dụng có sử dụng giao thức nào, nó cũng sẽ trở thành gói tin với giao thức IP, tầng vật lý không cần quan tâm tầng ứng dụng dùng giao thức nào cả, nó chỉ việc nhận gói tin IP, và tầng ứng dụng cũng tương tự.
 
 ### Câu 4: Một gói tin 1500B gửi qua liên kết 10 Mbps, dài 200km (2x10^8 m/s). Trễ xử lý 0.01ms, trễ hàng đợi 0.05ms. Tổng trễ nút?
 - **A.** 2.26 ms
 - **B.** 1.26 ms
 - **C.** 2.20 ms
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
+
+**Giải thích:** Tổng trễ sẽ bằng: dtotal = dproc + dqueue + dtrans + dprop. Trong đây thì đề đã cho dproc = 0,01ms; dqueue = 0,05ms. dtrans là trễ truyền dẫn, tức là thời gian để đưa hết gói tin vào đường truyền: 1500 * 8/10* 10^6 = 1.2ms. dprop là trễ lan truyền, tức là thời gian để bit 1 đi được hết đường truyền: 200 * 1000/ 2* 10^8 = 1.0ms. Như vậy, trễ tổng là: 0,01 + 0,05 + 1,2 + 1,0 = 2,26ms.
 
 ### Câu 5: Khi nói về thông lượng (throughput) và nút thắt cổ chai (bottleneck), phát biểu nào sau đây là chính xác? (Nhiều đáp án)
 - **A.** Thông lượng luôn bằng đúng băng thông vật lý của đường truyền
@@ -43,7 +47,9 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Nút thắt cổ chai là điểm trên đường truyền làm giới hạn thông lượng toàn hệ thống
 - **D.** Nếu tốc độ gửi Rs nhỏ hơn tốc độ nhận Rc, thông lượng trung bình sẽ bị giới hạn bởi Rs
 
-> Đáp án đúng là:
+> Đáp án đúng là: B,C và D
+
+**Giải thích:** A sai là rõ. B là đúng vì thông lượng được tính bằng lượng dữ liệu thực tế truyền được, và nó thay đổi liên tục nên ta sẽ lấy giá trị trung bình. C là đúng vì đó là định nghĩa. D là đúng vì do nút thắt cổ chai nên thông lượng sẽ được quyết định bởi điểm có tốc độ nhỏ nhất, ở đây là Rs.
 
 ### Câu 6: Đặc điểm của truyền thông không dây (Wireless) trong tầng vật lý là gì? (Nhiều đáp án)
 - **A.** Chịu ảnh hưởng lớn của môi trường dẫn đến các hiện tượng phản xạ, tán xạ và nhiễu giao thoa
@@ -51,27 +57,33 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Sóng hồng ngoại có tần số cao (300 GHz - 430 THz) nhưng không có khả năng xuyên tường
 - **D.** Thường hoạt động ở chế độ bán song công (Half-duplex): tại một thời điểm chỉ có thể gửi hoặc nhận
 
-> Đáp án đúng là:
+> Đáp án đúng là: A, C và D
+
+**Giải thích: A với C đúng là do định nghĩa. D đúng do đặc điểm của môi trường không gian là dùng chung, nên phải làm vậy để không bị va vào nhau. B sai vì sóng vi ba được chia ra làm 2 loại là sóng vi ba vệ tinh và sóng vi ba mặt đất (truyền tin giữa các tòa nhà cách nhau hàng chục km).
 
 ### Câu 7: Đặc điểm của kiến trúc "đồng hồ cát" trong TCP/IP là gì? (Nhiều đáp án)
 - **A.** Sử dụng duy nhất một giao thức liên mạng (IP) tại tầng mạng
 - **B.** Cho phép tách rời việc phát triển ứng dụng tầng trên với công nghệ truyền dẫn tầng thấp
 
-> Đáp án đúng là:
+> Đáp án đúng là: A và B
 
 ### Câu 8: Đường truyền 100 Mbps, mỗi người dùng cần 10 Mbps và hoạt động 20% thời gian. Nếu có 15 người dùng, biểu thức tính xác suất mạng bị nghẽn (> 10 người dùng đồng thời) là?
 - **A.** Tổng xích-ma từ k=11 đến 15 của (C(15,k) * 0.2^k * 0.8^(15-k))
 - **B.** C(15,10) * 0.2^10 * 0.8^5
 - **C.** 1 - P(x < 10)
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
+
+**Giải thích:** Đường truyền 100 Mbps mà mỗi người cần 10Mbps tức là trong một thời điểm, đường truyền phục vụ được tối đa 10 người. Như vậy ta tính xác suất có từ 11-15 người sử dụng rồi cộng lại. Áp dụng phân phối nhị thức để tính: P(X=k) = C(15,k) * 0,2^k * 0,8^(15-k)
 
 ### Câu 9: Theo chuẩn EIA-232-E (RS-232), nếu khoảng cách truyền dẫn vượt quá 15m, thông số nào sau đây sẽ bị ảnh hưởng nghiêm trọng nhất theo quy chuẩn điện?
 - **A.** Tốc độ truyền tin (bị giới hạn ở mức 20kbps hoặc thấp hơn)
 - **B.** Số lượng chân cắm của đầu nối
 - **C.** Mã hóa NRZ-L bị chuyển thành Manchester
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
+
+**Giải thích**: Dễ hiểu là chuẩn này cho phép trong 15m thì được tốc độ truyền tin là 20kbps, dĩ nhiên nếu dây dẫn dài hơn thì tốc độ truyền sẽ giảm.
 
 ### Câu 10: Khi so sánh giữa các loại sợi quang, nhận định nào sau đây là chính xác về mặt kỹ thuật? (Nhiều đáp án)
 - **A.** Trong sợi Multimode graded index, chiết suất của lõi giảm dần từ trong ra ngoài giúp các tia sáng truyền theo đường cong và giảm méo dạng xung
@@ -79,7 +91,9 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Sợi quang Single-mode có xung nhận được hội tụ tốt và ít bị méo dạng nhất do tia sáng truyền song song với trục lõi
 - **D.** Cáp quang Single-mode có hệ số khúc xạ thay đổi nhiều hơn so với Multimode để tăng tốc độ truyền
 
-> Đáp án đúng là:
+> Đáp án đúng là: A, B và D
+
+**Giải thích:** A đúng là vì như định nghĩa, nó ngăn chặn việc tia truyền thẳng sẽ đến nhanh hơn các tia truyền zic-zac do tán xạ. B đúng vì nó là A nhưng mà không có công nghệ thay đổi chiết xuất lõi, dẫn đến tia truyền thẳng không bị va đập sẽ đến trước, gây ra sự sai lệch về thời điểm đến đích. C đúng là vì nó dung một cái lõi thật nhỏ để tia sáng đi thẳng tắp. D sai vì nó ngược với C, hệ số khúc xạ đáng nhẽ phải thay đổi ít hơn.
 
 ### Câu 11: Một gói tin được gửi từ A lúc t=0 và nhận được phản hồi từ B lúc t=40ms. Nếu thời gian xử lý tại B là 5ms, trễ lan truyền một chiều (từ A đến B) lý thuyết là bao nhiêu (giả sử trễ truyền tin không đáng kể)?
 - **A.** 17.5 ms
