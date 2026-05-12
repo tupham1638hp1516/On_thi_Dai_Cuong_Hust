@@ -4,7 +4,9 @@
 - **C.** Nhiễu giao thoa do các tín hiệu trên các dải tần gần nhau chồng lấn
 - **D.** Sự cố xung đột dữ liệu do hoạt động ở chế độ Song công toàn phần (Full-duplex)
 
-> Đáp án đúng là:
+> Đáp án đúng là: A, B và C
+
+**Giải thích**: Dễ hiểu khi môi trường là không dây thì sóng khi truyền sẽ có thể bị tán xạ, va vào vật cản. Sóng cũng có thể bị suy hoa nếu nó gặp phải tường. Và vì môi trường truyền là dùng chung giữa các mạng không dây, các tín hiệu có thể bị nhiễu (va vào nhau). Đáp án D sai vì song công toàn phần là dành cho môi trường có dây, và nó không thể bị xung đột dữ liệu do môi trường truyền là dành riêng.
 
 ### Câu 2: Tại sao việc duy trì giá trị trung bình của tín hiệu ở mức 0 (loại bỏ thành phần một chiều) lại cực kỳ quan trọng trong mã hóa đường truyền? (Nhiều đáp án)
 - **A.** Để tránh việc bên nhận xác định sai mức tín hiệu cơ sở (baseline wander)
@@ -12,7 +14,13 @@
 - **C.** Để cho phép truyền song song nhiều bit trên cùng một dây dẫn
 - **D.** Để ngăn chặn tình trạng giải mã sai dữ liệu khi tín hiệu ở mức dương hoặc âm quá lâu
 
-> Đáp án đúng là:
+> Đáp án đúng là: A và D
+
+**Giải thích**: Thành phần một chiều là khi tín hiệu không có sự luân phiên thay đổi mà liên tục giữ nguyên (có thể hiểu là tín hiệu toàn bit 1 hoặc toàn bit 0). Đáp án B và C thì không liên quan gì.
+
+Ta cần biết 2 điều, thứ nhất máy sẽ không biết đâu là bit 0 hay bit 1 một cách đơn thuần, mà nó dựa vào baseline, baseline chính là giá trị tín hiệu trung bình trong thời gian gần nhất. Ví dụ truyền 0 1 0 1 với định mức 0V là bit 0, 5V là bit 1 => Ta có baseline là 2.5V, đem ra so sánh thì cứ tín hiệu 5V > 2.5V thì sẽ là bit 1, 0V < 2.5V thì sẽ là bit 0. Thứ 2, ta sử dụng baseline liên tục thay đổi thay vì một giá trị cố định là do sự suy hao tín hiệu khi truyền. Ví dụ nếu ta truyền 5V đi, nhưng do suy hao lại chỉ còn 2V, nếu đặt cố định là 2.5V thì sẽ nhận định sai, nhưng nếu lấy trung bình thì baseline lại chỉ còn 1V, vẫn đúng.
+
+Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit 1, khi đó, baseline sẽ ~4,6-4,7 V, lúc này các tín hiệu được truyền sau đó (bit 1) gặp suy hao có thể chỉ còn 4,5V, và do đó máy sẽ nhận định sai liên tục. 2 vấn đề nữa là nhiễu và biên độ an toàn, nếu mức suy hao là tương đối, tín hiệu cũng loanh quanh ở một mức suy hao nào đó, thì nhiễu có thể khiến tín hiệu đột ngột giảm hoặc tăng ở một mức nào đó, và do liên tục truyền bit 1, biên độ an toàn lúc này trở nên rất nhỏ, khoảng 4,6-4,7 so với tối đa là 5V, tức là khả năng bị lệch sẽ rất cao so với việc baseline~2,5V và tối đa là tận 5V.
 
 ### Câu 3: Tại sao kiến trúc TCP/IP được mô tả là có dạng "đồng hồ cát" (hourglass model)? (Nhiều đáp án)
 - **A.** Vì nó cho phép tầng ứng dụng sử dụng nhiều loại giao thức khác nhau (HTTP, FTP, SMTP)
