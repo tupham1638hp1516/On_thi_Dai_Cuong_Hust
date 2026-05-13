@@ -100,14 +100,18 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **B.** 20 ms
 - **C.** 35 ms
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
+
+**Giải thích:** Trễ truyền tin ở đây là trễ truyền dẫn, như vậy, tổng thời gian di chuyển khi đã bỏ qua trễ truyền tin là trễ lan truyền (từ A đến B) + trễ xử lý + trễ lan truyền(từ B đến A). Vậy trễ lan truyền bằng (40-5)/2=17,5 (ms) 
 
 ### Câu 12: Một gói tin L=1000 bits truyền từ A qua một Router rồi đến B. Các liên kết đều có R=1Mbps. Bỏ qua d_proc, d_prop và d_queue. Tổng trễ để gói tin đi từ A đến B là bao nhiêu? (Lưu ý cơ chế Store and Forward)
 - **A.** 2 ms
 - **B.** 1 ms
 - **C.** 1.5 ms
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
+
+**Giải thích:** Khi đã bỏ qua d_proc, d_prop và d_queue thì ta chỉ còn lại d_trans, tức là trễ truyền dẫn. Thời gian để đưa toàn bộ gói tin vào đường truyền từ A đến Router là 1000/1*10^6=0,001 (s) = 1ms. Và sau đó lại phải truyền từ Router đến B nên tổng trễ sẽ bằng 2ms.
 
 ### Câu 13: Khi nói về chuẩn EIA-232-E (RS-232), nhận định nào sau đây phản ánh chính xác các quy định về mặt kỹ thuật của nó? (Nhiều đáp án)
 - **A.** Đặc điểm Điện quy định mức điện áp cho bit 1 là -3V và bit 0 là +3V
@@ -115,7 +119,9 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Đặc điểm Chức năng phân loại các dây dẫn thành 4 nhóm: dữ liệu, điều khiển, đồng bộ và nối đất
 - **D.** Tốc độ truyền tin bị giới hạn ở 20kbps cho khoảng cách dưới 15m
 
-> Đáp án đúng là:
+> Đáp án đúng là: C và D
+
+**Giải thích:** A sai do chuẩn RS-232 sử dụng khoảng điện áp thay vì con số cụ thể, B sai là vì đặc điểm thủ tục không quy định hình dạng vật lý, thủ tục thì phải là thủ tục :))
 
 ### Câu 14: Tại sao mã Manchester được sử dụng rộng rãi trong mạng Ethernet thay vì các mã NRZ? (Nhiều đáp án)
 - **A.** Vì nó chỉ sử dụng 2 mức điện áp thay vì 3 mức như mã AMI
@@ -123,7 +129,9 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Vì nó luôn có sự chuyển mức ở giữa mỗi bit, cung cấp cơ chế tự đồng bộ đồng hồ giữa bên gửi và bên nhận
 - **D.** Vì nó sử dụng băng thông đường truyền hiệu quả hơn mã NRZ (tốc độ dữ liệu bằng tốc độ tín hiệu)
 
-> Đáp án đúng là:
+> Đáp án đúng là: B và C
+
+**Giải thích:** A sai là vì NRZ cũng chỉ sử dụng 2 mức điện áp như Manchester, B và C đúng là vì mỗi tín hiệu của Manchester luôn có cú nhảy điện áp ở giữa mỗi bit, và vì thế nên sẽ không có thành phần một chiều. D sai là vì Manchester sử dụng kém hiệu quả hơn, nó sử dụng gấp đôi bauds.
 
 ### Câu 15: Các thông số đặc trưng cho khả năng truyền dẫn của đường truyền vật lý bao gồm những gì? (Nhiều đáp án)
 - **A.** Độ suy hao: mức suy giảm tín hiệu khi truyền
@@ -131,14 +139,18 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Số lượng nút mạng tối đa kết nối vào đường truyền
 - **D.** Tỉ lệ lỗi bit (BER - Bit Error Rate)
 
-> Đáp án đúng là:
+> Đáp án đúng là: A, B và D
+
+**Giải thích:** A, B đúng. D đúng là vì tỷ lệ lỗi bit được quyết định bởi nhiễu và độ suy hao, do đó nó cũng phản ánh khả năng truyền dẫn của đường truyền vật lý. C sai là vì đối với đường truyền vật lý thì số lượng nút mạng kết nối không qua trọng, và số lượng tối đa cũng không thể hiện khả năng truyền dẫn, đó là định mức được quyết định ở bên trên.
 
 ### Câu 16: Một gói tin Ethernet tại Switch có tổng kích thước là 1526 bytes, trong đó Header tầng Liên kết dữ liệu chiếm 26 bytes. Tính hiệu suất truyền tải payload của gói tin này tại tầng Liên kết.
 - **A.** 98.3%
 - **B.** 96.5%
 - **C.** 94.1%
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
+
+**Giải thích:** Payload sẽ có kích thước là 1526-26=1500. Hiệu suất là 1500/1526 = 98,3%
 
 ### Câu 17: Đặc điểm của kỹ thuật chuyển mạch gói (Packet Switching) là gì? (Nhiều đáp án)
 - **A.** Các gói tin có thể tới đích theo các đường khác nhau và không đúng thứ tự
@@ -146,7 +158,9 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Tài nguyên đường truyền được dành riêng cho từng kết nối
 - **D.** Dữ liệu được chia thành các gói tin có phần tiêu đề (header) và dữ liệu (payload)
 
-> Đáp án đúng là:
+> Đáp án đúng là: A, B và D
+
+**Giải thích:** A và D đúng là rõ, B đúng là do store and forward là đặc điểm riêng của router, do đó phải là chuyển mạch gói.
 
 ### Câu 18: Các thành phần cơ bản của một hệ thống mạng Internet "đơn giản" bao gồm những gì? (Nhiều đáp án)
 - **A.** Đường truyền (có dây, không dây)
@@ -154,42 +168,48 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Thiết bị kết nối mạng (switch, Internet connect box)
 - **D.** Trạm làm việc (PC, mobile phone)
 
-> Đáp án đúng là:
+> Đáp án đúng là: A,B,C,D
 
 ### Câu 19: Xét một đường truyền có băng thông giới hạn ở mức 10 MHz. Nếu sử dụng mã hóa Manchester, tốc độ truyền dữ liệu tối đa lý thuyết mà hệ thống đạt được là bao nhiêu (giả sử mỗi đơn vị tín hiệu chiếm toàn bộ băng thông sẵn có)?
 - **A.** 20 Mbps
 - **B.** 10 Mbps
 - **C.** 5 Mbps
 
-> Đáp án đúng là:
+> Đáp án đúng là: B
+
+**Giải thích:** Số lượng sự thay đổi tín hiệu tối đa (bauds) luôn gấp đôi băng thông vật lý => 20 Mbauds. => Tốc độ dữ liệu = 20/2 = 10 Mbps.
 
 ### Câu 20: Nhận định nào sau đây đúng khi so sánh Topology vật lý và Topology logic? (Nhiều đáp án)
 - **A.** Topology logic luôn luôn trùng khớp với Topology vật lý trong mọi trường hợp
 - **B.** Topology vật lý dựa trên cách bố trí cáp kết nối thực tế
 - **C.** Topology logic dựa trên cách thức truyền tín hiệu (ví dụ: điểm-điểm, quảng bá)
 
-> Đáp án đúng là:
+> Đáp án đúng là: B và C
 
 ### Câu 21: Tại sao phía nhận phải thực hiện quá trình ngược lại với Encapsulation (tháo dỡ gói tin)? (Nhiều đáp án)
 - **A.** Để xử lý dữ liệu dựa trên các tham số trong tiêu đề mà phía gửi đã thiết lập tại tầng tương ứng
 - **B.** Để thay đổi nội dung Payload nhằm phù hợp với giao thức của tầng trên
 - **C.** Để tách bỏ phần tiêu đề (Header) trước khi chuyển phần dữ liệu (Payload) lên cho tầng trên cao hơn
 
-> Đáp án đúng là:
+> Đáp án đúng là: A và C
+
+**Giải thích:** Đối với tầng N, gói tin nó nhận được sẽ được hiểu là [Header tầng N] + [Payload tầng N], và [Payload tầng N] = [Header tầng N+1] + [Payload tầng N+1]
 
 ### Câu 22: Một ứng dụng gửi khối dữ liệu 1000 bytes. Qua tầng Giao vận thêm 20B header, tầng Mạng thêm 20B header và tầng Liên kết dữ liệu thêm 14B header. Hiệu suất truyền dẫn (H) tại tầng Liên kết dữ liệu là bao nhiêu?
 - **A.** ~94.8%
 - **B.** 90.0%
 - **C.** 96.2%
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
 
 ### Câu 23: Giả sử trễ tháo dỡ và kiểm tra tiêu đề tại mỗi tầng là 2 micro giây. So sánh trễ xử lý (d_proc) lý thuyết giữa một Switch (tầng 2) và một Router (tầng 3) khi nhận một gói tin.
 - **A.** Router có d_proc lớn hơn Switch khoảng 2 micro giây (do xử lý thêm tầng Mạng)
 - **B.** Switch có d_proc lớn hơn Router
 - **C.** Cả hai có d_proc bằng nhau vì đều là thiết bị trung gian
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
+
+**Giải thích:** Nghĩ đơn giản
 
 ### Câu 24: Trong kiến trúc phân tầng TCP/IP, nút mạng Switch trung gian thường triển khai các tầng nào? (Nhiều đáp án)
 - **A.** Tầng Mạng (Network)
@@ -197,7 +217,7 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Tầng Vật lý (Physical)
 - **D.** Tầng Giao vận (Transport)
 
-> Đáp án đúng là:
+> Đáp án đúng là: B và C
 
 ### Câu 25: Về các phương pháp mã hóa đường truyền NRZ (Non-Return to Zero), phát biểu nào sau đây đúng? (Nhiều đáp án)
 - **A.** NRZ-I gặp vấn đề mất đồng bộ khi gặp chuỗi toàn bit 1 liên tiếp
@@ -205,14 +225,16 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** NRZ-L ưu việt hơn NRZ-I vì nó không phụ thuộc vào cực của tín hiệu
 - **D.** Cả NRZ-L và NRZ-I đều gặp vấn đề mất đồng bộ khi truyền một chuỗi dài các bit 0 liên tiếp
 
-> Đáp án đúng là:
+> Đáp án đúng là: B và D
+
+**Giải thích:** NRZ-I là vi sai, có nghĩa là nếu có sự chuyển mức thì là bit 1, không có sự chuyển mức là bit 0. NRZ-L là bình thường, bit 1 là cao, bit 0 là thấp. Do đó A sai vì với NRZ-I, tín hiệu sẽ chuyển mức liên tục, không gây mất đồng bộ. B đúng vì đó là định nghĩa. C sai vì nếu là bit 1 liên tiếp thì NRZ-I không bị mất đồng bộ còn NRZ-L thì có. D là đúng
 
 ### Câu 26: Dựa trên các phương tiện vật lý, đường truyền được phân thành những loại chính nào? (Nhiều đáp án)
 - **A.** Vô tuyến (sóng radio, viba, sóng hồng ngoại...)
 - **B.** Đường truyền logic (kênh ảo)
 - **C.** Hữu tuyến (cáp xoắn, cáp đồng trục, cáp quang...)
 
-> Đáp án đúng là:
+> Đáp án đúng là: A và C
 
 ### Câu 27: Các loại hình trạng (topology) vật lý phổ biến dựa trên cách kết nối cáp giữa các nút mạng là gì? (Nhiều đáp án)
 - **A.** Bus (Trục dẫn)
@@ -220,20 +242,22 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Star (Hình sao)
 - **D.** Mesh (Lưới)
 
-> Đáp án đúng là:
+> Đáp án đúng là: A,B,C,D
 
 ### Câu 28: Một hệ thống truyền thông sử dụng kỹ thuật điều chế pha có 16 trạng thái pha khác nhau (16-PSK). Nếu tốc độ điều chế (Baud rate) đo được là 2400 Baud, tốc độ dữ liệu (Bit rate) thực tế của hệ thống là bao nhiêu?
 - **A.** 2400 bps
 - **B.** 4800 bps
 - **C.** 9600 bps
 
-> Đáp án đúng là:
+> Đáp án đúng là: C
+
+**Giải thích:** Baud rate là số lần tín hiệu thay đổi trong một giây, còn bit rate là số bit truyền đi được trong một giây. 16-PSK thì log2(16)=4, có nghĩa là với 1 lần thay đổi tín hiệu sẽ truyền đi được 4 bit. => Bit rate = 2400 * 4 = 9600
 
 ### Câu 29: Tính trễ truyền tin (transmission delay) cho một gói tin kích thước L = 800 bits qua đường truyền có băng thông R = 1 Mbps.
 - **A.** 0.8 ms
 - **B.** 1.8 ms
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
 
 ### Câu 30: Khi một gói tin đi qua các thiết bị mạng, nhận định nào sau đây về việc sử dụng định danh là đúng? (Nhiều đáp án)
 - **A.** Router sử dụng địa chỉ IP để xác định đường đi trong mạng liên mạng
@@ -241,14 +265,14 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Switch sử dụng địa chỉ IP để lọc các gói tin broadcast
 - **D.** Router chỉ cần địa chỉ MAC là đủ để chuyển tiếp gói tin đi toàn cầu
 
-> Đáp án đúng là:
+> Đáp án đúng là: A và B
 
 ### Câu 31: Một modem sử dụng kỹ thuật điều chế 8-PSK (khóa dịch pha với 8 trạng thái pha khác nhau). Nếu tốc độ dữ liệu yêu cầu là 9600 bps, tốc độ điều chế (Baud rate) cần thiết là bao nhiêu?
 - **A.** 3200 Baud
 - **B.** 9600 Baud
 - **C.** 4800 Baud
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
 
 ### Câu 32: Cho chuỗi bit 1100. Khi phân tích dạng sóng của mã NRZ-I (Non-Return to Zero Invert) so với NRZ-L, nhận định nào sau đây là đúng? (Giả sử mức điện áp ban đầu trước khi truyền bit đầu tiên là mức thấp). (Nhiều đáp án)
 - **A.** NRZ-I sẽ có 4 lần chuyển mức cho chuỗi 1100 này
@@ -256,14 +280,16 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Trong mã NRZ-L, mức điện áp sẽ thay đổi ở giữa thời gian của mỗi bit 1
 - **D.** Trong mã NRZ-I, tín hiệu sẽ thực hiện chuyển mức (từ thấp lên cao hoặc ngược lại) tại thời điểm bắt đầu của cả bit 1 thứ nhất và bit 1 thứ hai
 
-> Đáp án đúng là:
+> Đáp án đúng là: B và D
 
 ### Câu 33: Một đường truyền có khả năng truyền tín hiệu trong dải tần số từ 300 Hz đến 3400 Hz. Băng tần (độ rộng băng thông tần số) của đường truyền này là bao nhiêu?
 - **A.** 3100 Hz
 - **B.** 3700 Hz
 - **C.** 3400 Hz
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
+
+**Giải thích:** Độ rộng băng thông tần số thì ta lấy 3400 - 300 = 3100, đây chính là "độ rộng"
 
 ### Câu 34: Trong quá trình đóng gói dữ liệu (Encapsulation) tại bên gửi, khẳng định nào sau đây là đúng? (Nhiều đáp án)
 - **A.** Tầng dưới coi toàn bộ PDU của tầng trên chuyển xuống là phần Payload của nó
@@ -271,28 +297,30 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** Mỗi tầng thêm vào một Header chứa thông tin định danh và điều khiển phục vụ cho tầng đồng cấp bên nhận
 - **D.** Quá trình đóng gói làm giảm kích thước thực tế của dữ liệu truyền trên đường dây
 
-> Đáp án đúng là:
+> Đáp án đúng là: A và C
 
 ### Câu 35: Phân tích dạng sóng Manchester (không vi sai) cho chuỗi bit 0101. Đặc điểm nào sau đây xuất hiện trong tín hiệu? (Nhiều đáp án)
-- **A.** Giữa hai bit 1 liên tiếp (tại ranh giới bit) chắc chắn không có sự chuyển mức nào [2].
-- **B.** Bit 0 được biểu diễn bằng sườn âm (từ cao xuống thấp) và bit 1 là sườn dương (từ thấp lên cao) [2].
-- **C.** Tại mỗi bit đều có một sự chuyển mức (transition) chính xác ở giữa chu kỳ bit [2].
+- **A.** Giữa hai bit 1 liên tiếp (tại ranh giới bit) chắc chắn không có sự chuyển mức nào.
+- **B.** Bit 0 được biểu diễn bằng sườn âm (từ cao xuống thấp) và bit 1 là sườn dương (từ thấp lên cao).
+- **C.** Tại mỗi bit đều có một sự chuyển mức (transition) chính xác ở giữa chu kỳ bit.
 
-> Đáp án đúng là:
+> Đáp án đúng là: B và C
 
 ### Câu 36: Hệ thống mạng Ethernet sử dụng mã hóa Manchester để truyền dữ liệu với tốc độ 10 Mbps. Tốc độ điều chế (tốc độ tín hiệu - Baud rate) thực tế trên đường truyền là bao nhiêu?
 - **A.** 20 Mbaud
 - **B.** 10 Mbaud
 - **C.** 5 Mbaud
 
-> Đáp án đúng là:
+> Đáp án đúng là: A
+
+**Giải thích:** Mã Manchester là cứ 1 bit cần 2 tín hiệu, do đó ta nhân 2 tốc độ truyền dữ liệu thì sẽ được tốc độ điều chế
 
 ### Câu 37: Trước khi bị thay thế bởi cáp quang, một hệ thống cáp đồng trục có khả năng truyền đồng thời tối đa bao nhiêu cuộc gọi điện thoại đường dài?
 - **A.** 10,000 cuộc gọi
 - **B.** 1,000 cuộc gọi
 - **C.** 5,000 cuộc gọi
 
-> Đáp án đúng là:
+> Đáp án đúng là: A (Học thuộc)
 
 ### Câu 38: Tại sao đơn vị truyền dẫn tối đa (MTU) không nên quá lớn hoặc quá nhỏ? (Nhiều đáp án)
 - **A.** MTU nhỏ giúp giảm tỉ lệ gói tin bị lỗi bit
@@ -300,4 +328,6 @@ Vấn đề của thành phần một chiều là, VD: Nếu ta truyền 100 bit
 - **C.** MTU lớn giúp giảm thời gian trễ hàng đợi tại các router
 - **D.** MTU quá lớn làm tăng xác suất gói tin bị lỗi bit và phải truyền lại nhiều dữ liệu hơn
 
-> Đáp án đúng là:
+> Đáp án đúng là: B và D
+
+**Giải thích:** B đúng là do phần tiêu đề luôn có mức cố định, MTU quá nhỏ thì tỷ lệ phần tiêu đề cao, dẫn đến giảm hiệu suất. Trong khi D đúng vì nếu gói tin quá lớn, mà chẳng may chỉ cần lỗi 1 bit, thì sẽ cần truyền lại gối tin đó, dẫn đến tốn băng thông. Gói tin càng lớn thì tỷ lệ bị lỗi bit càng cao. Tỷ lệ này là BER, tức là cứ bao nhiêu bit thì sẽ có 1 bit lỗi. Trong khi muốn truyền được gói tin thì tất cả đều không bị lỗi. Nếu 1 bit có tỷ lệ thành công là 1 - BER thì cả gói sẽ là (1-BER)^n.
