@@ -1,0 +1,1 @@
+Tạo 2 page Notebooklm một cái tóm tắt kiến thức nằm trong slide chính thành cái mục lục, một cái bao gồm tất cả file markdown => Bổ sung các đầu mục trong file mục lục bằng cách yêu cầu notebooklm giải thích chúng dựa hoàn toàn theo file markdown. Xong hết rồi thì đưa cho antigravity sắp xếp lại, viết thêm mối liên kết giữa các ý.
