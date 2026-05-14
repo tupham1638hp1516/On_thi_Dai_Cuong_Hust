@@ -32,7 +32,6 @@
 # CHƯƠNG 1. TỔNG QUAN VỀ MẠNG MÁY TÍNH
 
 ## 1.1. Cơ bản về mạng máy tính
-*(Liên kết với: Kiến trúc phân tầng ở 1.6, Định nghĩa mạng LAN/WAN ở 1.3 & Tầng Liên mạng ở 4.1 - Tại sao: Hiểu các thành phần cơ bản (trạm làm việc, đường truyền, thiết bị kết nối như Switch/Router) là nền móng để bạn hình dung được luồng đi của dữ liệu. Cụ thể, các "thiết bị kết nối" này sẽ được phân loại rõ rệt ở mô hình OSI/TCP-IP (1.6) dựa trên phạm vi hoạt động của chúng (LAN dùng Switch ở Tầng 2, WAN dùng Router ở Tầng 3). Khi nắm rõ mạng Internet là "hệ sinh thái toàn cầu", bạn sẽ dễ dàng tiếp thu khái niệm Hệ tự trị (AS) và Định tuyến liên mạng (BGP) ở Chương 4.)*
 
 **Mạng Internet "đơn giản":**
 - Trạm làm việc: PC, mobile phone
@@ -51,7 +50,7 @@
 - Phần mềm ứng dụng
 
 ## 1.2. Giao thức mạng (Protocol)
-*(Liên kết với: Kiến trúc phân tầng ở 1.6, Kiểm soát lỗi ở 3.3, Kiểm soát luồng ở 3.4 & Định tuyến IPv4 ở 4.2 - Tại sao: Giao thức là "luật chơi" chung của mạng. Khái niệm "đóng/mở gói" (Encapsulation) chính là cách dữ liệu di chuyển từ trên xuống dưới trong mô hình OSI (1.6). Sự phân biệt giữa TCP (tin cậy, có ACK, có kiểm soát luồng) và UDP (nhanh, bỏ qua lỗi) sẽ giải thích tại sao ở Tầng 2 (3.3) và Tầng 3 (4.2) người ta chỉ loại bỏ gói tin lỗi mà không thèm sửa (vì để dành việc sửa lỗi đó cho TCP ở Tầng 4). Cơ chế cửa sổ trượt (3.4) cũng chính là hiện thực hóa của "quy tắc kiểm soát luồng" được nhắc đến ở đây.)*
+*(Giao thức là "luật chơi" chung của mạng. Khái niệm "đóng/mở gói" (Encapsulation) chính là cách dữ liệu di chuyển từ trên xuống dưới trong mô hình OSI (1.6). Sự phân biệt giữa TCP (tin cậy, có ACK, có kiểm soát luồng) và UDP (nhanh, bỏ qua lỗi) sẽ giải thích tại sao ở Tầng 2 (3.3) và Tầng 3 (4.2) người ta chỉ loại bỏ gói tin lỗi mà không thèm sửa (vì để dành việc sửa lỗi đó cho TCP ở Tầng 4). Cơ chế cửa sổ trượt (3.4) cũng chính là hiện thực hóa của "quy tắc kiểm soát luồng" được nhắc đến ở đây.)*
 
 Khuôn dạng dữ liệu, thứ tự truyền nhận, quy tắc truyền thông.
 1. **Khuôn dạng dữ liệu (Data Format) & Cơ chế đóng/mở gói:**
@@ -76,7 +75,7 @@ Khuôn dạng dữ liệu, thứ tự truyền nhận, quy tắc truyền thông
      - Đối với cơ chế ARQ dừng và chờ (Stop-and-Wait), thứ tự truyền nhận bị khóa cứng: Bên gửi chỉ được phép gửi một gói tin duy nhất, sau đó phải lập tức dừng lại để chờ gói tin xác nhận (ACK) từ phía nhận gửi về rồi mới được phép truyền gói tiếp theo.
 
 ## 1.3. Định nghĩa mạng LAN/WAN và các khái niệm mở rộng
-*(Liên kết với: Địa chỉ MAC ở 3.1, Thiết bị chuyển mạch Tầng 2 ở 3.5, Định tuyến IPv4 ở 4.4 & Giao thức ARP ở 3.1 - Tại sao: LAN và WAN là 2 phạm vi mạng hoàn toàn đối lập nhưng phải cộng sinh. LAN dùng địa chỉ vật lý MAC (3.1) và hoạt động dựa trên cơ chế tự học của Switch (3.5). Ngược lại, WAN (mạng diện rộng) bắt buộc phải dùng địa chỉ lô-gic IPv4 (4.2) và Router (4.4) để tìm đường đi xa. Để một gói tin từ WAN (dùng IP) có thể giao chính xác cho một máy trong LAN (chỉ hiểu MAC), bắt buộc phải có sự can thiệp của giao thức ARP - đóng vai trò "thông dịch viên" giữa hai loại địa chỉ này.)*
+*(LAN và WAN là 2 phạm vi mạng hoàn toàn đối lập nhưng phải cộng sinh. LAN dùng địa chỉ vật lý MAC (3.1) và hoạt động dựa trên cơ chế tự học của Switch (3.5). Ngược lại, WAN (mạng diện rộng) bắt buộc phải dùng địa chỉ lô-gic IPv4 (4.2) và Router (4.4) để tìm đường đi xa. Để một gói tin từ WAN (dùng IP) có thể giao chính xác cho một máy trong LAN (chỉ hiểu MAC), bắt buộc phải có sự can thiệp của giao thức ARP - đóng vai trò "thông dịch viên" giữa hai loại địa chỉ này.)*
 
 1. **Mạng cục bộ (LAN - Local Area Network) và cơ chế hoạt động**
    - **Bản chất:** Mạng LAN là mạng kết nối các thiết bị trong một phạm vi địa lý nhỏ (như một căn hộ, tòa nhà, văn phòng). Nó giống như một "đường hành lang" dùng chung, nơi các thiết bị ở gần nhau chỉ cần gọi tên nhau là có thể truyền tin.
@@ -100,7 +99,7 @@ Khuôn dạng dữ liệu, thứ tự truyền nhận, quy tắc truyền thông
    - **Hệ tự trị (AS - Autonomous System):** Nếu Internet là một thành phố khổng lồ thì AS chính là một tòa nhà hoặc một khu đô thị được quản lý riêng biệt (ví dụ: một trường đại học hoặc một nhà cung cấp dịch vụ mạng - ISP). Bên trong một AS, tất cả Router đều tuân theo một chính sách định tuyến chung và dùng giao thức định tuyến nội miền (như RIP, OSPF). Để kết nối các AS này lại với nhau thành WAN/Internet, người ta sử dụng giao thức định tuyến liên miền (điển hình là BGP). Số lượng các AS không bao giờ cố định mà liên tục thay đổi trên toàn cầu tùy theo sự phát triển của hạ tầng mạng.
 
 ## 1.4. Hình trạng (Topology) vật lý
-*(Liên kết với: Môi trường truyền dẫn ở 2.2, Truy cập đường truyền CSMA/CD ở 3.2 & Thiết bị LAN ở 3.5 - Tại sao: Hình trạng vật lý không chỉ là cách cắm dây, nó quyết định trực tiếp đến loại cáp nào được sử dụng (2.2). Ví dụ, mạng hình sao (Star) luôn đi kèm với Switch/Hub làm trung tâm (3.5). Hình trạng Bus (chung đường truyền) là nguyên nhân sâu xa dẫn đến hiện tượng "đụng độ tín hiệu" - lý do mà Tầng liên kết dữ liệu bắt buộc phải sinh ra các thuật toán lắng nghe và tránh đụng độ như CSMA/CD hay CSMA/CA (3.2).)*
+*(Hình trạng vật lý không chỉ là cách cắm dây, nó quyết định trực tiếp đến loại cáp nào được sử dụng (2.2). Ví dụ, mạng hình sao (Star) luôn đi kèm với Switch/Hub làm trung tâm (3.5). Hình trạng Bus (chung đường truyền) là nguyên nhân sâu xa dẫn đến hiện tượng "đụng độ tín hiệu" - lý do mà Tầng liên kết dữ liệu bắt buộc phải sinh ra các thuật toán lắng nghe và tránh đụng độ như CSMA/CD hay CSMA/CA (3.2).)*
 
 1. **Định nghĩa Topology vật lý**
    - **Bản chất:** Topology vật lý mô tả cách bố trí cáp kết nối thực tế giữa các nút mạng (thiết bị mạng) với nhau.
@@ -114,20 +113,20 @@ Khuôn dạng dữ liệu, thứ tự truyền nhận, quy tắc truyền thông
    - **Hình lưới (Mesh Topology):** Là tên gọi khác của một mạng có "kết nối đầy đủ" (fully connected). Các thiết bị trong mạng lưới sẽ được kết nối chằng chịt và trực tiếp với nhiều thiết bị khác, tạo ra độ dự phòng cao.
 
 ## 1.5. Các kỹ thuật chuyển mạch và tính độ trễ
-*(Liên kết với: Định tuyến IPv4 ở 4.4, Kiểm soát luồng TCP ở 3.4 & Các thông số đo lường đường truyền ở 2.5 - Tại sao: Trong chuyển mạch gói, dữ liệu bị băm nhỏ, mỗi gói tự đi một đường (4.4), do đó sinh ra độ trễ hàng đợi (Queue Delay) rất biến động tại các Router. Để mạng không bị "sập" do trễ hàng đợi quá cao, TCP phải sử dụng "cửa sổ tắc nghẽn" (3.4) để điều tiết lượng gói tin bơm vào mạng. Hơn nữa, trễ truyền tải và trễ lan truyền trong phần này bị phụ thuộc trực tiếp vào Băng thông và Khoảng cách cáp vật lý (đã học ở 2.5).)*
+*(Trong chuyển mạch gói, dữ liệu bị băm nhỏ, mỗi gói tự đi một đường (4.4), do đó sinh ra độ trễ hàng đợi (Queue Delay) rất biến động tại các Router. Để mạng không bị "sập" do trễ hàng đợi quá cao, TCP phải sử dụng "cửa sổ tắc nghẽn" (3.4) để điều tiết lượng gói tin bơm vào mạng. Hơn nữa, trễ truyền tải và trễ lan truyền trong phần này bị phụ thuộc trực tiếp vào Băng thông và Khoảng cách cáp vật lý (đã học ở 2.5).)*
 
 1. **Chuyển mạch kênh (Circuit Switching)**
    - **Bản chất và cách hoạt động:** Cung cấp dịch vụ truyền thông theo mô hình hướng kết nối (connection-oriented). Trước khi có thể truyền bất kỳ dữ liệu nào, hai bên bắt buộc phải dành thời gian để thiết lập một kênh truyền vật lý xuyên suốt.
    - **Đặc điểm tài nguyên:** Tài nguyên của mỗi cuộc hội thoại (băng thông) được xác định ngay trong giai đoạn thiết lập kênh và được giữ nguyên/dành riêng (không đổi) trong suốt quá trình truyền dữ liệu. Kênh truyền này chỉ được giải phóng khi một trong hai bên chủ động ngắt liên kết.
    - **Ưu điểm:** Khi liên kết đã được thiết lập xong, trễ chuyển mạch trong quá trình truyền dữ liệu sẽ rất thấp.
-   - **Nhược điểm:** Hiệu suất đường truyền thấp và lãng phí nếu tỷ lệ truyền dữ liệu thấp hoặc lượng dữ liệu cần truyền quá nhỏ. Thiếu linh hoạt khi một thiết bị trung gian bị lỗi, mạng bắt buộc phải bắt đầu lại toàn bộ quá trình thiết lập kênh truyền từ đầu.
+   - **Nhược điểm:** Hiệu suất đường truyền thấp và lãng phí: Kỹ thuật này rất lãng phí nếu tỷ lệ truyền dữ liệu thấp (đã thiết lập một băng thông riêng nhưng thỉnh thoảng mới có dữ liệu truyền qua). Đồng thời, nó cũng kém hiệu quả khi lượng dữ liệu cần truyền quá nhỏ, vì thời gian bỏ ra để thiết lập và hủy liên kết lại chiếm quá nhiều. Thiếu linh hoạt: Trong quá trình truyền, nếu một thiết bị chuyển mạch trung gian bị lỗi, mạng bắt buộc phải bắt đầu lại toàn bộ quá trình thiết lập kênh truyền từ đầu.
 
 2. **Chuyển mạch gói (Packet Switching)**
-   - **Bản chất và cách hoạt động:** Dữ liệu không được gửi đi nguyên khối mà được băm nhỏ thành các gói tin (packet). Các thiết bị trung gian thực hiện việc định tuyến dựa trên cơ chế "lưu và chuyển tiếp" (Store and forward).
-   - **Đặc điểm tài nguyên:** Khác với chuyển mạch kênh, chuyển mạch gói không dành riêng đường truyền cho ai. Tài nguyên đường truyền được chia sẻ, các gói tin từ nhiều phiên truyền thông có thể được truyền trên cùng một đường truyền vật lý một cách đồng thời.
-   - **Sự di chuyển linh hoạt (Routing):** Các gói tin có thể tự chọn đường đi riêng, dẫn đến việc chúng có thể đến đích lộn xộn và không theo đúng thứ tự.
-   - **Ưu điểm:** Hiệu năng cao, không mất thời gian để thiết lập kênh truyền ban đầu. Quản lý thông minh nhờ thiết lập độ ưu tiên cho từng loại gói tin khi xử lý hàng đợi.
-   - **Nhược điểm:** Độ trễ không ổn định, phụ thuộc vào tải trọng của mạng (network load). Khi có quá nhiều gói tin cùng chọn đi vào một đường truyền, chúng sẽ bị kẹt lại tại hàng đợi của Router gây nghẽn mạng.
+   - **Bản chất và cách hoạt động:** Dữ liệu không được gửi đi nguyên khối mà được băm nhỏ thành các gói tin (packet), mỗi gói tin bao gồm phần dữ liệu (payload) và phần tiêu đề (header). Các thiết bị trung gian thực hiện việc định tuyến dựa trên cơ chế "lưu và chuyển tiếp" (Store and forward).
+   - **Đặc điểm tài nguyên:** Khác với chuyển mạch kênh, chuyển mạch gói không dành riêng đường truyền cho ai. Tài nguyên đường truyền được chia sẻ, nghĩa là các gói tin từ nhiều phiên truyền thông và các liên kết khác nhau có thể được truyền trên cùng một đường truyền vật lý một cách đồng thời.
+   - **Sự di chuyển linh hoạt (Routing):** Các gói tin đi từ một nguồn đến cùng một đích không bắt buộc phải đi qua các chặng đường giống nhau. Tùy vào tình trạng mạng, mỗi gói tin có thể tự chọn một đường đi riêng, dẫn đến việc chúng có thể đến đích lộn xộn và không theo đúng thứ tự lúc gửi.
+   - **Ưu điểm:** Hiệu năng cao: Không mất thời gian để thiết lập kênh truyền ban đầu, thời gian chuyển tiếp dữ liệu ngắn hơn và mang lại hiệu suất sử dụng đường truyền tổng thể cao hơn. Quản lý thông minh: Thiết bị mạng có thể thiết lập độ ưu tiên cho từng loại gói tin khi xử lý hàng đợi (ví dụ: ưu tiên gói dữ liệu video/thoại hơn gói tải file).
+   - **Nhược điểm:** : Độ trễ không ổn định. Độ trễ trong mạng chuyển mạch gói bị phụ thuộc rất lớn vào tải trọng của mạng (network load). Nếu có quá nhiều gói tin cùng chọn đi vào một đường truyền, chúng sẽ bị kẹt lại tại hàng đợi của Router, gây ra tình trạng nghẽn mạng và tăng độ trễ.
 
 3. **4 Loại trễ (Delays) tại một nút mạng**
    Khi một gói tin đi qua bất kỳ một thiết bị mạng nào, tổng độ trễ tại nút đó sẽ bằng tổng của 4 loại trễ:
@@ -137,9 +136,11 @@ Khuôn dạng dữ liệu, thứ tự truyền nhận, quy tắc truyền thông
    - **Trễ lan truyền (Propagation Delay - d_prop):** Bị chi phối bởi khoảng cách vật lý. Là thời gian để tín hiệu bay từ điểm A đến điểm B.
 
 4. **RTT (Round Trip Time) và Hiệu ứng nhân lên qua các trạm (Hops)**
-   - **Bản chất cốt lõi:** RTT cho biết trễ 2 chiều giữa nút nguồn và nút đích. Đó là tổng thời gian đo từ lúc đẩy bit ĐẦU TIÊN đi, cho đến khi nhận lại trọn vẹn bit CUỐI CÙNG của ACK. Mọi quá trình trễ trên đường đi và về đều cộng dồn vào RTT.
-   - **Hiệu ứng nhân lên qua các trạm:** Tại mỗi Router trung gian (dùng cơ chế Store-and-Forward), 4 quá trình trễ lặp lại. Càng đi qua nhiều trạm (Hops), RTT càng lớn.
-   - RTT = [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt ĐI ] + [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt VỀ ]
+• Bản chất cốt lõi: Thông số RTT cho biết trễ 2 chiều giữa nút nguồn và nút đích. RTT không đơn thuần chỉ là "khoảng cách tín hiệu chạy trên dây", mà nó là tổng thời gian đo từ lúc máy nguồn bắt đầu đẩy bit ĐẦU TIÊN của gói tin đi, cho đến khi máy nguồn nhận lại trọn vẹn bit CUỐI CÙNG của gói tin xác nhận phản hồi (ACK). Bất cứ một hành động nhỏ nào tốn thời gian trên đường đi và về cũng đều được cộng dồn hết vào RTT.
+•	Hiệu ứng nhân lên qua các trạm (Hop): Mạng Internet sử dụng cơ chế "Lưu và chuyển tiếp" (Store-and-Forward) nên không có con đường thẳng tắp nào nối từ máy bạn đến máy chủ. Gói tin bắt buộc phải đi qua nhiều Router trung gian.
+•	Tại mỗi một Router, thiết bị phải đợi nhận xong toàn bộ gói tin, kiểm tra lỗi, xếp hàng, và đẩy ra dây truyền tiếp. Nghĩa là, toàn bộ 4 quá trình trễ ở phần 1 lại lặp lại từ đầu tại mỗi trạm trung chuyển. Càng đi qua nhiều trạm (nhiều Hops), RTT sẽ càng lớn.
+> Tóm tắt lại thành công thức tổng quát của RTT: RTT = [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt ĐI ] + [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt VỀ ]
+
 
 ## 1.6. Kiến trúc phân tầng và Các mô hình tham chiếu
 *(Liên kết với: Cấu trúc toàn bộ giáo trình (Chương 2, 3, 4) & Quá trình phân mảnh gói tin ở 4.3 - Tại sao: Mô hình OSI và TCP/IP là bộ xương sống của mạng máy tính, quyết định cách các chương sau được sắp xếp. Chương 2 tương ứng với Layer 1 (Physical), Chương 3 là Layer 2 (Data Link), và Chương 4 là Layer 3 (Network). Việc phân tách này giải thích tại sao Switch (Layer 2) xử lý nhanh hơn Router (Layer 3), vì Switch chỉ bóc vỏ gói tin đến lớp MAC rồi đẩy đi, trong khi Router phải bóc sâu hơn để đọc IP và thậm chí phải cắt nhỏ gói tin (phân mảnh) nếu vượt quá kích thước MTU (4.3).)*
