@@ -137,8 +137,11 @@ Khuôn dạng dữ liệu, thứ tự truyền nhận, quy tắc truyền thông
 
 4. **RTT (Round Trip Time) và Hiệu ứng nhân lên qua các trạm (Hops)**
 • Bản chất cốt lõi: Thông số RTT cho biết trễ 2 chiều giữa nút nguồn và nút đích. RTT không đơn thuần chỉ là "khoảng cách tín hiệu chạy trên dây", mà nó là tổng thời gian đo từ lúc máy nguồn bắt đầu đẩy bit ĐẦU TIÊN của gói tin đi, cho đến khi máy nguồn nhận lại trọn vẹn bit CUỐI CÙNG của gói tin xác nhận phản hồi (ACK). Bất cứ một hành động nhỏ nào tốn thời gian trên đường đi và về cũng đều được cộng dồn hết vào RTT.
+
 •	Hiệu ứng nhân lên qua các trạm (Hop): Mạng Internet sử dụng cơ chế "Lưu và chuyển tiếp" (Store-and-Forward) nên không có con đường thẳng tắp nào nối từ máy bạn đến máy chủ. Gói tin bắt buộc phải đi qua nhiều Router trung gian.
+
 •	Tại mỗi một Router, thiết bị phải đợi nhận xong toàn bộ gói tin, kiểm tra lỗi, xếp hàng, và đẩy ra dây truyền tiếp. Nghĩa là, toàn bộ 4 quá trình trễ ở phần 1 lại lặp lại từ đầu tại mỗi trạm trung chuyển. Càng đi qua nhiều trạm (nhiều Hops), RTT sẽ càng lớn.
+
 > Tóm tắt lại thành công thức tổng quát của RTT: RTT = [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt ĐI ] + [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt VỀ ]
 
 
