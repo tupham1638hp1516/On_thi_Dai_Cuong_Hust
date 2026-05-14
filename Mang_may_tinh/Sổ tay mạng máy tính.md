@@ -136,21 +136,22 @@ Khuôn dạng dữ liệu, thứ tự truyền nhận, quy tắc truyền thông
    - **Trễ lan truyền (Propagation Delay - d_prop):** Bị chi phối bởi khoảng cách vật lý. Là thời gian để tín hiệu bay từ điểm A đến điểm B.
 
 4. **RTT (Round Trip Time) và Hiệu ứng nhân lên qua các trạm (Hops)**
-• Bản chất cốt lõi: Thông số RTT cho biết trễ 2 chiều giữa nút nguồn và nút đích. RTT không đơn thuần chỉ là "khoảng cách tín hiệu chạy trên dây", mà nó là tổng thời gian đo từ lúc máy nguồn bắt đầu đẩy bit ĐẦU TIÊN của gói tin đi, cho đến khi máy nguồn nhận lại trọn vẹn bit CUỐI CÙNG của gói tin xác nhận phản hồi (ACK). Bất cứ một hành động nhỏ nào tốn thời gian trên đường đi và về cũng đều được cộng dồn hết vào RTT.
 
-•	Hiệu ứng nhân lên qua các trạm (Hop): Mạng Internet sử dụng cơ chế "Lưu và chuyển tiếp" (Store-and-Forward) nên không có con đường thẳng tắp nào nối từ máy bạn đến máy chủ. Gói tin bắt buộc phải đi qua nhiều Router trung gian.
+- Bản chất cốt lõi: Thông số RTT cho biết trễ 2 chiều giữa nút nguồn và nút đích. RTT không đơn thuần chỉ là "khoảng cách tín hiệu chạy trên dây", mà nó là tổng thời gian đo từ lúc máy nguồn bắt đầu đẩy bit ĐẦU TIÊN của gói tin đi, cho đến khi máy nguồn nhận lại trọn vẹn bit CUỐI CÙNG của gói tin xác nhận phản hồi (ACK). Bất cứ một hành động nhỏ nào tốn thời gian trên đường đi và về cũng đều được cộng dồn hết vào RTT.
 
-•	Tại mỗi một Router, thiết bị phải đợi nhận xong toàn bộ gói tin, kiểm tra lỗi, xếp hàng, và đẩy ra dây truyền tiếp. Nghĩa là, toàn bộ 4 quá trình trễ ở phần 1 lại lặp lại từ đầu tại mỗi trạm trung chuyển. Càng đi qua nhiều trạm (nhiều Hops), RTT sẽ càng lớn.
+- Hiệu ứng nhân lên qua các trạm (Hop): Mạng Internet sử dụng cơ chế "Lưu và chuyển tiếp" (Store-and-Forward) nên không có con đường thẳng tắp nào nối từ máy bạn đến máy chủ. Gói tin bắt buộc phải đi qua nhiều Router trung gian.
+
+- Tại mỗi một Router, thiết bị phải đợi nhận xong toàn bộ gói tin, kiểm tra lỗi, xếp hàng, và đẩy ra dây truyền tiếp. Nghĩa là, toàn bộ 4 quá trình trễ ở phần 1 lại lặp lại từ đầu tại mỗi trạm trung chuyển. Càng đi qua nhiều trạm (nhiều Hops), RTT sẽ càng lớn.
 
 > Tóm tắt lại thành công thức tổng quát của RTT: RTT = [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt ĐI ] + [ (Lan truyền + Truyền tải + Hàng đợi + Xử lý) x Số trạm lượt VỀ ]
 
 
 ## 1.6. Kiến trúc phân tầng và Các mô hình tham chiếu
-*(Liên kết với: Cấu trúc toàn bộ giáo trình (Chương 2, 3, 4) & Quá trình phân mảnh gói tin ở 4.3 - Tại sao: Mô hình OSI và TCP/IP là bộ xương sống của mạng máy tính, quyết định cách các chương sau được sắp xếp. Chương 2 tương ứng với Layer 1 (Physical), Chương 3 là Layer 2 (Data Link), và Chương 4 là Layer 3 (Network). Việc phân tách này giải thích tại sao Switch (Layer 2) xử lý nhanh hơn Router (Layer 3), vì Switch chỉ bóc vỏ gói tin đến lớp MAC rồi đẩy đi, trong khi Router phải bóc sâu hơn để đọc IP và thậm chí phải cắt nhỏ gói tin (phân mảnh) nếu vượt quá kích thước MTU (4.3).)*
+*(Mô hình OSI và TCP/IP là bộ xương sống của mạng máy tính, quyết định cách các chương sau được sắp xếp. Chương 2 tương ứng với Layer 1 (Physical), Chương 3 là Layer 2 (Data Link), và Chương 4 là Layer 3 (Network). Việc phân tách này giải thích tại sao Switch (Layer 2) xử lý nhanh hơn Router (Layer 3), vì Switch chỉ bóc vỏ gói tin đến lớp MAC rồi đẩy đi, trong khi Router phải bóc sâu hơn để đọc IP và thậm chí phải cắt nhỏ gói tin (phân mảnh) nếu vượt quá kích thước MTU (4.3).)*
 
 1. **Nguyên lý phân tầng**
    - Giúp dễ thiết kế, tái sử dụng, nâng cấp. Tổ chức dữ liệu, định danh, tìm đường, kiểm soát lỗi và lưu lượng.
-   - **Điểm truy cập dịch vụ (Service Access Point - SAP):** Là giao diện kết nối giữa hai tầng liền kề. SAP thể hiện tính trong suốt của kiến trúc phân tầng: tầng trên chỉ sử dụng dịch vụ của tầng dưới cung cấp mà không cần biết cách thức thực hiện.
+   - **Điểm truy cập dịch vụ (Service Access Point - SAP):** Trong kiến trúc phân tầng của mạng máy tính, Điểm truy cập dịch vụ (SAP) đóng vai trò là giao diện kết nối (cửa ngõ) giữa hai tầng liền kề nhau. Cụ thể, hệ thống được thiết kế sao cho tầng dưới cung cấp dịch vụ của mình cho tầng ngay phía trên nó thông qua điểm truy cập dịch vụ (SAP). Đặc trưng quan trọng nhất của SAP là nó thể hiện tính trong suốt (transparency) của kiến trúc phân tầng. Nhờ có các SAP, tầng phía trên chỉ việc kết nối và sử dụng các dịch vụ do tầng dưới cung cấp mà không cần phải quan tâm hay biết rõ cách thức tầng dưới thực hiện các dịch vụ đó như thế nào
    - **Truyền thông hướng liên kết (ví dụ: TCP) vs Hướng không liên kết (ví dụ: UDP).**
    - **Đơn vị dữ liệu giao thức (PDU)** gồm Header và Payload. Giao tiếp giữa các tầng ngang hàng và các tầng kề nhau thông qua SDU (chính là PDU của tầng trên giao xuống).
 
@@ -169,12 +170,12 @@ Khuôn dạng dữ liệu, thứ tự truyền nhận, quy tắc truyền thông
 # CHƯƠNG 2. TẦNG VẬT LÝ
 
 ## 2.1. Tổng quan tầng vật lý
-*(Liên kết với: Kiến trúc phân tầng ở 1.6, Giới thiệu tầng Liên kết dữ liệu ở 3.1 & Chuyển tiếp Tầng 2 ở 3.5 - Tại sao: Tầng vật lý nằm ở "đáy" mô hình mạng, là "culi" vận chuyển tín hiệu điện/quang. Nó không hiểu ý nghĩa của bit dữ liệu, chỉ nhận lệnh truyền từ Tầng 2 (Liên kết dữ liệu) ở trên thả xuống. Sự ổn định của tín hiệu ở tầng này quyết định việc Frame dữ liệu có bị hỏng khi đi đến Switch ở Tầng 2 hay không, từ đó ảnh hưởng đến việc Switch có phải vứt bỏ gói tin khi tính toán mã kiểm lỗi CRC (3.5).)*
+*(Tầng vật lý nằm ở "đáy" mô hình mạng, là "culi" vận chuyển tín hiệu điện/quang. Nó không hiểu ý nghĩa của bit dữ liệu, chỉ nhận lệnh truyền từ Tầng 2 (Liên kết dữ liệu) ở trên thả xuống. Sự ổn định của tín hiệu ở tầng này quyết định việc Frame dữ liệu có bị hỏng khi đi đến Switch ở Tầng 2 hay không, từ đó ảnh hưởng đến việc Switch có phải vứt bỏ gói tin khi tính toán mã kiểm lỗi CRC (3.5).)*
 
 Chức năng cốt lõi của tầng vật lý là tiếp nhận các khối dữ liệu (Frame) từ tầng Liên kết dữ liệu, chuyển đổi các chuỗi dữ liệu bit (0 và 1) thành các tín hiệu vật lý (điện, quang, vô tuyến) để đẩy lên phương tiện truyền dẫn. Ở đầu nhận, thu các luồng tín hiệu này và tập hợp lại thành các bit thuần túy trước khi đẩy ngược lên.
 
 ## 2.2. Phương tiện truyền dẫn (Transmission Media)
-*(Liên kết với: Các chuẩn cáp Ethernet ở 2.5, Độ suy hao ở 2.5 & Các giao thức đa truy nhập ở 3.2 - Tại sao: Môi trường truyền (Cáp đồng, Cáp quang, Vô tuyến) sở hữu các đặc tính vật lý và độ suy hao (2.5) khác nhau. Chính vì môi trường vô tuyến rất nhiễu và dễ đụng độ, người ta bắt buộc phải dùng chế độ bán song công (Half-duplex) và kỹ thuật CSMA/CA (tránh đụng độ) thay vì CSMA/CD (phát hiện đụng độ) dùng trong cáp đồng (3.2). Đồng thời, mỗi loại cáp sẽ tương ứng với một tiêu chuẩn Ethernet riêng biệt như 100BASE-T hay 100BASE-FX (2.5).)*
+*(Môi trường truyền (Cáp đồng, Cáp quang, Vô tuyến) sở hữu các đặc tính vật lý và độ suy hao (2.5) khác nhau. Chính vì môi trường vô tuyến rất nhiễu và dễ đụng độ, người ta bắt buộc phải dùng chế độ bán song công (Half-duplex) và kỹ thuật CSMA/CA (tránh đụng độ) thay vì CSMA/CD (phát hiện đụng độ) dùng trong cáp đồng (3.2). Đồng thời, mỗi loại cáp sẽ tương ứng với một tiêu chuẩn Ethernet riêng biệt như 100BASE-T hay 100BASE-FX (2.5).)*
 
 1. **Môi trường Hữu tuyến (Có dây):**
    Môi trường dành riêng, mạng có thể hoạt động ở chế độ song công toàn phần (Full-duplex).
@@ -189,9 +190,7 @@ Chức năng cốt lõi của tầng vật lý là tiếp nhận các khối d�
    - Các sóng sử dụng: Radio, hồng ngoại, ánh sáng, vi ba.
 
 ## 2.3. Mã hóa và Điều chế (Encoding & Modulation)
-*(Liên kết với: Thông số đo lường BER ở 2.5, Tốc độ Baud/Bit ở 2.5 & Kiểm soát lỗi CRC ở 3.3 - Tại sao: Tín hiệu điện chạy trên cáp rất dễ bị "ngủ gật" (mất đồng bộ) hoặc bị lệch trục (Baseline wander - 2.5) nếu truyền chuỗi bit toàn 0 hoặc 1. Việc dùng mã Manchester hay Bipolar giúp tín hiệu tự tạo nhịp giật để đồng bộ cực kỳ chuẩn xác. Mã hóa càng tốt thì tỷ lệ lỗi bit (BER) càng giảm, từ đó giảm đáng kể gánh nặng cho Tầng 2 phía trên (phải dùng mã CRC để tính toán và vứt bỏ các khung tin bị sai lệch bit). Ngoài ra, loại mã hóa sẽ quyết định mối quan hệ giữa tốc độ Baud và Bit rate (2.5).)*
-
-Để loại bỏ "thành phần một chiều" (DC Component) và giúp tự đồng bộ nhịp điệu.
+*(Tín hiệu điện chạy trên cáp rất dễ bị "ngủ gật" (mất đồng bộ) hoặc bị lệch trục (Baseline wander - 2.5) nếu truyền chuỗi bit toàn 0 hoặc 1. Việc dùng mã Manchester hay Bipolar giúp tín hiệu tự tạo nhịp giật để đồng bộ cực kỳ chuẩn xác. Mã hóa càng tốt thì tỷ lệ lỗi bit (BER) càng giảm, từ đó giảm đáng kể gánh nặng cho Tầng 2 phía trên (phải dùng mã CRC để tính toán và vứt bỏ các khung tin bị sai lệch bit). Ngoài ra, loại mã hóa sẽ quyết định mối quan hệ giữa tốc độ Baud và Bit rate (2.5).)*
 
 1. **Mã hóa đường truyền (Digital-to-Digital)**
    - **Nhóm mã hóa NRZ (Non-Return to Zero):**
@@ -204,17 +203,17 @@ Chức năng cốt lõi của tầng vật lý là tiếp nhận các khối d�
    - **Mã On-Off Keying (OOK)** dùng trong cáp quang.
 
 2. **Điều chế (Digital-to-Analog)**
-   - Kỹ thuật chuyển dữ liệu số thành tín hiệu dạng sóng liên tục: Khóa dịch biên độ (ASK), Khóa dịch pha (PSK) và Khóa dịch tần số (FSK). QAM kết hợp biên độ và pha. Điều chế mã xung (PCM) dùng lượng tử hóa để chuyển từ giọng nói sang bit số.
+   - Là việc biến đổi dữ liệu số thành tín hiệu dạng sóng liên tục để truyền đi xa. Các kỹ thuật cơ bản gồm điều chế khóa dịch biên độ (ASK - sóng cao thấp), khóa dịch pha (PSK - sóng đảo hướng) và khóa dịch tần số (FSK - sóng lúc thưa lúc dày). Người ta cũng có thể kết hợp dịch biên độ và dịch pha (ví dụ QAM) để nhồi được nhiều bit hơn vào một đơn vị tín hiệu. Ngược lại, để chuyển từ giọng nói (tương tự) sang bit số, người ta dùng Điều chế mã xung (PCM) thông qua quá trình lượng tử hóa.
 
 ## 2.4. Dồn kênh (Multiplexing / Multiple Access)
-*(Liên kết với: Nhóm phương pháp phân chia kênh ở 3.2 & Chuyển mạch kênh ở 1.5 - Tại sao: Dồn kênh bản chất là kỹ thuật "chia bánh" tài nguyên ở lớp vật lý (chia thời gian, chia tần số, chia mã). Ở Tầng 2 (3.2), nó được ứng dụng trực tiếp thành các phương pháp kiểm soát truy cập (TDMA, FDMA) nhằm loại bỏ hoàn toàn sự đụng độ trong môi trường tải trọng cao. Khái niệm này cũng gắn liền với cơ chế Chuyển mạch kênh (1.5), nơi mà băng thông đường truyền được chia nhỏ và dành riêng cho từng cuộc gọi điện thoại mà không ai được lấn chiếm.)*
+*(Dồn kênh bản chất là kỹ thuật "chia bánh" tài nguyên ở lớp vật lý (chia thời gian, chia tần số, chia mã). Ở Tầng 2 (3.2), nó được ứng dụng trực tiếp thành các phương pháp kiểm soát truy cập (TDMA, FDMA) nhằm loại bỏ hoàn toàn sự đụng độ trong môi trường tải trọng cao. Khái niệm này cũng gắn liền với cơ chế Chuyển mạch kênh (1.5), nơi mà băng thông đường truyền được chia nhỏ và dành riêng cho từng cuộc gọi điện thoại mà không ai được lấn chiếm.)*
 
-- **TDMA (Phân chia theo thời gian):** Đường truyền chia thành khe thời gian; thiết bị chờ đến lượt mới được truyền.
-- **FDMA (Phân chia theo tần số):** Dải tần số băm nhỏ thành các kênh riêng biệt, truyền đồng thời.
-- **CDMA (Phân chia theo mã):** Mạng di động 3G/4G, truyền cùng lúc cùng tần số nhưng dùng mã toán học đặc trưng để lọc.
+- **TDMA (Phân chia theo thời gian):** Đường truyền được chia thành các khe thời gian nhỏ; mỗi thiết bị bắt buộc phải đợi đến đúng khe thời gian (lượt) của mình mới được phép đẩy tín hiệu lên.
+- **FDMA (Phân chia theo tần số):** Dải tần số tổng của đường truyền được băm nhỏ thành nhiều kênh tần số riêng biệt, cấp phát cho các thiết bị truyền đồng thời mà không va vào nhau.
+- **CDMA (Phân chia theo mã):** Công nghệ chủ đạo trong mạng di động (3G, 4G), cho phép nhiều thiết bị truyền trên cùng một tần số và cùng một lúc, nhưng mỗi thiết bị được cấp một mã toán học đặc trưng để đầu nhận có thể lọc ra dữ liệu chính xác
 
 ## 2.5. Các chuẩn cáp/ Ethernet và Các thông số đo lường đường truyền
-*(Liên kết với: Trễ truyền tải ở 1.5, Phân mảnh MTU ở 4.3 & CSMA/CD ở 3.2 - Tại sao: Băng thông (Bandwidth) quyết định "ống nước to hay nhỏ", từ đó ảnh hưởng trực tiếp đến độ trễ truyền tải (1.5). Tỷ lệ lỗi bit (BER) càng cao (do cáp dỏm hoặc khoảng cách xa) thì xác suất hỏng cả gói tin càng lớn. Do đó, BER buộc Tầng Mạng (4.3) phải tính toán một kích thước gói tin tối đa (MTU) sao cho vừa vặn: to quá thì dễ dính lỗi BER và phải gửi lại từ đầu, nhỏ quá thì tỷ lệ Header lại chiếm phần lớn gây lãng phí băng thông thực tế (Goodput).)*
+*(Băng thông (Bandwidth) quyết định "ống nước to hay nhỏ", từ đó ảnh hưởng trực tiếp đến độ trễ truyền tải (1.5). Tỷ lệ lỗi bit (BER) càng cao (do cáp dỏm hoặc khoảng cách xa) thì xác suất hỏng cả gói tin càng lớn. Do đó, BER buộc Tầng Mạng (4.3) phải tính toán một kích thước gói tin tối đa (MTU) sao cho vừa vặn: to quá thì dễ dính lỗi BER và phải gửi lại từ đầu, nhỏ quá thì tỷ lệ Header lại chiếm phần lớn gây lãng phí băng thông thực tế (Goodput).)*
 
 1. **Các chuẩn cáp Ethernet thông dụng (IEEE 802.3)**
    - Ethernet sử dụng CSMA/CD. Cổ điển tốc độ 10Mbps (10BASE-2, 10BASE-5).
