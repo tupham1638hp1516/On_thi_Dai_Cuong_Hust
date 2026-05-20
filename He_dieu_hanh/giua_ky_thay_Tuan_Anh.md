@@ -24,7 +24,7 @@ Chương trình tuyến tính có tính lưu động cao, vì chương trình tu
 - **C.** Mọi tiến trình đều kết thúc được
 - **D.** Non-preemptive (độc quyền)
 
-RR cấp CPU cho mỗi tiến trình một "lượng tử thời gian" (time quantum) và xoay vòng. Do đó, mỗi tiến trình đều sẽ được chạy. Nó có thời gian chờ đợi trung bình lớn hơn so với các thuật toán khác vì mỗi lần chạy time quantum của một tiến trình thì tất cả tiến trình khác đều phải đợi, và mỗi khi xoay vòng thì điều này lặp lại liên tục.
+RR cấp CPU cho mỗi tiến trình một "lượng tử thời gian" (time quantum) và xoay vòng. Do đó, mỗi tiến trình đều sẽ được chạy. Nó có thời gian chờ đợi trung bình lớn hơn so với các thuật toán khác vì mỗi lần chạy time quantum của một tiến trình thì tất cả tiến trình khác đều phải đợi, và mỗi khi xoay vòng thì điều này lặp lại liên tục. Độc quyền được hiểu là một khi tiến trình đã nắm giữ CPU, HĐH không thể tước quyền đó đi trừ khi tiến trình gặp I/O hoặc kết thúc.
 
 > Đáp án đúng là: C
 
@@ -200,6 +200,8 @@ Kích thước trang là 1KB=1024B=2^10B => Số bit để đánh địa chỉ c
 Có 16=2^4 khung trang => Số bit để đánh địa chỉ cho frames là 4
 => 4+10=14 bit
 
+32 trang nằm trong ổ cứng, 16 khung là các bộ nhớ tạm nằm trên RAM, nếu trang nào được gọi thì mới đem nó vào trong RAM, do đó 32 trang có thể ánh xạ sang 16 khung
+
 > Đáp án đúng là: C
 
 ### Câu 17: Xét không gian địa chỉ logic 32 trang (pages), kích thước trang là 1KB, ánh xạ sang bộ nhớ vật lí 16 khung trang (frames). Hỏi có bao nhiêu bit trong địa chỉ **logic**:
@@ -218,7 +220,7 @@ Tương tự câu trên: 15 bit
 - **C.** Các luồng có thể chia sẻ vùng ngăn xếp với nhau
 - **D.** Thời gian chuyển CPU giữa các luồng nhanh hơn giữa các tiến trình
 
-Đáp án A là đúng, hàm main là luồng, nó là cái bắt đầu làm việc nên nó là luồng, B đúng vì phải có luồng thì tiến trình mới hoạt động, mới được gọi là tiến trình. D chắc chắn đúng vì CPU là nhanh nhất, phải chuyển giữa các luồng nhanh thì mới "như thể" đang làm nhiều việc một lúc được chứ. Luồng không chia sẻ ngăn xếp (heap và data thì có)
+Đáp án A là đúng, hàm main là luồng, nó là cái bắt đầu làm việc nên nó là luồng, B đúng vì phải có luồng thì tiến trình mới hoạt động, mới được gọi là tiến trình. D chắc chắn đúng vì các luồng dùng chung tài nguyên CPU nên CPU sẽ chuyển qua lại nhanh hơn so với tiến trình. Luồng không chia sẻ ngăn xếp (heap và data thì có)
 
 > Đáp án đúng là: C
 
@@ -259,7 +261,7 @@ Nếu một chương trình rất dài đến trước, các chương trình ng�
 SPOOL (Simultaneous Peripheral Operations On-Line): đệm dữ liệu vào disk trước khi gửi ra thiết bị (vd: máy in). Tác dụng: tăng hiệu suất, cho phép nhiều chương trình dùng chung 1 thiết bị, khai thác tối ưu thiết bị. "Tạo kĩ thuật lập trình mới giảm số lần duyệt file" không phải vai trò của SPOOL mà của các cấu trúc dữ liệu/thuật toán.
 > Đáp án đúng là: D
 
-### Câu 23: Cấu trúc một phần tử ROOT cho như sau: `52454144 4D425220 43202020 003C865B / A53EA53E 0000CF79 A53E402E BD0A0000`. Ngày (d/m/y) **truy nhập cuối** là:
+### Câu 23: Cấu trúc một phần tử ROOT cho như sau: `52454144 4D425220 43202020 003C865B / A53EA53E 0000CF79 A53E402E BD0A0000`. Ngày (d/m/y) **truy nhập cuối** là: *Cuối kỳ*
 - **A.** 15/05/2011
 - **B.** 06/05/2011
 - **C.** 05/05/2011
@@ -274,7 +276,7 @@ Giải mã ngày FAT: Bits 15-9 = năm (tính từ 1980), Bits 8-5 = tháng, Bit
 => Ngày 05/05/2011
 > Đáp án đúng là: C
 
-### Câu 24: Trong FAT32, vùng hệ thống bao gồm:
+### Câu 24: Trong FAT32, vùng hệ thống bao gồm: *Cuối kỳ*
 - **A.** MBR, BootSector, ROOT
 - **B.** MBR, BootSector, FAT1, FAT2
 - **C.** MBR, BootSector, FAT1, FAT2, ROOT
@@ -289,11 +291,11 @@ FAT16 có ROOT cố định trong vùng hệ thống. FAT32 thì ROOT được l
 - **C.** Đoạn chương trình sử dụng tài nguyên trong
 - **D.** Đoạn chương trình xử lí tài nguyên găng
 
-Tài nguyên găng (critical resource) = tài nguyên chỉ được 1 tiến trình dùng tại 1 thời điểm (vd: biến dùng chung, máy in). Đoạn găng (critical section) = đoạn code trong đó tiến trình truy cập tài nguyên găng. "Xử lí" và "yêu cầu" chưa chính xác; phải là "sử dụng" tài nguyên găng.
+Tài nguyên găng là các tài nguyên dùng chung, được chia sẻ giữa các tiến trình NHƯNG chỉ có thể được sử dụng bởi một tiến trình trong 1 thời điểm. Đoạn găng chính là những đoạn code cụ thể nằm bên trong tiến trình thực hiện đọc, ghi hay thay đổi tài nguyên găng đó. Vì Hệ điều hành không thể khóa lại tài nguyên găng để ngăn các luồng trong cùng 1 tiến trình sử dụng(hoặc các tiến trình dùng chung tài nguyên), HĐH sẽ "bao bọc" đoạn găng/ cái đoạn code đang sử dụng tài nguyên găng. Để khi luồng khác muốn dùng, nó sẽ biết đường mà né
 > Đáp án đúng là: D
 
 
-### Câu 26: Kích thước của một phần tử Root của hệ thống FAT là:
+### Câu 26: Kích thước của một phần tử Root của hệ thống FAT là: *Cuối kỳ*
 - **A.** 16B
 - **B.** 48B
 - **C.** 32B
@@ -302,7 +304,7 @@ Tài nguyên găng (critical resource) = tài nguyên chỉ được 1 tiến tr
 Mỗi entry trong ROOT FAT chứa: tên file (8+3 bytes), thuộc tính, ngày giờ, cluster bắt đầu, kích thước file. Tổng cộng theo chuẩn = 32 bytes.
 > Đáp án đúng là: C
 
-### Câu 27: Cấu trúc một phần tử của bảng phân vùng như sau, tính số sector của phân vùng này: `800001F9 0BFEBF30 B9093D00 387B4C00`
+### Câu 27: Cấu trúc một phần tử của bảng phân vùng như sau, tính số sector của phân vùng này: `800001F9 0BFEBF30 B9093D00 387B4C00` *Cuối kỳ*
 - **A.** 8388609
 - **B.** 5689008
 - **C.** 3701580
@@ -321,6 +323,13 @@ Số cylinder = số sector / 1000. Vị trí hiện tại: cylinder 20 (lấy n
 Chuỗi cylinder: 20->10->22->20->40->2->2->6->6->38->6
 Tổng = |20-10|+|10-22|+|22-20|+|20-40|+|40-2|+|2-2|+|2-6|+|6-6|+|6-38|+|38-6|
 = 10+12+2+20+38+0+4+0+32+32 = 150
+
+Trong ổ đĩa cứng sẽ có rất nhiều các loại đĩa từ (platters) xếp chồng lên nhau.
+- Mỗi đĩa sẽ có các rãnh (tracks) có thể hiểu là các vòng tròn đồng tâm nằm trên cùng một đĩa từ
+- Ở mỗi rãnh sẽ có các sector, đây chính là đơn vị nhỏ nhất, dùng để chứa dữ liệu, độ lớn thông thường là 512 Bytes
+- Các tracks có cùng bán kính sẽ được gộp chung lại thành 1 cylinder, có thể tưởng tượng nó giống nhưu một khối trụ vậy.
+- Disk Controller có hệ thống đọc/ghi, có thể hiểu nó như cái lược, mỗi thanh giống như một cánh tay để sát vào từng đĩa (giống như đầu phát nhạc của máy nghe nhạc ngày xưa). Tất cả cánh tay dùng chung 1 trục, nên khi dịch ra/ thụt vào thì tất cả làm cùng lúc.
+- Mỗi khi muốn tìm đến một sector nào đó, các cánh tay sẽ dừng ở cylinder tương ứng với sector đó, rồi xoay các đĩa để tìm được tất cả các sector cùng một cột, cuối cùng dựa trên địa chỉ Head để xác định đúng đĩa từ chứa sector mong muốn.
 > Đáp án đúng là: B
 
 ### Câu 29: Phương pháp "kiểm tra và xác lập" gặp phải vấn đề nào sau đây:
@@ -329,7 +338,11 @@ Tổng = |20-10|+|10-22|+|22-20|+|20-40|+|40-2|+|2-2|+|2-6|+|6-6|+|6-38|+|38-6|
 - **C.** Tính tiến triển
 - **D.** Chờ đợi tích cực
 
-Test-and-Set: tiến trình liên tục kiểm tra biến cờ trong vòng lặp => tốn CPU trong khi chờ (busy waiting / chờ đợi tích cực). Đảm bảo loại trừ lẫn nhau nhưng gây lãng phí CPU.
+Test và Set được hiểu là phương pháp khi một tiến trình đã chiếm dụng tài nguyên găng, một tài nguyên nào đó muốn sử dụng thì sẽ phải chạy vòng lặp while liên tục, cho đến khi điều kiện thỏa mãn thì nó mới được sử dụng tài nguyên găng. Phương pháp này có nhược điểm lớn là tiêu tốn tài nguyên CPU một cách vô ích (liên tục kiểm tra điều kiện thay vì mang lại giá trị), do đó, nó ứng với vấn đề Chờ đợi tích cực.
+- Trong bài toán sử dụng tài nguyên găng, các phương pháp bắt buộc phải đảm bảo 3 điều kiện sau (để được coi là một phương pháp sử dụng tài nguyên găng an toàn)
+1. Tính loại trừ lẫn nhau: Nếu một tiến trình đang sử dụng tài nguyên găng thì không một tiến trình nào khác được sử dụng nữa
+2. Tính tiến triển: Khi tài nguyên găng không được sử dụng và có một số tiến trình đang xếp hàng, hệ điều hành bắt buộc phải chọn ra một tiến trình phù hợp nhất để sử dụng
+3. 
 > Đáp án đúng là: D
 
 ### Câu 30: Mô hình cài đặt đa luồng nào cho phép tạo nhiều luồng trong không gian người sử dụng đồng thời tận dụng kiến trúc đa xử lý:
