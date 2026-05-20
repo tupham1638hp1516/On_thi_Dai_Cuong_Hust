@@ -138,3 +138,90 @@ Tầng 5 - Controller (Bộ điều khiển): Đốc công xưởng. Các mã nh
 Tầng 6 - Thiết bị vật lý (Physical Device): Các cơ cấu cơ học. Dòng điện từ Controller kích hoạt mô-tơ cuốn giấy, nung nóng thanh nhiệt và phun mực ra tờ giấy.
 
 CPU chạy liên tục từ tầng 1 đến tầng 4, giao tiếp với Controller.
+
+1. Chân lý về Tiến trình (Process) và Luồng (Thread)
+Đây là sự phân ly vĩ đại nhất của Khoa học máy tính, tách biệt giữa "Tài sản" và "Hành động".
+
+Tiến trình (Cái Vỏ / Công ty): Là đơn vị Sở hữu tài nguyên. Nó là một "thùng chứa" được Hệ điều hành (OS) nạp từ ổ cứng lên RAM, chia làm 4 khu (Code, Data, Heap, Stack). Tiến trình không tự chạy, nó chỉ đứng yên và giữ tài nguyên.
+
+Luồng (Thực thể / Nhân viên): Là đơn vị Lập lịch và Thực thi. CPU chỉ nhìn thấy Luồng, không nhìn thấy Tiến trình. Mọi luồng trong cùng một tiến trình dùng chung 100% không gian bộ nhớ (Code, Data, Heap), chỉ giữ lại đồ dùng cá nhân là Stack (Ngăn xếp biến cục bộ) và Thanh ghi (Registers, Con trỏ lệnh).
+
+2. Sự thật về Đa nhiệm (Multitasking) và Đa luồng (Multithreading)
+Cả hai đều dùng chung một kỹ thuật: Cắt lát thời gian (Time-slicing / Round Robin) để tạo ảo giác chạy song song trên CPU có ít nhân. Điểm "chí mạng" là sự khác biệt về cái giá phải trả:
+
+Chuyển đổi Đa luồng (Nhẹ như lông hồng): Chuyển đổi giữa 2 luồng của CÙNG 1 tiến trình. OS chỉ việc tráo đổi bộ Thanh ghi và Stack. Cực kỳ nhanh.
+
+Chuyển đổi Đa nhiệm (Nặng như tảng đá): Chuyển đổi giữa 2 luồng của 2 Tiến trình KHÁC NHAU. OS bắt buộc phải gỡ toàn bộ bảng đồ không gian bộ nhớ (Page Table), xóa bộ đệm (TLB) để dọn dẹp sạch sẽ mặt bàn làm việc rồi mới nạp không gian của tiến trình mới vào. Tốn cực nhiều chu kỳ CPU.
+
+3. Vén màn Luồng Nhân (Kernel Thread) và Luồng User (User Thread)
+Đây là cuộc chiến về quyền lực giữa Phần cứng (OS) và Phần mềm (Ứng dụng).
+
+Luồng Nhân (Quyền lực tuyệt đối): Là thực thể do OS trực tiếp tạo ra, quản lý và nhét vào nhân CPU. Chậm tạo ra, tốn bộ nhớ RAM để quản lý, nhưng ổn định. OS nắm quyền sinh sát bằng cách đổi trạng thái của nó: Running (Đang chạy), Ready (Sẵn sàng xếp hàng), Waiting/Blocked (Bị khóa chờ I/O).
+
+Luồng User (Cú lừa của phần mềm): Là một cấu trúc dữ liệu mỏng nhẹ do thư viện phần mềm (Trưởng phòng) tự đẻ ra trên RAM. OS hoàn toàn mù tịt về sự tồn tại của nó. Phần mềm tự dùng lát cắt thời gian để luân chuyển các Luồng User chạy trên lưng một Luồng Nhân duy nhất. Cực nhanh, nhưng có một "Tử huyệt" chí mạng.
+
+4. "Tử huyệt I/O" và Sự bất lực của Không gian Người dùng
+Khi phần mềm đang tự lập lịch cắt lát thời gian, nó chỉ làm được việc đó khi đang ở Không gian Người dùng (User Space) và nắm quyền điều khiển CPU.
+
+Cú vượt biên chí mạng: Khi một Luồng User gọi lệnh I/O (ví dụ gõ phím), nó tạo ra một System Call. Nó mang theo cái Luồng Nhân chui tọt vào Không gian Lõi (Kernel Space).
+
+Sự bất lực: OS khóa chặt cái Luồng Nhân đó lại vì phải chờ bàn phím. Lúc này, cái đồng hồ cắt lát thời gian của phần mềm nằm ở User Space bị tê liệt hoàn toàn (vì nó mất Luồng Nhân, mất CPU để chạy code đòi lại luồng). Toàn bộ các Luồng User khác đang chờ đều bị "chết chùm" (Móm toàn tập).
+
+5. Giải pháp Tối thượng: Mô hình Nhiều-Nhiều và Upcall
+Để không bị Crash RAM vì đẻ quá nhiều Luồng Nhân (như mô hình 1-1), và không bị chết chùm (như mô hình N-1), thế giới dùng mô hình lai (N-M).
+
+Phần mềm đẻ ra hàng vạn Luồng User, nhưng chỉ xin OS cấp một số lượng Luồng Nhân vừa đủ (thường bằng số nhân CPU vật lý).
+
+Upcall (Đòi nợ thẻ): Khi một Luồng Nhân bị OS khóa dưới Kernel vì I/O, OS thừa biết phần mềm bên trên đang thiếu nhân lực. OS lập tức tạo ra một Luồng Nhân mới tinh (Tạm thời) và gọi điện (Upcall) ném lên cho phần mềm. Phần mềm lấy thẻ mới này gắn cho một Luồng User khác để tiếp tục duy trì tiến độ chạy song song mà không bị nghẽn. Khi I/O xong, OS thu hồi lại cái thẻ tạm đó.
+
+Hãy tưởng tượng Hệ điều hành là một tòa nhà an ninh cao cấp. Các đoạn code thông thường của bạn chạy ở sảnh ngoài (User Space). Nhưng phần cứng (RAM, Ổ cứng, Card mạng, CPU đa luồng...) là kho bạc nằm trong khu vực VIP (Kernel Space). Tiến trình không thể tự tiện đẩy cửa vào kho bạc. Nó bắt buộc phải qua quầy lễ tân để xin giấy phép. Cái hành động "xin giấy phép" đó chính là System Call (Lời gọi hệ thống).
+
+Dưới đây là danh sách phân loại toàn bộ các tác vụ theo chuẩn hàn lâm (Silberschatz):
+
+🟢 Những việc KHÔNG CẦN System Call (Chỉ chạy ở User Mode)
+Tất cả những gì tiến trình/luồng làm việc trực tiếp trên vùng nhớ CPU và RAM đã được cấp phát riêng cho nó thì không cần gọi Kernel.
+
+Tính toán toán học, logic: Cộng trừ nhân chia (a + b), vòng lặp (for, while), câu lệnh điều kiện (if/else).
+
+Tính toán con trỏ (Pointer arithmetic): Di chuyển con trỏ trong mảng dữ liệu.
+
+Gọi hàm nội bộ (Function Calls): Các hàm do bạn tự viết gọi qua lại lẫn nhau trong cùng một chương trình.
+
+Gán biến: int x = 10;
+
+Tóm lại: Code chỉ thao tác với Data và Logic thuần túy trong không gian của nó thì cực kỳ nhanh vì không phải "xin phép" ai cả.
+
+🔴 "Tất cả" những việc BẮT BUỘC tạo System Call
+Bất cứ khi nào tiến trình muốn vượt ra ngoài không gian cá nhân của nó để "đụng" vào tài nguyên hệ thống, nó phải tạo System Call. Theo lý thuyết Hệ điều hành, chúng được chia thành 5 nhóm cốt lõi:
+
+1. Quản lý tiến trình (Process Control):
+
+Tạo một tiến trình/luồng mới (VD: fork() trong Linux).
+
+Kết thúc một tiến trình (VD: exit()).
+
+Tạm dừng, ép tiến trình khác chờ (VD: wait()).
+
+Cấp phát hoặc giải phóng bộ nhớ động mới (xin thêm RAM).
+
+2. Quản lý File (File Management):
+
+Mọi thao tác I/O với ổ cứng: Mở file (open()), Đọc file (read()), Ghi file (write()), Đóng file (close()).
+
+3. Quản lý Thiết bị (Device Management):
+
+Yêu cầu quyền truy cập vào bàn phím, màn hình, máy in, hoặc card đồ họa.
+
+Ví dụ: Khi bạn muốn in một dòng chữ ra màn hình console, phần cứng màn hình do Kernel quản lý, nên phải có System Call.
+
+4. Bảo trì thông tin hệ thống (Information Maintenance):
+
+Xin hệ thống cấp cho giờ/ngày tháng hiện tại.
+
+Hỏi xem ID của tiến trình hiện tại là gì (getpid()).
+
+5. Giao tiếp (Communication - IPC):
+
+Gửi dữ liệu qua mạng (tạo Sockets để kết nối mạng internet).
+
+Giao tiếp giữa các tiến trình với nhau (Shared Memory, Pipes, Message Passing).

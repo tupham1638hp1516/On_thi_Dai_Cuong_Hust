@@ -342,7 +342,7 @@ Test và Set được hiểu là phương pháp khi một tiến trình đã chi
 - Trong bài toán sử dụng tài nguyên găng, các phương pháp bắt buộc phải đảm bảo 3 điều kiện sau (để được coi là một phương pháp sử dụng tài nguyên găng an toàn)
 1. Tính loại trừ lẫn nhau: Nếu một tiến trình đang sử dụng tài nguyên găng thì không một tiến trình nào khác được sử dụng nữa
 2. Tính tiến triển: Khi tài nguyên găng không được sử dụng và có một số tiến trình đang xếp hàng, hệ điều hành bắt buộc phải chọn ra một tiến trình phù hợp nhất để sử dụng
-3. 
+3. Tính chờ đợi hữu hạn
 > Đáp án đúng là: D
 
 ### Câu 30: Mô hình cài đặt đa luồng nào cho phép tạo nhiều luồng trong không gian người sử dụng đồng thời tận dụng kiến trúc đa xử lý:
@@ -351,7 +351,13 @@ Test và Set được hiểu là phương pháp khi một tiến trình đã chi
 - **C.** Mô hình nhiều-nhiều
 - **D.** Mô hình một-nhiều
 
-Nhiều-Nhiều (Many-to-Many): nhiều user thread ánh xạ đến nhiều kernel thread. Có thể tạo nhiều luồng tùy ý và chạy song song trên nhiều CPU. Đây là mô hình linh hoạt nhất, tận dụng được đa xử lý.
+*Note:*
+- CPU thực chất không nhìn vào tiến trình mà nó chỉ nhìn vào luồng. Có 2 thứ khá giống nhau, được gọi là đa nhiệm và đa luồng.
+> Đa nhiệm là một mình CPU làm nhiều tiến trình, còn đa luồng là một mình CPU làm nhiều luồng của một tiến trình. Tất cả đều sử dụng lát cắt thời gian.
+- Sở dĩ nhắc đến việc CPU chỉ nhìn vào luồng là bởi, CPU có thể thực hiện cả đa nhiệm và đa luồng cùng 1 lúc. Tuy nhiên, khi Hệ điều hành thực hiện Đa nhiệm, bản chất là nó đang điều phối CPU chuyển đổi qua lại giữa các luồng thuộc các tiến trình khác nhau
+- Đa nhiệm hoạt động chậm hơn đa luồng rất nhiều. Lý do là vì các luồng trong cùng 1 tiến trình sử dụng chung bộ nhớ (chỉ trừ stack, con trỏ lệnh, tập thanh ghi/registers). Trong khi các tiến trình (hay các luồng của mỗi tiến trình) thì không sử dụng chung bộ nhớ, nên sự chuyển đổi giữa chúng sẽ lâu hơn so với đa luồng.
+- Một CPU có 4 nhân nhưng có thể có bao nhiêu luồng nhân cũng được, lý do là vì luồng được coi là tài sản của tiến trình thay vì hành động, có thể chỉ 2 luồng nhân đang chạy, còn hàng chục luồng nhân khác đang chờ đợi thì chúng vẫn được gọi là luồng nhân.
+
 > Đáp án đúng là: C
 
 ### Câu 31: Trong phòng tránh bế tắc, giải thuật người quản lý ngân hàng được áp dụng:
@@ -360,7 +366,22 @@ Nhiều-Nhiều (Many-to-Many): nhiều user thread ánh xạ đến nhiều ker
 - **C.** Mỗi khi có yêu cầu tài nguyên từ người sử dụng
 - **D.** Tất cả đáp án đều đúng
 
-Banker Algorithm: khi tiến trình yêu cầu tài nguyên, hệ thống giả lập cấp phát rồi kiểm tra trạng thái an toàn. Nếu an toàn mới cấp, nếu không an toàn thì buộc từ chối. Kích hoạt mỗi khi có yêu cầu từ tiến trình.
+Deadlock xảy ra khi có một nhóm các tiến trình bị "treo" vĩnh viễn. Lý do là mỗi tiến trình trong nhóm đang nắm giữ một tài nguyên (ví dụ: RAM, Máy in) và lại đang chờ đợi một tài nguyên khác mà một tiến trình khác trong nhóm đang giữ.
+
+Để Deadlock thực sự xảy ra, hệ thống phải hội tụ đủ 4 điều kiện Coffman cùng lúc:
+
+- Loại trừ tương hỗ (Mutual Exclusion): Tài nguyên không thể dùng chung (ví dụ máy in, 1 lúc chỉ 1 người in).
+
+- Giữ và Chờ (Hold and Wait): Tiến trình đang giữ ít nhất 1 tài nguyên và đòi thêm tài nguyên khác.
+
+- Không chiếm đoạt (No Preemption): Hệ điều hành không thể "cướp" tài nguyên từ tay tiến trình nếu nó chưa dùng xong.
+
+- Chờ đợi vòng tròn (Circular Wait): P1 chờ P2, P2 chờ P3, ..., Pn chờ lại P1.
+
+Chiến lược ngăn ngừa: Ngăn ít nhất 1 trong 4 điều kiện tồn tại
+
+Chiến lược phòng tránh: 3 điều kiện đầu vẫn có thể cho phép, nhưng, hệ điều hành sẽ dự đoán xem liệu điều kiện thứ 4 (hàng đợi vòng tròn) có xảy ra hay không.
+
 > Đáp án đúng là: A
 
 ### Câu 32: Phát biểu nào sau đây **không** phải là vai trò của phông đệm:
@@ -369,7 +390,8 @@ Banker Algorithm: khi tiến trình yêu cầu tài nguyên, hệ thống giả 
 - **C.** Tăng tốc độ hoạt động của thiết bị ngoại vi
 - **D.** Giảm số lần truy cập vật lí
 
-Buffer: lưu tạm dữ liệu, cho phép CPU và I/O làm việc song song, độc lập nhau, giảm số lần đọc ghi vật lý. Nhưng buffer KHÔNG thể tăng tốc độ cơ học/vật lý của thiết bị.
+Buffer: lưu tạm dữ liệu, cho phép CPU và I/O làm việc song song, độc lập nhau, giảm số lần đọc ghi vật lý. Buffer là vùng nhớ nằm giữa CPU và I/O để giúp CPU không phải đợi I/O (vốn rất chậm) mà có thể đi làm việc khác (nó đưa dữ liệu cho buffer lo liệu rồi xử lý việc khác). Tuy nhiên, buffer không thay đổi được tốc độ của thiết bị ngoại vi (HĐH không có khả năng này, nó chỉ có khả năng tối ưu hiệu năng, hoặc đánh lừa thị giác)
+
 > Đáp án đúng là: C
 
 ### Câu 33: Cấu trúc chương trình cho phép thực hiện chương trình với tốc độ nhanh nhất là:
@@ -390,7 +412,7 @@ Tuyến tính: nạp toàn bộ vào RAM 1 lần, không phải đợi nạp th�
 HĐH có 2 chức năng chính: (1) Quản lý tài nguyên hệ thống hiệu quả và (2) Tạo môi trường thuận lợi giúp người dùng khai thác phần cứng. A bao gồm cả 2 vai trò chính xác.
 > Đáp án đúng là: A
 
-### Câu 35: Giá trị của phần tử trong bảng FAT16 là bao nhiêu thì chỉ ra cluster kết thúc:
+### Câu 35: Giá trị của phần tử trong bảng FAT16 là bao nhiêu thì chỉ ra cluster kết thúc: *Cuối kỳ*
 - **A.** 8FFF
 - **B.** FFFF
 - **C.** 0FFF
@@ -405,7 +427,14 @@ FAT16: giá trị FFF8-FFFF đều là cluster cuối (End of Chain). Giá trị
 - **C.** Xuất hiện khi CPU đang xử lý một ngắt khác
 - **D.** Có thể được CPU bỏ qua
 
-Ngắt trong (trap/exception): do CPU tự phát sinh khi gặp lỗi trong quá trình tính toán (chia cho 0, tràn số, truy cập vùng nhớ không hợp lệ...). Khác với ngắt ngoài (do thiết bị) và software interrupt (do lệnh int).
+Có tất cả 3 thể loại ngắt trong:
+
+- Ngắt ngoài: Sự kiến đến từ phần cứng bên ngoài CPU(bàn phím, chuột, card mạng)
+
+- Ngắt trong: Lỗi phát sinh từ chính bản thân CPU trong lúc nó đang thực thi lệnh (chia cho 0/ quên công thức,...)
+
+- Ngắt mềm: Tiến trình gọi system call để xin hệ điều hành cấp phát tài nguyên
+
 > Đáp án đúng là: B
 
 ### Câu 37: Phát biểu sau là tính chất nào của hệ điều hành: "Mọi công việc trong hệ thống đều phải có kiểm tra":
@@ -414,7 +443,7 @@ Ngắt trong (trap/exception): do CPU tự phát sinh khi gặp lỗi trong quá
 - **C.** Hiệu quả
 - **D.** Tin cậy và chuẩn xác
 
-4 tính chất HĐH: Thuận tiện, Hiệu quả, Bảo vệ, Tin cậy. "Mọi công việc đều phải kiểm tra" => không có gì xảy ra sai => đảm bảo hệ thống hoạt động đúng đắn, ổn định => Tin cậy và chuẩn xác.
+4 tính chất HĐH: Thuận tiện, Hiệu quả, Bảo vệ, Tin cậy. "Mọi công việc đều phải kiểm tra" => Tin cậy và chuẩn xác.
 > Đáp án đúng là: D
 
 ### Câu 38: Hiện tượng phân mảnh là:
@@ -423,10 +452,10 @@ Ngắt trong (trap/exception): do CPU tự phát sinh khi gặp lỗi trong quá
 - **C.** Vùng nhớ bị phân thành nhiều vùng không liên tục
 - **D.** Tổng vùng nhớ trống đủ để thỏa mãn nhu cầu nhưng các vùng nhớ này lại không liên tục nên không đủ để cấp cho tiến trình khác
 
-Phân mảnh ngoài (external fragmentation): tổng bộ nhớ trống đủ nhưng bị vỡ thành nhiều mảnh rời rạc, không thể cấp 1 vùng liên tục đủ lớn cho tiến trình. Đây là định nghĩa chính xác.
+Phân mảnh ngoài (external fragmentation): tổng bộ nhớ trống đủ nhưng bị vỡ thành nhiều mảnh rời rạc, không thể cấp 1 vùng liên tục đủ lớn cho tiến trình.
 > Đáp án đúng là: D
 
-### Câu 39: Cho chương trình: int main(){ printf("Hello"); for(i=1;i<5;i++) if(i%2==0) printf("Bye"); return 0; }. Sau khi thực hiện, tiến trình sẽ chuyển sang **waiting** bao nhiêu lần:
+### Câu 39: Cho chương trình: int main() \n { printf("Hello");\n for(i=1;i<5;i++)\n if(i%2==0)\n printf("Bye");\n return 0;\n }\n. Sau khi thực hiện, tiến trình sẽ chuyển sang **waiting** bao nhiêu lần:
 - **A.** 2
 - **B.** 5
 - **C.** 3
