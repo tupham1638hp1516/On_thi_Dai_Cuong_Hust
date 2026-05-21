@@ -257,3 +257,15 @@ o	ULT: Nhanh, nhẹ, HĐH bị "mù" không nhìn thấy.
 o	KLT: Nặng hơn (do tốn System Call), là thực thể duy nhất được HĐH cấp CPU.
 •	🚨 Bẫy: Khi luồng User gọi System Call, nó KHÔNG biến thành luồng Kernel, nó chỉ gây ra Mode Switch (Chuyển chế độ CPU sang Kernel Mode) để mượn tay KLT. HĐH không tự sinh thêm luồng để bù vào khi có luồng dính I/O, phần mềm phải tự dùng các luồng rảnh rỗi dựa trên mô hình (1:1, M:1, M:N).
 
+📝 NOTE: Tính Độc quyền (Non-preemptive) & Vấn đề Đói tài nguyên (Starvation)
+Định lý cốt lõi: Giải thuật Độc quyền (Non-preemptive) KHÔNG HỀ đảm bảo tiến trình sẽ kết thúc. Nó vẫn có thể dính lỗi Đói tài nguyên (Starvation).
+
+Phân định ranh giới (Bản chất):
+
+Ghế CPU (Lúc đang chạy): Tính Độc quyền CHỈ phát huy tác dụng ở đây. Nghĩa là đã lên ghế thì không bị ai cướp quyền.
+
+Hàng đợi Ready Queue (Lúc xếp hàng): Tính Độc quyền VÔ DỤNG ở giai đoạn này. Việc có được bốc lên ghế hay không phụ thuộc hoàn toàn vào tiêu chí chọn (Ai ngắn hơn? Ai ưu tiên cao hơn?).
+
+Minh chứng thép: Các giải thuật như SJF Độc quyền hoặc Priority Độc quyền vẫn khiến các tiến trình dài / ưu tiên thấp "chết đói" ngoài hàng đợi, vì liên tục bị các tiến trình ngắn / ưu tiên cao mới sinh ra chen ngang.
+
+Giải pháp (Vũ khí tối thượng): Để khắc phục Starvation cho các giải thuật này, HĐH sử dụng kỹ thuật Lão hóa (Aging). Bằng cách tăng dần độ ưu tiên của tiến trình dựa trên thời gian nó phải đứng chờ, đảm bảo cuối cùng nó sẽ có ưu tiên cao nhất và được chạy.
