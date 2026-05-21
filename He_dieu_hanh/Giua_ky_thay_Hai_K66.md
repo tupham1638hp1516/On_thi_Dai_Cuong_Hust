@@ -5,7 +5,15 @@
 - **D.** Hệ thống
 - **E.** Kỹ thuật
 
->
+Góc nhìn của người sử dụng: Hệ điều hành là hệ thống chương trình phục vụ khai thác hệ thống tính toán một cách thuận lợi.
+
+Góc nhìn của người quản lý: Hệ điều hành là hệ thống chương trình phục vụ quản lý chặt chẽ và sử dụng tối ưu các tài nguyên của hệ thống tính toán.
+
+Quan điểm kỹ thuật: Hệ điều hành là một hệ thống chương trình trang bị cho một máy tính cụ thể để tạo ra một máy tính logic mới với tài nguyên mới và khả năng mới.
+
+Quan điểm hệ thống: Hệ điều hành là một hệ thống mô hình hoá, mô phỏng hoạt động của máy tính, của người sử dụng và của các thao tác viên, hoạt động trong chế độ đối thoại nhằm tạo môi trường khai thác thuận lợi hệ thống máy tính và quản lý tối ưu tài nguyên của hệ thống.
+
+> Đáp án đúng là A
 
 ### Câu 2: Giải thuật điều phối Processors không độc quyền và ưu tiên tiến trình ngắn là:
 - **A.** RR
@@ -14,7 +22,15 @@
 - **D.** FCFS
 - **E.** SRTF
 
->
+Round Robin là giải thuật không độc quyền, tuy nhiên nó cũng không quan tâm tiến trình ngắn hay dài
+
+Shortest Job Next và Shortest Job First giống nhau là giải thuật độc quyền (Hệ điều hành không được cướp CPU), nó cứ thấy tiến trình nào ngắn nhất trong hàng chờ thì nó lấy
+
+FCFS là giải thuật độc quyền và nó cũng không quan tâm tiến trình dài hay ngắn
+
+Shortest Remaining Time First, đây là giải thuật không độc quyền, hệ điều hành cứ thấy tiến trình nào ngắn nhất thì nó lấy, không quan tâm tiến trình hiện tại chạy được như nào rồi.
+
+> Đáp án đúng: E
 
 ### Câu 3: Chọn phát biểu không chính xác về đồ thị chờ dợi
 - **A.** Thu được đồ thị cung cấp tài nguyên
