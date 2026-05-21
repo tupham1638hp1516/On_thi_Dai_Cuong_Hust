@@ -452,10 +452,18 @@ Có tất cả 3 thể loại ngắt trong:
 - **C.** Vùng nhớ bị phân thành nhiều vùng không liên tục
 - **D.** Tổng vùng nhớ trống đủ để thỏa mãn nhu cầu nhưng các vùng nhớ này lại không liên tục nên không đủ để cấp cho tiến trình khác
 
-Phân mảnh ngoài (external fragmentation): tổng bộ nhớ trống đủ nhưng bị vỡ thành nhiều mảnh rời rạc, không thể cấp 1 vùng liên tục đủ lớn cho tiến trình.
+Phân mảnh ngoài (external fragmentation): tổng bộ nhớ trống đủ nhưng bị vỡ thành nhiều mảnh rời rạc, không thể cấp 1 vùng liên tục đủ lớn cho tiến trình. Đây là định nghĩa chính xác.
 > Đáp án đúng là: D
 
-### Câu 39: Cho chương trình: int main() \n { printf("Hello");\n for(i=1;i<5;i++)\n if(i%2==0)\n printf("Bye");\n return 0;\n }\n. Sau khi thực hiện, tiến trình sẽ chuyển sang **waiting** bao nhiêu lần:
+### Câu 39: Cho chương trình: 
+int main()
+{ 
+    printf("Hello"); 
+    for(i=1;i<5;i++) 
+    if(i%2==0) printf("Bye"); 
+    return 0; 
+} 
+### Sau khi thực hiện, tiến trình sẽ chuyển sang **waiting** bao nhiêu lần:
 - **A.** 2
 - **B.** 5
 - **C.** 3
@@ -464,7 +472,7 @@ Phân mảnh ngoài (external fragmentation): tổng bộ nhớ trống đủ nh
 Tiến trình vào Waiting mỗi khi gọi I/O (printf). Đếm: printf("Hello")=1 lần, printf("Bye") khi i=2 và i=4 = 2 lần. Tổng = 3 lần.
 > Đáp án đúng là: C
 
-### Câu 40: Bảng FAT: hàng 0: [_,_,3,-1,0,7,13,11,9,-1,0,15,-1,-1,19,24]; hàng 1:[18,30,29,25,5,0,16,6,12,-1,14,31,0,-1,27,-1]. File bắt đầu cluster 20, chuỗi cluster là:
+### Câu 40: Bảng FAT: hàng 0: [_,_,3,-1,0,7,13,11,9,-1,0,15,-1,-1,19,24]; hàng 1:[18,30,29,25,5,0,16,6,12,-1,14,31,0,-1,27,-1]. File bắt đầu cluster 20, chuỗi cluster là: *Cuối kỳ*
 - **A.** 20, 5, 7, 11, 24, 12
 - **B.** 20, 5, 7, 11, 15, 24, 12
 - **C.** 20, 5, 7, 11, 15, 24, 13
@@ -474,7 +482,7 @@ Duyệt: FAT[20]=5, FAT[5]=7, FAT[7]=11, FAT[11]=15, FAT[15]=24, FAT[24]=12, FAT
 Chuỗi: 20->5->7->11->15->24->12->hết.
 > Đáp án đúng là: B
 
-### Câu 41: Một đĩa cứng có 25 mặt đĩa và 40 sectors trên một rãnh đĩa. Hỏi số lượng sectors trên một Cylinder là:
+### Câu 41: Một đĩa cứng có 25 mặt đĩa và 40 sectors trên một rãnh đĩa. Hỏi số lượng sectors trên một Cylinder là: *Cuối kỳ*
 - **A.** 960
 - **B.** 1040
 - **C.** 975
@@ -483,7 +491,7 @@ Chuỗi: 20->5->7->11->15->24->12->hết.
 1 Cylinder = tất cả các rãnh cùng vị trí trên tất cả mặt đĩa. Số sectors = Số mặt đĩa x Số sectors/rãnh = 25 x 40 = 1000.
 > Đáp án đúng là: D
 
-### Câu 42: ROOT entry: `52454144 4D425220 43202020 003C865B / A53EA53E 0000CF79 A53E402E BD0A0000`. Số hiệu cluster bắt đầu là:
+### Câu 42: ROOT entry: `52454144 4D425220 43202020 003C865B / A53EA53E 0000CF79 A53E402E BD0A0000`. Số hiệu cluster bắt đầu là: *Cuối kỳ*
 - **A.** 11840
 - **B.** 13093
 - **C.** 19720
@@ -510,7 +518,7 @@ First Fit: quét danh sách từ đầu, chọn vùng ĐẦU TIÊN >= 210k. Th�
 Banker Algorithm: khi tiến trình yêu cầu tài nguyên, giả lập cấp phát và kiểm tra trạng thái an toàn. Nếu an toàn mới cấp (tránh được bế tắc). Đây là Deadlock Avoidance (Dự báo và tránh).
 > Đáp án đúng là: A
 
-### Câu 45: Bộ nhớ 4 khung trang. Chuỗi truy cập: 1,2,3,4,2,6,5,7,2,1,2,3,7,6,3. Số lỗi trang theo **FIFO**:
+### Câu 45: Bộ nhớ 4 khung trang. Chuỗi truy cập: 1,2,3,4,2,6,5,7,2,1,2,3,7,6,3. Số lỗi trang theo **FIFO**: *Cuối kỳ*
 - **A.** 9
 - **B.** 12
 - **C.** 10
@@ -527,7 +535,14 @@ Tổng page fault: 11 lần.
 - **C.** Module ở lớp thứ i được gọi bởi module ở lớp thứ i-1 (i>0)
 - **D.** Phân phối bộ nhớ theo sơ đồ tĩnh
 
-Overlay: tại mỗi thời điểm, mỗi lớp chỉ có đúng 1 module trong bộ nhớ => số module tối đa = n (1 module/lớp). Nói "nhiều hơn n module" là sai nguyên tắc của overlay.
+•  A. Tại một thời điểm có nhiều hơn n module trong bộ nhớ (SAI BẢN CHẤT -> ĐÁP ÁN CẦN CHỌN): Theo thiết kế phân lớp, nếu chương trình có $n$ lớp, thì mỗi lớp chỉ có đúng 1 vị trí (1 slot) trong RAM. Tại bất kỳ thời điểm nào đang chạy, RAM chỉ chứa: Module Lớp 1 + Module Lớp 2 + ... + Module Lớp $n$ (đang cùng nằm trên 1 nhánh gọi nhau). Suy ra, số lượng module tối đa trong RAM lúc đó chỉ bằng $n$ (mỗi lớp 1 module). Tuyệt đối không thể có "nhiều hơn $n$" được vì không có chỗ chứa 2 module của cùng 1 lớp
+
+•  B. Tiết kiệm bộ nhớ (ĐÚNG ĐẶC ĐIỂM): Đây chính là mục đích tối thượng của Overlay sinh ra vào những năm 1980: Giúp chạy các chương trình có dung lượng lớn hơn dung lượng RAM vật lý hiện có.
+
+•  C. Module ở lớp thứ i được gọi bởi module ở lớp thứ i-1 (ĐÚNG ĐẶC ĐIỂM): Cấu trúc Overlay là một mô hình cây phân cấp nghiêm ngặt. Lớp gốc (Mục lục) gọi Lớp 1 (Chương 1). Lớp 1 gọi Lớp 2 (Mục 1.1). Các module không được gọi "nhảy cóc" bừa bãi để tránh làm hỏng cấu trúc bộ nhớ đang phủ lên nhau.
+
+•  D. Phân phối bộ nhớ theo sơ đồ tĩnh (ĐÚNG ĐẶC ĐIỂM): "Tĩnh" ở đây nghĩa là ngay từ lúc viết code và biên dịch (Compile/Link), Lập trình viên phải tự tay tính toán, chia module và quy định sẵn vùng RAM nào dành cho lớp nào. Hệ điều hành không tự làm điều này lúc chương trình đang chạy.
+
 > Đáp án đúng là: A
 
 ### Câu 47: Lớp giải thuật phòng ngừa thường áp dụng với những hệ thống:
@@ -548,7 +563,7 @@ Phòng ngừa (Prevention): đảm bảo 1 trong 4 điều kiện Coffman không
 Ready queue: tiến trình vào sau khi được tạo (1 lần đầu) và sau mỗi lần kết thúc I/O (quay từ Waiting về Ready). Có 3 lần printf => 3 lần vào Waiting => 3 lần quay về Ready. Cộng 1 lần đầu = 4 lần.
 > Đáp án đúng là: A
 
-### Câu 49: ROOT entry như trên. Thời điểm (h/m/s) **cập nhật cuối** là:
+### Câu 49: ROOT entry như trên. Thời điểm (h/m/s) **cập nhật cuối** là: *Cuối kỳ*
 - **A.** 8h34m16s
 - **B.** 13h09m14s
 - **C.** 15h14m28s
@@ -559,7 +574,7 @@ Bits 15-11 (giờ): 00111 = 7? Hay 01111 = 15? Tính lại: 0x3EA5 = 0011 1110 1
 Giờ = bits[15:11] = 00111 = 7... Xem đáp án: 13h09m14s ~ hợp lý nhất theo giải đề.
 > Đáp án đúng là: B (13h09m14s)
 
-### Câu 50: ROOT entry như trên. Ngày (d/m/y) **cập nhật cuối** là:
+### Câu 50: ROOT entry như trên. Ngày (d/m/y) **cập nhật cuối** là: *Cuối kỳ*
 - **A.** 04/08/2012
 - **B.** 05/05/2011
 - **C.** 06/05/2011

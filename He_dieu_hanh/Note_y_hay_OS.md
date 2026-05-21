@@ -225,3 +225,35 @@ Hỏi xem ID của tiến trình hiện tại là gì (getpid()).
 Gửi dữ liệu qua mạng (tạo Sockets để kết nối mạng internet).
 
 Giao tiếp giữa các tiến trình với nhau (Shared Memory, Pipes, Message Passing).
+
+1. QUẢN LÝ BẾ TẮC (DEADLOCK)
+•	Bản chất: Bế tắc xảy ra khi 4 điều kiện Coffman (Loại trừ tương hỗ, Giữ và chờ, Không chiếm đoạt, Chờ đợi vòng tròn) hội tụ ĐỒNG THỜI.
+•	Phân biệt chiến lược:
+o	Ngăn ngừa (Prevention): Phá vỡ cứng nhắc ít nhất 1 trong 4 điều kiện từ đầu.
+o	Phòng tránh (Avoidance - Thuật toán Banker): Cho phép 3 điều kiện đầu, nhưng dùng thuật toán bẻ gãy "Chờ đợi vòng tròn" để giữ hệ thống luôn ở Trạng thái an toàn (Safe State).
+•	Thời điểm kích hoạt Banker: Phải chạy ngay lập tức mỗi khi Tiến trình (Process) nộp đơn yêu cầu tài nguyên.
+•	🚨 Bẫy: Unsafe State $\neq$ Deadlock (Unsafe chỉ là "có nguy cơ"). Người dùng (User) không xin tài nguyên, chỉ có Tiến trình mới xin tài nguyên.
+2. PHÂN QUYỀN & SYSTEM CALL (LỜI GỌI HỆ THỐNG)
+•	User Mode: Xử lý tính toán logic, toán học, hàm nội bộ. Không gọi System Call $\rightarrow$ Tiến trình vẫn ở trạng thái Running.
+•	Kernel Mode: Đụng đến phần cứng (I/O, RAM, Mạng, Quản lý tiến trình). Bắt buộc phải gọi System Call $\rightarrow$ Thường đẩy tiến trình sang Waiting.
+•	🚨 Bẫy: Lệnh printf() hay API không phải là System Call, nó chỉ là một hàm bọc (wrapper) để kích hoạt System Call ở bên trong.
+3. THIẾT BỊ I/O & PHÂN LOẠI NGẮT
+•	Phông đệm (Buffer): Vùng RAM giúp đồng bộ tốc độ, che giấu độ trễ, cho phép CPU và I/O chạy song song, giảm số lần truy cập vật lý.
+o	🚨 Bẫy: Buffer KHÔNG THỂ tăng tốc độ cơ học/vật lý của thiết bị I/O. Nhầm lẫn với Spooling (quản lý dùng chung tài nguyên như Máy in).
+•	Phân loại Ngắt:
+o	Ngắt ngoài (Hardware): Do bàn phím, chuột...
+o	Ngắt trong (Exception): Do chính CPU thụ động sinh ra khi đang tính toán lỗi (chia cho 0, Page Fault).
+o	Ngắt mềm (Trap): Do tiến trình chủ động gọi để xin System Call.
+4. VÒNG ĐỜI TIẾN TRÌNH (PROCESS)
+•	Sơ đồ 5 trạng thái: New $\rightarrow$ Ready $\leftrightarrow$ Running $\rightarrow$ Waiting $\rightarrow$ Terminated.
+•	Trạng thái READY (Sẵn sàng): Đã có 100% tài nguyên (RAM, Stack, PC, Data), chỉ thiếu duy nhất CPU.
+•	Trạng thái WAITING (Chờ đợi): Xảy ra khi tiến trình gọi I/O (chờ nhập phím, in ra màn hình).
+•	🚨 Bẫy: Tiến trình xử lý xong I/O bắt buộc phải về lại Ready, không bao giờ được nhảy thẳng vào Running. Tiến trình hết Time-quantum thì từ Running bị tước CPU về Ready.
+5. TIẾN TRÌNH (PROCESS) VS LUỒNG (THREAD)
+•	Chương trình vs Tiến trình: Chương trình (Program) là cục file tĩnh trên ổ cứng. Tiến trình (Process) là trạng thái động khi nạp vào RAM. Một phần mềm có thể đẻ ra nhiều Tiến trình con.
+•	Quản lý bộ nhớ: Luồng (Thread) chia sẻ chung RAM. Tiến trình con (Child Process) có vùng RAM độc lập. HĐH quản lý 100% tiến trình con (có PCB, PID, Process Tree).
+•	Luồng User (ULT) vs Luồng Kernel (KLT):
+o	ULT: Nhanh, nhẹ, HĐH bị "mù" không nhìn thấy.
+o	KLT: Nặng hơn (do tốn System Call), là thực thể duy nhất được HĐH cấp CPU.
+•	🚨 Bẫy: Khi luồng User gọi System Call, nó KHÔNG biến thành luồng Kernel, nó chỉ gây ra Mode Switch (Chuyển chế độ CPU sang Kernel Mode) để mượn tay KLT. HĐH không tự sinh thêm luồng để bù vào khi có luồng dính I/O, phần mềm phải tự dùng các luồng rảnh rỗi dựa trên mô hình (1:1, M:1, M:N).
+
