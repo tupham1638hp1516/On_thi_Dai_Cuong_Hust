@@ -269,3 +269,38 @@ Hàng đợi Ready Queue (Lúc xếp hàng): Tính Độc quyền VÔ DỤNG ở
 Minh chứng thép: Các giải thuật như SJF Độc quyền hoặc Priority Độc quyền vẫn khiến các tiến trình dài / ưu tiên thấp "chết đói" ngoài hàng đợi, vì liên tục bị các tiến trình ngắn / ưu tiên cao mới sinh ra chen ngang.
 
 Giải pháp (Vũ khí tối thượng): Để khắc phục Starvation cho các giải thuật này, HĐH sử dụng kỹ thuật Lão hóa (Aging). Bằng cách tăng dần độ ưu tiên của tiến trình dựa trên thời gian nó phải đứng chờ, đảm bảo cuối cùng nó sẽ có ưu tiên cao nhất và được chạy.
+
+Nếu một luồng đang ở state Block/Waiting thì có thể trưng dụng được không
+
+Câu trả lời sẽ là VỪA KHÔNG, VỪA CÓ tùy thuộc vào việc hệ điều hành muốn "cướp" cái gì từ luồng đang bị Block (Chờ đợi).
+Dưới đây là giải phẫu chi tiết:
+1. Nếu hỏi về Trưng dụng CPU (Cướp quyền xử lý): KHÔNG
+•	Tại sao? Bản chất của trạng thái Block (Chờ đợi) là luồng đó đã tự động nộp lại CPU cho hệ điều hành để lui ra ghế chờ (đợi dữ liệu I/O, đợi máy in...).
+•	Giải thích bình dân: Bạn không thể "cướp ghế" của một người vốn dĩ đang không hề ngồi trên cái ghế đó! Hệ điều hành chỉ có thể trưng dụng CPU của một luồng đang ở trạng thái Thực hiện (Running) để đẩy nó về Sẵn sàng (Ready) mà thôi.
+2. Nếu hỏi về Trưng dụng Tài nguyên (Tịch thu đồ đạc): CÓ THỂ
+•	Tại sao? Một luồng dù đang ngồi ngoài ghế chờ (Block) thì trên tay nó vẫn có thể đang "ôm khư khư" một vài tài nguyên khác (như khóa file, bộ nhớ, hoặc một thiết bị nào đó). 
+•	Trong hoàn cảnh nào? Trong bài toán Khắc phục bế tắc (Deadlock Recovery). Nếu hệ thống phát hiện bế tắc, hệ điều hành hoàn toàn có quyền xông thẳng vào phòng chờ, chỉ định luồng đang Block này làm "nạn nhân", và ép nó phải nhả tài nguyên (trưng dụng tài nguyên) ra để đưa cho một luồng khác đang cần gấp. 
+•	Luồng bị tịch thu đồ thường sẽ bị ép Quay lui (Rollback) về một trạng thái an toàn trước đó và đợi làm lại từ đầu. 
+
+Giải phẫu chi tiết 3 Bộ điều phối (Schedulers)
+🚀 Bộ điều phối dài hạn (Long-term Scheduler / Job Scheduler)
+•	Bản chất: "Bác bảo vệ gác cổng viện".
+•	Hành động với Luồng & Tiến trình: Anh này sẽ chọn cả một Gia đình kèm Bộ hồ sơ (Tiến trình) từ bãi gửi xe (Ổ cứng / Job Queue) nạp vào phòng chờ (RAM / Ready Queue).
+•	Từ khóa thi cử: Mức độ đa chương (Degree of Multiprogramming) – quyết định có bao nhiêu Tiến trình được nằm trong RAM cùng lúc.
+•	Đặc tính vận hành: Chạy với tần suất rất chậm (vài giây hoặc vài phút một lần) vì việc nạp cả một tiến trình lớn từ ổ cứng vào RAM rất tốn thời gian.
+⚡ Bộ điều phối ngắn hạn (Short-term Scheduler / CPU Scheduler)
+•	Bản chất: "Cô y tá gọi tên tại phòng khám".
+•	Hành động với Luồng & Tiến trình: Cô y tá không gọi tên Tiến trình, cô ấy nhìn vào phòng chờ (Ready Queue trong RAM), chọn đích danh từng Bệnh nhân (Luồng Nhân) để đẩy vào gặp Bác sĩ (CPU).
+•	Bản chất Chuyển ngữ cảnh (Context Switch):
+o	Nếu cô y tá đổi ca giữa 2 bệnh nhân cùng một nhà (2 luồng cùng 1 tiến trình) $\rightarrow$ Khám cực nhanh vì dùng chung hồ sơ bệnh án (không cần nạp lại không gian bộ nhớ).
+o	Nếu đổi sang bệnh nhân nhà khác (luồng của tiến trình khác) $\rightarrow$ Cô y tá phải cất hồ sơ cũ, lôi hồ sơ mới ra $\rightarrow$ Tốn thời gian và chi phí phần cứng cao hơn.
+•	Từ khóa thi cử: Cấp phát CPU (CPU Dispatcher) / System-Contention Scope (SCS).
+•	Đặc tính vận hành: Chạy với tốc độ cực kỳ nhanh (tính bằng mili-giây) vì CPU xử lý rất chớp nhoáng, cô y tá phải đổi người liên tục để CPU không bị rảnh rỗi.
+🔄 Bộ điều phối trung hạn (Medium-term Scheduler)
+•	Bản chất: "Anh bảo vệ dẹp loạn phòng chờ".
+•	Hành động với Luồng & Tiến trình: Giả sử phòng chờ (RAM) quá ngột ngạt và chật chội. Anh này sẽ đi "túm cổ" nguyên cả Gia đình cùng bộ hồ sơ (Tiến trình) đang ngồi rảnh rỗi hoặc đợi kết quả quá lâu, tống tạm ra bãi gửi xe ngoại ô (Ổ cứng). Khi nào phòng chờ vắng bớt, anh ta mới gọi cả nhà họ vào lại.
+•	Từ khóa thi cử: Hoán đổi (Swapping). Đẩy ra đĩa gọi là Swap-out, gọi lại vào RAM gọi là Swap-in.
+
+Buffer (Bộ nhớ đệm): Sinh ra để giữ tạm dữ liệu trong quá trình trung chuyển giữa 2 thiết bị chênh lệch tốc độ (ví dụ: dữ liệu từ ổ cứng phải gom vào Buffer trên RAM cho đủ một khối rồi mới xử lý).
+
+Cache (Bộ nhớ ẩn): Sinh ra để lưu sẵn những dữ liệu hay được dùng lại, giúp tăng tốc độ truy cập cho lần sau (ví dụ: bạn vừa đọc xong file A, HĐH sẽ giữ file A trong Cache, lát sau bạn mở lại sẽ lên ngay lập tức).
