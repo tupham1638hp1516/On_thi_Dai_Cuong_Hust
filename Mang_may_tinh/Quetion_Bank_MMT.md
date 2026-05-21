@@ -1,7 +1,7 @@
 
 ## **NGÂN HÀNG CÂU HỎI MẠNG MÁY TÍNH** 
 
-## **Giá trị BER (Bit Error Rate = Tỷ lệ bít lỗi/Tỷ lệ bít truyền) phản ánh đặc trưng nào sau đây của đường truyền?** 
+## **Giá trị BER (Bit Error Rate = Tỷ lệ bít lỗi/Tỷ lệ bít truyền) phản ánh đặc trưng nào sau đây của đường truyền?** c
 
 - a. Tốc độ truyền tin tối đa 
 
@@ -13,7 +13,7 @@
 
 - e. Độ trễ 
 
-## **Thông số RTT(Round Trip Time) trong quá trình truyền tin cho biết điều gì?** 
+## **Thông số RTT(Round Trip Time) trong quá trình truyền tin cho biết điều gì?** d
 
 - a. Trễ hàng đợi trên các thiết bị chuyển tiếp 
 
@@ -23,7 +23,7 @@
 
 - d. Trễ 2 chiều giữa nút nguồn và nút đích 
 
-## **Giả sử đường đi từ nút A đến nút B qua 3 liên kết với băng thông lần lượt là 4Mbps, 1Mbps và 2 Mbps. Thời gian để A truyền đến B một file có kích thước 10 MB là bao nhiêu. Giả sử các kết nối không truyền dữ liệu nào khác, trễ lan truyền và trễ tại các nút trung gian là không đáng kể?** 
+## **Giả sử đường đi từ nút A đến nút B qua 3 liên kết với băng thông lần lượt là 4Mbps, 1Mbps và 2 Mbps. Thời gian để A truyền đến B một file có kích thước 10 MB là bao nhiêu. Giả sử các kết nối không truyền dữ liệu nào khác, trễ lan truyền và trễ tại các nút trung gian là không đáng kể?** b
 
 - a. 80 s 
 
@@ -35,7 +35,7 @@
 
 - e. Xấp xỉ 11.4 s 
 
-## **Đặc điểm của cơ chế truyền “best-effort” là gì?** 
+## **Đặc điểm của cơ chế truyền “best-effort” là gì?** a
 
 - a. Chỉ gửi dữ liệu 1 lần, không phát lại 
 
@@ -43,7 +43,7 @@
 
 - c. Sử dụng báo nhận 
 
-## **Tại sao đường truyền phải có giá trị MTU(Maximum Transmission Unit) để giới hạn kích thước của gói tin được truyền?** 
+## **Tại sao đường truyền phải có giá trị MTU(Maximum Transmission Unit) để giới hạn kích thước của gói tin được truyền?** b
 
 - a. Giảm xác suất đụng độ 
 
