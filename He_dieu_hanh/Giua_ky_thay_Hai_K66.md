@@ -13,7 +13,7 @@ Quan điểm kỹ thuật: Hệ điều hành là một hệ thống chương tr
 
 Quan điểm hệ thống: Hệ điều hành là một hệ thống mô hình hoá, mô phỏng hoạt động của máy tính, của người sử dụng và của các thao tác viên, hoạt động trong chế độ đối thoại nhằm tạo môi trường khai thác thuận lợi hệ thống máy tính và quản lý tối ưu tài nguyên của hệ thống.
 
-> Đáp án đúng là A
+> Đáp án đúng là E
 
 ### Câu 2: Giải thuật điều phối Processors không độc quyền và ưu tiên tiến trình ngắn là:
 - **A.** RR
@@ -184,4 +184,83 @@ Vậy thời gian chờ đợi trung bình là: (0+4+8+10+12)/5=6.8
 
 A và B sai là vì, thường thì ta sẽ xét CPU 1 nhân, và nếu CPU 1 nhân, khi tiến trình chỉ thực hiện duy nhất tính toán, thì giữa tiến trình đơn, CPU chạy một lèo từ trên xuống dưới, so với tiến trình đa luồng, CPU chia nhỏ thời gian để phục vụ nhiều luồng, và thời gian chuyển giữa các luồng bị dôi ra, dẫn đến việc thậm chí đa luồng còn chậm hơn đơn luồng. Và khi ấy thì D, E cũng sai (E ghi là luôn sai). C đúng là vì khi thực hiện nhiều vào ra, nếu luồng trong tiến trình đơn luồng gặp I/O thì luồng sẽ tự trao lại CPU và bước vào state Waiting, nhưng vì tiến trình chỉ là đơn luồng, CPU sẽ phải ngồi đợi (rất lâu). Ngược lại thì đa luồng, nếu 1 luồng gặp I/O, trả lại CPU và ngồi đợi thì CPU sẽ lại phục vụ tiếp các luồng khác => Nhanh hơn.
 
-### Câu 15: 
+### Câu 15: Giải thuật điều độ nào được cho rằng không gây ra hiện tượng chờ đợi tích cực
+- **A.** Kiểm tra và xác lập (Test and set)
+- **B.** Kỹ thuật đèn báo (Semaphore)
+- **C.** Phương pháp khóa trong
+- **D.** Thuật toán kiểm tra và xác lập mở rộng
+- **E.** Thuật toán Dekker
+
+- Phương pháp khóa trong thì có nhược điểm là có thể xảy ra trường hợp có 2 tiến trình cùng mở được khóa 1 lúc để sử dụng tài nguyên găng đồng thời, và lỗi chờ đợi tích cực (do lặp lại vòng while)
+- Thuật toán Dekker có cải thiện là lập trình viên tạo ra dòng lệnh return (1 hoặc 0 tùy LTV), thuật toán này chỉ phát huy tác dụng khi chỉ có 2 luồng, nó giống khóa trong nhưng được cái nếu 2 luồng cùng mở được khóa thì dựa trên return 1 hoặc 0 mà 1 trong 2 luồng sẽ phải nhường => giải quyết vấn đề, nhưng vấn đề chờ đợi tích cực vẫn còn.
+- Test and set là phiên bản thuật toán Dekker nhưng mà được thiết kế bởi phần cứng, CPU cố định việc phát hiện khóa mở hay đóng và mở khóa ra sẽ bắt buộc phải thực hiện trong đúng 1 xung nhịp, dẫn đến việc sẽ luôn luôn chỉ có 1 luồng được sử dụng tài nguyên găng trong 1 thời điểm, nhưng vẫn mắc hàng chờ đợi tích cực (Ưu thế hơn Dekker ở điểm phù hợp cho nhiều hơn 2 tiến trình)
+- Kỹ thuật Đèn báo thì cũng giống Test and Set, nhưng thay vì lặp lại vòng While thì tiến trình sẽ đi luôn vào trạng thái block/waiting trong lúc đợi, tránh phung phí CPU.
+
+> Đáp án đúng: B
+
+### Câu 16: Hãy chọn phát biểu hợp lý nhất. Lời gọi hệ thống trong hệ điều hành nhằm mục đích
+- **A.** Khởi tạo, hủy bỏ và đồng bộ các tiến trình trong hệ thống
+- **B.** Cấp phát, thu hồi bộ nhớ đã cấp
+- **C.** Sử dụng các dịch vụ của hệ điều hành
+- **D.** Quản lý tài nguyên trong hệ thống
+- Không có đáp án nào đúng
+
+Lệnh System Call xảy ra ở Luồng User khi nó muốn đụng chạm đến tài nguyên, có thể hiểu là gửi thông báo đến cho hệ điều hành để được sử dụng tài nguyên => Sử dụng dịch vụ của hệ điều hành
+
+> Đáp án đúng: C
+
+### Câu 17: Yêu cầu nào dưới đây thuộc về tính an toàn của hệ điều hành
+- **A.** Thích nghi với thay đổi trong tương lai
+- **B.** Nhiều mức khai thác với hiệu quả khác nhau
+- **C.** Thiết bị chậm không ảnh hưởng đến hệ thống
+- **D.** Hoạt động phải chính xác tuyệt đối
+- **E.** Không bị truy cập bất hợp lệ
+
+> Đáp án đúng: E
+
+### Câu 22: Giải thuật Dekker điều độ tiến trình qua đoạn găng không đảm bảo điều kiện nào?
+- **A.** Chỉ một tiến trình sử dụng tài nguyên tại một thời điểm
+- **B.** Khi tài nguyên găng tự do, các tiến trình đều có thể sử dụng tài nguyên găng
+- **C.** Không tiến trình nào phải đợi tài nguyên găng vô hạn
+- **D.** Tiến trình không sử dụng processor khi tới lượt sử dụng tài nguyên găng
+- **E.** Các tiến trình phải chờ đợi khi tài nguyên găng đang bị tiến trình khác sử dụng
+
+Giải thuật Dekker gặp phải vấn đề chờ đợi tích cực, nó vẫn dùng đến CPU ngay cả khi đợi, do đó D sai
+
+> Đáp án đúng: D
+
+### Câu 25: Hệ điều hành cần phải có nhiều mức khai thác khác nhau với hiệu quả ứng với trình độ và kinh nghiệm của người dùng là tính chất
+- **A.** An toàn
+- **B.** Thuận tiện
+- **C.** Tổng quát theo thời gian
+- **D.** Hiệu quả
+- **E.** Tin cậy cao
+
+Đáp án đúng là thuận tiện, ở đây có nghĩa là người dùng ở mức nào cũng xài được, còn ý hiệu quả là dành cho khả năng tối ưu tài nguyên
+
+> Đáp án đúng: B
+
+### Câu 27: Mục đích chính của hệ điều hành trong giai đoạn phần cứng rẻ, nhân công đắt là:
+- **A.** Giảm thời gian rảnh rỗi của Processor
+- **B.** Tăng khả năng phòng chống tấn công từ bên ngoài
+- **C.** Giảm thời gian chờ đợi của người dùng
+- **D.** Tăng tốc độ hoạt động của các thiết bị vào ra
+- **E.** Tiết kiệm năng lượng tiêu thụ
+
+Phần cứng đắt => Tối ưu phần cứng
+Phần cứng rẻ, Nhân công đắt => Tối ưu trải nghiệm người dùng
+
+> Đáp án đúng: C
+
+### Câu 28: Cho hệ thống gồm 5 tiến trình, 3 tài nguyên với số lượng (3,4,12). Nhu cầu cực đại và tài nguyên đã cấp cho trong bảng sau:
+
+![img](../Images/pic_8.png)
+
+### Hãy chọn câu trả lời đúng nhất
+- **A.** Hệ thống an toàn với dãy 1 2 3 4 5
+- **B.** 1 3 5 2 4
+- **C.** 1 5 2 3 4
+- **D.** 5 3 1 4 2
+Hệ thống không an toàn
+
+Một hệ thống an toàn có thể có nhiều chuỗi an toàn khác nhau.
