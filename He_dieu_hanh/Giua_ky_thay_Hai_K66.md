@@ -33,15 +33,15 @@ Shortest Remaining Time First, đây là giải thuật không độc quyền, h
 > Đáp án đúng: E
 
 ### Câu 3: Chọn phát biểu không chính xác về đồ thị chờ dợi
-- **A.** Thu được đồ thị cung cấp tài nguyên
+- **A.** Thu được từ đồ thị cung cấp tài nguyên
 - **B.** Các cung trên đồ thị biểu diễn mối quan hệ chờ đợi giữa các tiến trình trong hệ thống
 - **C.** Trên đồ thị có chu trình, hệ thống có bế tắc
 - **D.** Không tồn tại các đỉnh kiểu tài nguyên
 - **E.** Chỉ sử dụng hiệu quả khi các tài nguyên chỉ có đúng một đơn vị
  
- Đồ thị chờ đợi được tạo ra từ đồ thị cung cấp tài nguyên, loại bỏ các đỉnh kiểu tài nguyên, chỉ giữ lại mối quan hệ chờ đợi giữa các tiến trình, đồ thị này chỉ sử dụng hiệu quả khi các tài nguyên chỉ có một đơn vị, và nếu là như thế thì khi có chu trình thì hệ thống chắc chắn sẽ có bế tắc.
+ Đồ thị chờ đợi được tạo ra từ đồ thị cung cấp tài nguyên, loại bỏ các đỉnh kiểu tài nguyên, chỉ giữ lại mối quan hệ chờ đợi giữa các tiến trình, đồ thị này chỉ sử dụng hiệu quả khi các tài nguyên chỉ có một đơn vị.
 
-> Đáp án đúng: A
+> Đáp án đúng: C
 
 ### Câu 4: Với 3 trạng thái của tiến trình: Sẵn sàng thực hiện và chờ đợi. Các chuyển đổi có thể xảy ra là:
 - **A.** Sẵn sàng -> Thực hiện; Chờ đợi -> Thực hiện
@@ -264,3 +264,89 @@ Phần cứng rẻ, Nhân công đắt => Tối ưu trải nghiệm người dù
 Hệ thống không an toàn
 
 Một hệ thống an toàn có thể có nhiều chuỗi an toàn khác nhau.
+
+> Đáp án đúng: B
+
+### Câu 29: Điều kiện nào dưới đây không có trong các điều kiện xảy ra bế tắc
+- **A.** Có xếp hàng chờ đợi trước khi vào đoạn găng
+- **B.** Có tài nguyên găng
+- **C.** Có hệ thống phân phối lại tài nguyên
+- **D.** Có chờ đợi vòng tròn
+- Cả 4 điều kiện đều cần thiết để xảy ra bế tắc
+
+Đáp án C vi phạm điều kiện tiến trình được độc quyền
+
+> Đáp án đúng: C
+
+### Câu 30: Hãy chỉ ra phát biểu không chính xác về luồng trong hệ điều hành
+- **A.** Mỗi tiến trình luôn phải tồn tại ít nhất một luồng thực thi
+- **B.** Các luồng trong một tiến trình chia sẻ nhau không gian ngăn xếp của tiến trình
+- **C.** Mô hình lập trình đa luồng cho phép tăng tính đáp ứng của hệ thống
+- **D.** Trên hệ thống đơn vị xử lý, thực chất các luồng trong một tiến trình thực hiện tuần tự (luân phiên)
+
+Các luồng không dùng chung stack, con trỏ lệnh, thanh ghi
+
+> Đáp án đúng: B
+
+### Câu 31: Hệ thống thực hiện nạp lần lượt từng chương trình vào bộ nhớ để thực hiện. Khi một chương trình kết thúc, hệ thống sẽ tự động nạp chương trình tiếp theo vào bộ nhớ được gọi là:
+- **A.** Hệ thống xử lý theo lô đơn chương trình
+- **B.** Hệ thống xử lý theo lô đa chương trình
+- **C.** Hệ thống phân chia thời gian
+- **D.** Hệ thống thời gian thực
+- **E.** Hệ thống song song
+
+Hệ thống xử lý theo lô đơn chương trình: Các công việc (job) được gom lại thành từng lô. Hệ điều hành sẽ nạp duy nhất một chương trình vào bộ nhớ chính tại một thời điểm để CPU xử lý. Chỉ khi chương trình đó thực thi xong hoàn toàn, hệ thống mới tự động chuyển sang nạp và xử lý chương trình tiếp theo trong lô.
+
+Hệ thống xử lý theo lô đa chương trình (B): Cho phép nạp nhiều chương trình vào bộ nhớ cùng một lúc để CPU luân phiên xử lý, giúp tối ưu hóa thời gian CPU trống.
+
+Hệ thống phân chia thời gian (C): CPU luân phiên chuyển đổi giữa nhiều chương trình của nhiều người dùng khác nhau với tốc độ rất nhanh, tạo cảm giác mỗi người dùng đều đang độc chiếm hệ thống.
+
+Hệ thống thời gian thực (D): Đòi hỏi thời gian xử lý và phản hồi phải đáp ứng ngay lập tức trong một khoảng thời gian giới hạn nghiêm ngặt.
+
+Hệ thống song song (E): Sử dụng nhiều vi xử lý (CPU) cùng lúc để giải quyết một hoặc nhiều công việc đồng thời.
+
+> Đáp án đúng: A
+
+### Câu 32: Trong các chiến lược điều phối CPU sau, chiến lược nào được chờ đợi đưa ra thời gian chờ đợi trung bình nhỏ nhất.
+- **A.** Đến trước phục vụ trước
+- **B.** Đến sau phục vụ trước
+- **C.** Tiến trình dài phục vụ sau
+- **D.** Chiến lược vòng tròn
+- **E.** Các chiến lược có thời gian chờ đợi tương đương
+
+SJF có thời gian chờ đợi trung bình nhỏ nhất
+
+> Đáp án đúng: C
+
+### Câu 33: Theo nguyên lý hệ điều hành, tiến trình có bao nhiêu trạng thái
+
+> Đáp án đúng: 5
+
+### Câu 34: Chọn câu trả lời chính xác nhất: Hệ thống chuyển processor cho tiến trình khác khi một tiến trình đang ở trạng thái thực hiện yêu cầu vào ra để nhằm mục đích
+- **A.** Giảm thời gian rảnh của Processor
+- **B.** Chia sẻ bộ nhớ giữa các tiến trình
+- **C.** Giảm thời gian chờ đợi của người dùng
+- **D.** Tăng tốc độ hoạt động của các thiết bị vào ra
+- **E.** Cho phép tiến trình kết thúc đúng hạn
+
+> Đáp án đúng: A
+
+### Câu 35: Các tiến trình P1, P2, P3, P4, P5 dưới đây thực hiện song song, S1, S2, S3, S4 là các biến Semaphores được khởi tạo giá trị bằng 0. Các biến a,b có giá trị ban đầu là: a=2,b=3
+
+![img](../Images/pic_9.png)
+
+### Khi cả 5 tiến trình trên kết thúc, giá trị các biến a và b là:
+- **A.** 4 10
+- **B.** 8 16
+- **C.** 6 20
+- **D.** 8 80
+- Tất cả đều sai
+
+...
+
+### Câu 36: Trong một hệ thống phân chia thời gian, processor buộc phải chuyển cho một tiến trình khác khi:
+- **A.** Tiến trình đang thực hiện một chương trình con
+- **B.** Tiến trình đang thực hiện hết thời gian sử dụng processor
+- **C.** Một yêu cầu vào ra thực hiện xong
+- **D.** Một tiến trình mới xuất hiện trong hệ thống
+- **E.** Tiến trình đang thực hiện kết thúc
